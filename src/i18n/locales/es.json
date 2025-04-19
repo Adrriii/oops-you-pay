@@ -65,11 +65,13 @@
     },
     "nextBilling": "Próxima facturación:",
     "noSubscriptions": "Aún no hay suscripciones. ¡Añade tu primera!",
+    "selectCategory": "Active al menos una categoría para ver las suscripciones correspondientes",
     "billingCycle": {
       "monthly": "/ mes",
       "yearly": "/ año",
       "weekly": "/ semana"
-    }
+    },
+    "wantToCancel": "Por cancelar"
   },
   "category": {
     "manage": {

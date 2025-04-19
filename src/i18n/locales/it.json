@@ -65,6 +65,8 @@
     },
     "nextBilling": "Prossima fatturazione:",
     "noSubscriptions": "Ancora nessun abbonamento. Aggiungi il tuo primo!",
+    "selectCategory": "Attiva almeno una categoria per visualizzare gli abbonamenti corrispondenti",
+    "wantToCancel": "Da disdire",
     "billingCycle": {
       "monthly": "/ mese",
       "yearly": "/ anno",

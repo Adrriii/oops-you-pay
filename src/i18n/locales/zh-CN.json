@@ -63,8 +63,10 @@
       "cancel": "取消",
       "confirm": "删除"
     },
-    "nextBilling": "下次付款：",
+    "nextBilling": "下次计费：",
     "noSubscriptions": "暂无订阅。添加您的第一个订阅！",
+    "selectCategory": "启用至少一个类别以查看相应的订阅",
+    "wantToCancel": "待取消",
     "billingCycle": {
       "monthly": "/月",
       "yearly": "/年",

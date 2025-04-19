@@ -65,6 +65,8 @@
     },
     "nextBilling": "Prochaine facturation :",
     "noSubscriptions": "Pas encore d'abonnements. Ajoutez votre premier !",
+    "selectCategory": "Sélectionnez au moins une catégorie pour voir les abonnements",
+    "wantToCancel": "À annuler",
     "billingCycle": {
       "monthly": "/ mois",
       "yearly": "/ an",

@@ -65,6 +65,8 @@
     },
     "nextBilling": "다음 결제일:",
     "noSubscriptions": "아직 구독이 없습니다. 첫 번째 구독을 추가해보세요!",
+    "selectCategory": "해당 구독을 보려면 하나 이상의 카테고리를 활성화하세요",
+    "wantToCancel": "해지 예정",
     "billingCycle": {
       "monthly": "/월",
       "yearly": "/년",

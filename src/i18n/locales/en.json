@@ -65,7 +65,8 @@
     },
     "nextBilling": "Next billing:",
     "noSubscriptions": "No subscriptions yet. Add your first one!",
-    "wantToCancel": "Want to Cancel",
+    "selectCategory": "Select at least one category to view subscriptions",
+    "wantToCancel": "To Cancel",
     "billingCycle": {
       "monthly": "/ month",
       "yearly": "/ year",

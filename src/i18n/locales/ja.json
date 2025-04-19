@@ -65,6 +65,8 @@
     },
     "nextBilling": "次回請求:",
     "noSubscriptions": "サブスクリプションがありません。最初のサブスクリプションを追加しましょう！",
+    "selectCategory": "対応するサブスクリプションを表示するには、少なくとも1つのカテゴリーを有効にしてください",
+    "wantToCancel": "解約予定",
     "billingCycle": {
       "monthly": "/月",
       "yearly": "/年",

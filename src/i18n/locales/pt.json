@@ -65,6 +65,8 @@
     },
     "nextBilling": "Próxima cobrança:",
     "noSubscriptions": "Ainda não há assinaturas. Adicione sua primeira!",
+    "selectCategory": "Ative pelo menos uma categoria para ver as assinaturas correspondentes",
+    "wantToCancel": "A cancelar",
     "billingCycle": {
       "monthly": "/ mês",
       "yearly": "/ ano",
