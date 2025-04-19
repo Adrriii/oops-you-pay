@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { currencies, Currency, getDefaultCurrency } from '../config/currencies';
 
 const ratesJSON = '/rates.json';
 
@@ -10,7 +11,7 @@ interface ExchangeRatesState {
   isLoading: boolean;
   error: string | null;
   fetchRatesIfNeeded: () => Promise<void>;
-  convertAmount: (amount: number, fromCurrency: string, toCurrency: string) => number;
+  convertAmount: (amount: number, fromCurrency: Currency, toCurrency: Currency) => number;
 }
 
 export const useExchangeRatesStore = create<ExchangeRatesState>()(
@@ -18,7 +19,7 @@ export const useExchangeRatesStore = create<ExchangeRatesState>()(
     (set, get) => ({
       rates: {},
       lastUpdated: null,
-      baseCurrency: 'USD',
+      baseCurrency: getDefaultCurrency().code,
       isLoading: false,
       error: null,
       fetchRatesIfNeeded: async () => {
@@ -52,7 +53,7 @@ export const useExchangeRatesStore = create<ExchangeRatesState>()(
           }
         }
       },
-      convertAmount: (amount: number, fromCurrency: string, toCurrency: string) => {
+      convertAmount: (amount: number, fromCurrency: Currency, toCurrency: Currency) => {
         if (fromCurrency === toCurrency) {
           return amount;
         }
@@ -60,18 +61,18 @@ export const useExchangeRatesStore = create<ExchangeRatesState>()(
         const rates = get().rates;
         const baseCurrency = get().baseCurrency;
 
-        if (fromCurrency === baseCurrency) {
-          const rate = rates[toCurrency];
+        if (fromCurrency.code === baseCurrency) {
+          const rate = rates[toCurrency.code];
           return rate ? amount * rate : amount;
         }
 
-        if (toCurrency === baseCurrency) {
-          const rate = rates[fromCurrency];
+        if (toCurrency.code === baseCurrency) {
+          const rate = rates[fromCurrency.code];
           return rate ? amount / rate : amount;
         }
 
-        const fromRate = rates[fromCurrency];
-        const toRate = rates[toCurrency];
+        const fromRate = rates[fromCurrency.code];
+        const toRate = rates[toCurrency.code];
         if (fromRate && toRate) {
           return (amount / fromRate) * toRate;
         }

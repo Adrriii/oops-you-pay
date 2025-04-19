@@ -26,14 +26,13 @@ import { Subscription } from '../types/subscription';
 import { format } from 'date-fns';
 import { useCategoryStore } from '../store/categoryStore';
 import { useTranslation } from 'react-i18next';
+import { currencies, getCurrencySymbol } from '../config/currencies';
 
 interface EditSubscriptionProps {
   open: boolean;
   onClose: () => void;
   subscriptionId: string;
 }
-
-const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
 export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionProps) => {
   const { t } = useTranslation();
@@ -49,7 +48,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
   const [formData, setFormData] = useState<Omit<Subscription, 'id' | 'createdAt'>>({
     name: '',
     amount: 0,
-    currency: 'USD',
+    currency: currencies[0],
     billingCycle: 'monthly',
     nextBillingDate: new Date(),
     categoryId: '',
@@ -143,9 +142,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    {formData.currency === 'USD' ? '$' : 
-                     formData.currency === 'EUR' ? '€' :
-                     formData.currency === 'GBP' ? '£' : ''}
+                    {getCurrencySymbol(formData.currency.code)}
                   </InputAdornment>
                 ),
               }}
@@ -200,13 +197,13 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                     <InputLabel>{t('subscription.add.currency')}</InputLabel>
                     <Select
                       name="currency"
-                      value={formData.currency}
+                      value={formData.currency.code}
                       onChange={handleSelectChange}
                       label={t('subscription.add.currency')}
                     >
                       {currencies.map((currency) => (
-                        <MenuItem key={currency} value={currency}>
-                          {currency}
+                        <MenuItem key={currency.code} value={currency.code}>
+                          {currency.code}
                         </MenuItem>
                       ))}
                     </Select>

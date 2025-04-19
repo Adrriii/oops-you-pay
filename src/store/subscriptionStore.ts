@@ -1,17 +1,18 @@
 import { create } from 'zustand';
 import { Subscription } from '../types/subscription';
 import { persist } from 'zustand/middleware';
+import { currencies, Currency, getDefaultCurrency } from '../config/currencies';
 
 interface SubscriptionState {
   subscriptions: Subscription[];
-  displayCurrency: string;
-  lastUsedCurrency: string;
+  displayCurrency: Currency;
+  lastUsedCurrency: Currency;
   addSubscription: (subscription: Omit<Subscription, 'id' | 'createdAt'>) => void;
   removeSubscription: (id: string) => void;
   updateSubscription: (id: string, subscription: Partial<Subscription>) => void;
   updateSubscriptions: (subscriptions: Subscription[]) => void;
-  updateDisplayCurrency: (currency: string) => void;
-  updateLastUsedCurrency: (currency: string) => void;
+  updateDisplayCurrency: (currency: Currency) => void;
+  updateLastUsedCurrency: (currency: Currency) => void;
   removeCategory: (categoryId: string) => void;
 }
 
@@ -19,8 +20,8 @@ export const useSubscriptionStore = create<SubscriptionState>()(
   persist(
     (set) => ({
       subscriptions: [],
-      displayCurrency: 'USD',
-      lastUsedCurrency: 'USD',
+      displayCurrency: getDefaultCurrency(),
+      lastUsedCurrency: getDefaultCurrency(),
       addSubscription: (subscription) => 
         set((state) => ({
           subscriptions: [

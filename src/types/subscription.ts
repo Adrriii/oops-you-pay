@@ -1,8 +1,10 @@
+import { Currency } from '../config/currencies';
+
 export interface Subscription {
   id: string;
   name: string;
   amount: number;
-  currency: string;
+  currency: Currency;
   billingCycle: 'monthly' | 'yearly' | 'weekly';
   nextBillingDate: Date;
   categoryId?: string;  // Changed from category to categoryId

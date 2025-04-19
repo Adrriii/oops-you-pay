@@ -2,8 +2,7 @@ import { Box, Typography, Paper, FormControl, Select, MenuItem } from '@mui/mate
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useExchangeRatesStore } from '../store/exchangeRatesStore';
 import { useTranslation } from 'react-i18next';
-
-const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
+import { currencies, Currency, currencyByCode, CurrencyCode } from '../config/currencies';
 
 export const DashboardStats = () => {
   const { t } = useTranslation();
@@ -31,11 +30,11 @@ export const DashboardStats = () => {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: displayCurrency,
+      currency: displayCurrency.code,
     }).format(amount);
   };
 
-  const handleCurrencyChange = (value: string) => {
+  const handleCurrencyChange = (value: Currency) => {
     updateDisplayCurrency(value);
     updateLastUsedCurrency(value);
   };
@@ -67,8 +66,8 @@ export const DashboardStats = () => {
             </Typography>
             <FormControl size="small" sx={{ minWidth: 80 }}>
               <Select
-                value={displayCurrency}
-                onChange={(e) => handleCurrencyChange(e.target.value)}
+                value={displayCurrency.code}
+                onChange={(e) => handleCurrencyChange(currencyByCode[e.target.value as CurrencyCode])}
                 variant="standard"
                 sx={{ 
                   '& .MuiSelect-select': { 
@@ -78,8 +77,8 @@ export const DashboardStats = () => {
                 }}
               >
                 {currencies.map((currency) => (
-                  <MenuItem key={currency} value={currency}>
-                    {currency}
+                  <MenuItem key={currency.code} value={currency.code}>
+                    {currency.code}
                   </MenuItem>
                 ))}
               </Select>

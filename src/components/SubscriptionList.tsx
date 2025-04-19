@@ -8,6 +8,7 @@ import { EditSubscription } from './EditSubscription';
 import { DeleteConfirmation } from './DeleteConfirmation';
 import { CategoryManager } from './CategoryManager';
 import { useTranslation } from 'react-i18next';
+import { CurrencyCode } from '../config/currencies';
 
 export const SubscriptionList = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ export const SubscriptionList = () => {
     handleMenuClose();
   };
 
-  const formatCurrency = (amount: number, currency: string) => {
+  const formatCurrency = (amount: number, currency: CurrencyCode) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currency,
@@ -129,7 +130,7 @@ export const SubscriptionList = () => {
                 </Box>
                 
                 <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold' }}>
-                  {formatCurrency(subscription.amount, subscription.currency)}
+                  {formatCurrency(subscription.amount, subscription.currency.code)}
                   <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
                     / {subscription.billingCycle}
                   </Typography>
