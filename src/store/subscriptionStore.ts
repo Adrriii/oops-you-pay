@@ -9,6 +9,7 @@ interface SubscriptionState {
   addSubscription: (subscription: Omit<Subscription, 'id' | 'createdAt'>) => void;
   removeSubscription: (id: string) => void;
   updateSubscription: (id: string, subscription: Partial<Subscription>) => void;
+  updateSubscriptions: (subscriptions: Subscription[]) => void;
   updateDisplayCurrency: (currency: string) => void;
   updateLastUsedCurrency: (currency: string) => void;
 }
@@ -40,6 +41,10 @@ export const useSubscriptionStore = create<SubscriptionState>()(
           subscriptions: state.subscriptions.map((sub) =>
             sub.id === id ? { ...sub, ...subscription } : sub
           ),
+        })),
+      updateSubscriptions: (subscriptions) =>
+        set(() => ({
+          subscriptions,
         })),
       updateDisplayCurrency: (currency) =>
         set(() => ({

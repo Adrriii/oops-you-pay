@@ -24,16 +24,7 @@ import { Add as AddIcon, Close as CloseIcon, ExpandMore as ExpandMoreIcon } from
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { BillingCycle } from '../types/subscription';
 import { addMonths, startOfMonth, format } from 'date-fns';
-
-const categories = [
-  'Entertainment',
-  'Software',
-  'Streaming',
-  'Gaming',
-  'Music',
-  'Health',
-  'Other',
-];
+import { useCategoryStore } from '../store/categoryStore';
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
@@ -50,6 +41,7 @@ export const AddSubscription = () => {
   const displayCurrency = useSubscriptionStore((state) => state.displayCurrency);
   const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
   const lastUsedCurrency = useSubscriptionStore((state) => state.lastUsedCurrency);
+  const categories = useCategoryStore((state) => state.categories);
 
   console.log('Last used currency:', lastUsedCurrency);
   console.log('Display currency:', displayCurrency);
@@ -274,11 +266,23 @@ export const AddSubscription = () => {
                         label="Category (Optional)"
                       >
                         <MenuItem value="">
-                          <em>None</em>
+                          <em>Uncategorized</em>
                         </MenuItem>
                         {categories.map((category) => (
-                          <MenuItem key={category} value={category}>
-                            {category}
+                          <MenuItem key={category.id} value={category.name}>
+                            <Box
+                              component="span"
+                              sx={{
+                                display: 'inline-block',
+                                px: 1,
+                                py: 0.5,
+                                borderRadius: 1,
+                                backgroundColor: category.backgroundColor,
+                                color: category.textColor,
+                              }}
+                            >
+                              {category.name}
+                            </Box>
                           </MenuItem>
                         ))}
                       </Select>

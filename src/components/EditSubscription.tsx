@@ -24,22 +24,13 @@ import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-mat
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { Subscription } from '../types/subscription';
 import { format } from 'date-fns';
+import { useCategoryStore } from '../store/categoryStore';
 
 interface EditSubscriptionProps {
   open: boolean;
   onClose: () => void;
   subscriptionId: string;
 }
-
-const categories = [
-  'Entertainment',
-  'Software',
-  'Streaming',
-  'Gaming',
-  'Music',
-  'Health',
-  'Other',
-];
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
@@ -51,6 +42,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     (state) => state.subscriptions.find((s) => s.id === subscriptionId)
   );
   const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
+  const categories = useCategoryStore((state) => state.categories);
 
   const [formData, setFormData] = useState<Omit<Subscription, 'id' | 'createdAt'>>({
     name: '',
@@ -226,11 +218,23 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                       label="Category (Optional)"
                     >
                       <MenuItem value="">
-                        <em>None</em>
+                        <em>Uncategorized</em>
                       </MenuItem>
                       {categories.map((category) => (
-                        <MenuItem key={category} value={category}>
-                          {category}
+                        <MenuItem key={category.id} value={category.name}>
+                          <Box
+                            component="span"
+                            sx={{
+                              display: 'inline-block',
+                              px: 1,
+                              py: 0.5,
+                              borderRadius: 1,
+                              backgroundColor: category.backgroundColor,
+                              color: category.textColor,
+                            }}
+                          >
+                            {category.name}
+                          </Box>
                         </MenuItem>
                       ))}
                     </Select>
