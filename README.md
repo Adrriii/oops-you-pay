@@ -8,6 +8,8 @@
 
 A subscription management web application to track and manage your recurring payments.
 
+[Try it live !](https://oops-you-pay.adri-web.dev/)
+
 ## Features
 
 - Track multiple subscriptions

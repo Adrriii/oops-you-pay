@@ -36,7 +36,7 @@ export const Footer = () => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Link
-            href="https://github.com/Adrriii/oopsyoupay"
+            href="https://github.com/Adrriii/oops-you-pay"
             target="_blank"
             rel="noopener noreferrer"
             sx={{

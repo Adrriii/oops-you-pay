@@ -149,41 +149,45 @@ export const SubscriptionList = () => {
 
   return (
     <>
-      <Box sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
-        <CategoryManager />
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-          {activeCategories.map((category) => (
-            <ToggleButton
-              key={category.id}
-              value={category.id}
-              selected={selectedCategories.has(category.id)}
-              onChange={() => handleCategoryToggle(category.id)}
-              sx={{
-                backgroundColor: category.backgroundColor,
-                color: category.textColor,
-                borderColor: category.backgroundColor,
-                opacity: selectedCategories.has(category.id) ? 1 : 0.4,
-                '&:hover': {
-                  backgroundColor: category.backgroundColor,
-                  color: category.textColor,
-                  opacity: selectedCategories.has(category.id) ? 0.9 : 0.7,
-                },
-                '&.Mui-selected': {
-                  backgroundColor: category.backgroundColor,
-                  color: category.textColor,
-                  opacity: 1,
-                  '&:hover': {
+      {subscriptions.length > 0 && (
+        <Box sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+          <CategoryManager />
+          {activeCategories.length > 1 && (
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {activeCategories.map((category) => (
+                <ToggleButton
+                  key={category.id}
+                  value={category.id}
+                  selected={selectedCategories.has(category.id)}
+                  onChange={() => handleCategoryToggle(category.id)}
+                  sx={{
                     backgroundColor: category.backgroundColor,
-                    opacity: 0.9,
-                  },
-                },
-              }}
-            >
-              {category.name} ({category.count})
-            </ToggleButton>
-          ))}
+                    color: category.textColor,
+                    borderColor: category.backgroundColor,
+                    opacity: selectedCategories.has(category.id) ? 1 : 0.4,
+                    '&:hover': {
+                      backgroundColor: category.backgroundColor,
+                      color: category.textColor,
+                      opacity: selectedCategories.has(category.id) ? 0.9 : 0.7,
+                    },
+                    '&.Mui-selected': {
+                      backgroundColor: category.backgroundColor,
+                      color: category.textColor,
+                      opacity: 1,
+                      '&:hover': {
+                        backgroundColor: category.backgroundColor,
+                        opacity: 0.9,
+                      },
+                    },
+                  }}
+                >
+                  {category.name} ({category.count})
+                </ToggleButton>
+              ))}
+            </Box>
+          )}
         </Box>
-      </Box>
+      )}
 
       <Box sx={{ 
         display: 'flex', 
@@ -279,17 +283,19 @@ export const SubscriptionList = () => {
             </Box>
           ))
         ) : (
-          <Box sx={{ 
-            width: '100%', 
-            textAlign: 'center', 
-            py: 8 
-          }}>
-            <Typography variant="h6" color="text.secondary">
-              {selectedCategories.size === 0 
-                ? t('subscription.selectCategory') 
-                : t('subscription.noSubscriptions')}
-            </Typography>
-          </Box>
+          subscriptions.length > 0 && (
+            <Box sx={{ 
+              width: '100%', 
+              textAlign: 'center', 
+              py: 8 
+            }}>
+              <Typography variant="h6" color="text.secondary">
+                {selectedCategories.size === 0 
+                  ? t('subscription.selectCategory') 
+                  : t('subscription.noSubscriptions')}
+              </Typography>
+            </Box>
+          )
         )}
 
         <Menu
@@ -338,18 +344,6 @@ export const SubscriptionList = () => {
               />
             )}
           </Suspense>
-        )}
-
-        {subscriptions.length === 0 && (
-          <Box sx={{ 
-            width: '100%', 
-            textAlign: 'center', 
-            py: 8 
-          }}>
-            <Typography variant="h6" color="text.secondary">
-              {t('subscription.noSubscriptions')}
-            </Typography>
-          </Box>
         )}
       </Box>
     </>
