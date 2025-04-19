@@ -1,0 +1,102 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "サブスクリプション管理を簡単に"
+  },
+  "common": {
+    "add": "追加",
+    "edit": "編集",
+    "delete": "削除",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "confirm": "確認",
+    "category": "カテゴリー",
+    "name": "名前",
+    "price": "価格",
+    "billing": "支払い",
+    "currency": "通貨",
+    "next_billing": "次回の支払日"
+  },
+  "dashboard": {
+    "total_monthly": "月額合計",
+    "most_expensive": "最も高額なサブスクリプション",
+    "categories": "カテゴリー別",
+    "monthlyOverview": "月次概要",
+    "totalMonthlySpending": "月間総支出",
+    "exchangeRatesUpdated": "為替レート更新日：{{date}}",
+    "activeSubscriptions": "アクティブなサブスクリプション",
+    "totalSubscriptions": "サブスクリプションの総数"
+  },
+  "categories": {
+    "entertainment": "エンターテイメント",
+    "productivity": "生産性",
+    "utilities": "ユーティリティ",
+    "other": "その他"
+  },
+  "subscription": {
+    "add": {
+      "button": "サブスクリプションを追加",
+      "title": "新規サブスクリプション",
+      "name": "サブスクリプション名",
+      "namePlaceholder": "例：Netflix、Spotify など",
+      "amount": "金額",
+      "billingCycle": "請求サイクル",
+      "cycles": {
+        "monthly": "毎月",
+        "yearly": "毎年",
+        "weekly": "毎週"
+      },
+      "advancedOptions": "詳細設定",
+      "nextBillingDate": "次回請求日",
+      "currency": "通貨",
+      "category": "カテゴリー（任意）",
+      "uncategorized": "未分類",
+      "notes": "メモ（任意）",
+      "notesPlaceholder": "このサブスクリプションに関する追加情報を入力...",
+      "cancel": "キャンセル",
+      "submit": "追加"
+    },
+    "edit": {
+      "title": "サブスクリプションを編集",
+      "cancel": "キャンセル",
+      "submit": "変更を保存"
+    },
+    "delete": {
+      "title": "サブスクリプションを削除",
+      "confirmation": "{{name}}のサブスクリプションを削除してもよろしいですか？この操作は取り消せません。",
+      "cancel": "キャンセル",
+      "confirm": "削除"
+    },
+    "nextBilling": "次回請求：",
+    "noSubscriptions": "サブスクリプションがありません。最初のサブスクリプションを追加しましょう！"
+  },
+  "category": {
+    "manage": {
+      "button": "カテゴリー管理",
+      "title": "カテゴリーを管理",
+      "description": "サブスクリプションのカテゴリーを追加、編集、削除します。変更は、これらのカテゴリーを使用するすべてのサブスクリプションに影響します。",
+      "newCategory": "カテゴリーを追加...",
+      "editCategory": "新しいカテゴリー名...",
+      "backgroundColor": "背景色",
+      "textColor": "文字色",
+      "confirmation": "デフォルトのカテゴリーにリセットしてもよろしいですか？すべてのサブスクリプションに影響します。",
+      "actions": {
+        "add": "追加",
+        "update": "更新",
+        "edit": "編集",
+        "delete": "削除"
+      },
+      "resetToDefaults": "デフォルトに戻す",
+      "done": "完了"
+    },
+    "defaults": {
+      "entertainment": "エンターテインメント",
+      "software": "ソフトウェア",
+      "streaming": "ストリーミング",
+      "gaming": "ゲーム",
+      "music": "音楽",
+      "health": "健康",
+      "other": "その他"
+    }
+  }
+}

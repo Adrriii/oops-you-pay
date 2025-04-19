@@ -1,0 +1,102 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "구독 관리를 더 쉽게"
+  },
+  "common": {
+    "add": "추가",
+    "edit": "수정",
+    "delete": "삭제",
+    "cancel": "취소",
+    "save": "저장",
+    "confirm": "확인",
+    "category": "카테고리",
+    "name": "이름",
+    "price": "가격",
+    "billing": "결제",
+    "currency": "통화",
+    "next_billing": "다음 결제일"
+  },
+  "dashboard": {
+    "total_monthly": "월간 총액",
+    "most_expensive": "가장 비싼 구독",
+    "categories": "카테고리별",
+    "monthlyOverview": "월간 개요",
+    "totalMonthlySpending": "월 총 지출",
+    "exchangeRatesUpdated": "환율 업데이트: {{date}}",
+    "activeSubscriptions": "활성 구독",
+    "totalSubscriptions": "전체 구독 수"
+  },
+  "categories": {
+    "entertainment": "엔터테인먼트",
+    "productivity": "생산성",
+    "utilities": "유틸리티",
+    "other": "기타"
+  },
+  "subscription": {
+    "add": {
+      "button": "구독 추가",
+      "title": "새 구독 추가",
+      "name": "구독 이름",
+      "namePlaceholder": "예: Netflix, Spotify 등",
+      "amount": "금액",
+      "billingCycle": "결제 주기",
+      "cycles": {
+        "monthly": "매월",
+        "yearly": "매년",
+        "weekly": "매주"
+      },
+      "advancedOptions": "고급 설정",
+      "nextBillingDate": "다음 결제일",
+      "currency": "통화",
+      "category": "카테고리 (선택사항)",
+      "uncategorized": "미분류",
+      "notes": "메모 (선택사항)",
+      "notesPlaceholder": "이 구독에 대한 추가 정보를 입력하세요...",
+      "cancel": "취소",
+      "submit": "추가"
+    },
+    "edit": {
+      "title": "구독 수정",
+      "cancel": "취소",
+      "submit": "변경사항 저장"
+    },
+    "delete": {
+      "title": "구독 삭제",
+      "confirmation": "{{name}} 구독을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+      "cancel": "취소",
+      "confirm": "삭제"
+    },
+    "nextBilling": "다음 결제일:",
+    "noSubscriptions": "아직 구독이 없습니다. 첫 번째 구독을 추가하세요!"
+  },
+  "category": {
+    "manage": {
+      "button": "카테고리 관리",
+      "title": "카테고리 관리",
+      "description": "구독 카테고리를 추가, 수정 또는 삭제합니다. 변경사항은 해당 카테고리를 사용하는 모든 구독에 영향을 미칩니다.",
+      "newCategory": "카테고리 추가...",
+      "editCategory": "새 카테고리 이름...",
+      "backgroundColor": "배경색",
+      "textColor": "글자색",
+      "confirmation": "기본 카테고리로 초기화하시겠습니까? 모든 구독에 영향을 미칩니다.",
+      "actions": {
+        "add": "추가",
+        "update": "업데이트",
+        "edit": "수정",
+        "delete": "삭제"
+      },
+      "resetToDefaults": "기본값으로 초기화",
+      "done": "완료"
+    },
+    "defaults": {
+      "entertainment": "엔터테인먼트",
+      "software": "소프트웨어",
+      "streaming": "스트리밍",
+      "gaming": "게임",
+      "music": "음악",
+      "health": "건강",
+      "other": "기타"
+    }
+  }
+}
