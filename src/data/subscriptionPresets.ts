@@ -349,5 +349,221 @@ export const subscriptionPresets: Brand[] = [
         categoryKey: 'category.defaults.streaming'
       }
     ]
+  },
+  {
+    translationKey: 'brands.paramountplus.name',
+    plans: [
+      {
+        translationKey: 'brands.paramountplus.plans.essential',
+        prices: [
+          { amount: 5.99, currency: CURRENCY.USD },
+          { amount: 4.99, currency: CURRENCY.EUR },
+          { amount: 4.99, currency: CURRENCY.GBP },
+          { amount: 890, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      },
+      {
+        translationKey: 'brands.paramountplus.plans.withshowtime',
+        prices: [
+          { amount: 11.99, currency: CURRENCY.USD },
+          { amount: 10.99, currency: CURRENCY.EUR },
+          { amount: 9.99, currency: CURRENCY.GBP },
+          { amount: 1480, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.appletv.name',
+    plans: [
+      {
+        translationKey: 'brands.appletv.plans.standard',
+        prices: [
+          { amount: 9.99, currency: CURRENCY.USD },
+          { amount: 8.99, currency: CURRENCY.EUR },
+          { amount: 8.99, currency: CURRENCY.GBP },
+          { amount: 1280, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.nintendoswitch.name',
+    plans: [
+      {
+        translationKey: 'brands.nintendoswitch.plans.individual',
+        prices: [
+          { amount: 3.99, currency: CURRENCY.USD },
+          { amount: 3.99, currency: CURRENCY.EUR },
+          { amount: 3.49, currency: CURRENCY.GBP },
+          { amount: 480, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.gaming'
+      },
+      {
+        translationKey: 'brands.nintendoswitch.plans.familyannual',
+        prices: [
+          { amount: 34.99, currency: CURRENCY.USD },
+          { amount: 34.99, currency: CURRENCY.EUR },
+          { amount: 31.49, currency: CURRENCY.GBP },
+          { amount: 4500, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'yearly',
+        categoryKey: 'category.defaults.gaming'
+      },
+      {
+        translationKey: 'brands.nintendoswitch.plans.expansionpack',
+        prices: [
+          { amount: 49.99, currency: CURRENCY.USD },
+          { amount: 49.99, currency: CURRENCY.EUR },
+          { amount: 44.99, currency: CURRENCY.GBP },
+          { amount: 6480, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'yearly',
+        categoryKey: 'category.defaults.gaming'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.hulu.name',
+    plans: [
+      {
+        translationKey: 'brands.hulu.plans.withads',
+        prices: [
+          { amount: 7.99, currency: CURRENCY.USD },
+          { amount: 6.99, currency: CURRENCY.EUR },
+          { amount: 6.99, currency: CURRENCY.GBP },
+          { amount: 990, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      },
+      {
+        translationKey: 'brands.hulu.plans.noads',
+        prices: [
+          { amount: 14.99, currency: CURRENCY.USD },
+          { amount: 13.99, currency: CURRENCY.EUR },
+          { amount: 12.99, currency: CURRENCY.GBP },
+          { amount: 1880, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      },
+      {
+        translationKey: 'brands.hulu.plans.livetvwithads',
+        prices: [
+          { amount: 76.99, currency: CURRENCY.USD },
+          { amount: 74.99, currency: CURRENCY.EUR },
+          { amount: 69.99, currency: CURRENCY.GBP },
+          { amount: 8900, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.streaming'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.deliveroo.name',
+    plans: [
+      {
+        translationKey: 'brands.deliveroo.plans.plus',
+        prices: [
+          { amount: 3.99, currency: CURRENCY.USD },
+          { amount: 3.99, currency: CURRENCY.EUR },
+          { amount: 3.49, currency: CURRENCY.GBP },
+          { amount: 480, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.services'
+      },
+      {
+        translationKey: 'brands.deliveroo.plans.plusannual',
+        prices: [
+          { amount: 41.88, currency: CURRENCY.USD },
+          { amount: 41.88, currency: CURRENCY.EUR },
+          { amount: 37.88, currency: CURRENCY.GBP },
+          { amount: 4800, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'yearly',
+        categoryKey: 'category.defaults.services'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.uberone.name',
+    plans: [
+      {
+        translationKey: 'brands.uberone.plans.monthly',
+        prices: [
+          { amount: 9.99, currency: CURRENCY.USD },
+          { amount: 9.99, currency: CURRENCY.EUR },
+          { amount: 7.99, currency: CURRENCY.GBP },
+          { amount: 1280, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.services'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.doordash.name',
+    plans: [
+      {
+        translationKey: 'brands.doordash.plans.dashpass',
+        prices: [
+          { amount: 9.99, currency: CURRENCY.USD },
+          { amount: 9.99, currency: CURRENCY.EUR },
+          { amount: 7.99, currency: CURRENCY.GBP },
+          { amount: 1280, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.services'
+      },
+      {
+        translationKey: 'brands.doordash.plans.student',
+        prices: [
+          { amount: 4.99, currency: CURRENCY.USD },
+          { amount: 4.99, currency: CURRENCY.EUR },
+          { amount: 3.99, currency: CURRENCY.GBP },
+          { amount: 680, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.services'
+      }
+    ]
+  },
+  {
+    translationKey: 'brands.instacart.name',
+    plans: [
+      {
+        translationKey: 'brands.instacart.plans.plus',
+        prices: [
+          { amount: 9.99, currency: CURRENCY.USD },
+          { amount: 9.99, currency: CURRENCY.EUR },
+          { amount: 7.99, currency: CURRENCY.GBP },
+          { amount: 1280, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'monthly',
+        categoryKey: 'category.defaults.services'
+      },
+      {
+        translationKey: 'brands.instacart.plans.annual',
+        prices: [
+          { amount: 99, currency: CURRENCY.USD },
+          { amount: 99, currency: CURRENCY.EUR },
+          { amount: 79, currency: CURRENCY.GBP },
+          { amount: 12800, currency: CURRENCY.JPY }
+        ],
+        billingCycle: 'yearly',
+        categoryKey: 'category.defaults.services'
+      }
+    ]
   }
 ];

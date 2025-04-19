@@ -183,6 +183,62 @@
         "withads": "HBO Max With Ads",
         "adsfree": "HBO Max Ad-Free"
       }
+    },
+    "paramountplus": {
+      "name": "Paramount+",
+      "plans": {
+        "essential": "Essential with ads",
+        "withshowtime": "With SHOWTIME"
+      }
+    },
+    "appletv": {
+      "name": "Apple TV+",
+      "plans": {
+        "standard": "Standard"
+      }
+    },
+    "nintendoswitch": {
+      "name": "Nintendo Switch Online",
+      "plans": {
+        "individual": "Individual",
+        "familyannual": "Family (Annual)",
+        "expansionpack": "Expansion Pack"
+      }
+    },
+    "hulu": {
+      "name": "Hulu",
+      "plans": {
+        "withads": "With Ads",
+        "noads": "No Ads",
+        "livetvwithads": "Live TV With Ads"
+      }
+    },
+    "deliveroo": {
+      "name": "Deliveroo",
+      "plans": {
+        "plus": "Deliveroo Plus",
+        "plusannual": "Deliveroo Plus Annual"
+      }
+    },
+    "uberone": {
+      "name": "Uber One",
+      "plans": {
+        "monthly": "Monthly Membership"
+      }
+    },
+    "doordash": {
+      "name": "DoorDash",
+      "plans": {
+        "dashpass": "DashPass",
+        "student": "Student Plan"
+      }
+    },
+    "instacart": {
+      "name": "Instacart",
+      "plans": {
+        "plus": "Instacart+",
+        "annual": "Instacart+ Annual"
+      }
     }
   }
 }
