@@ -8,7 +8,9 @@
     "totalMonthlySpending": "Total monthly spending in",
     "exchangeRatesUpdated": "Exchange rates updated: {{date}}",
     "activeSubscriptions": "Active Subscriptions",
-    "totalSubscriptions": "Total number of subscriptions"
+    "totalSubscriptions": "Total number of subscriptions",
+    "yearlyEstimate": "Yearly estimate",
+    "upcomingPayments": "Upcoming Payments"
   },
   "subscription": {
     "add": {

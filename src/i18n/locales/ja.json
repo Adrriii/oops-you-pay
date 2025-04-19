@@ -25,7 +25,9 @@
     "totalMonthlySpending": "月間総支出",
     "exchangeRatesUpdated": "為替レート更新日：{{date}}",
     "activeSubscriptions": "アクティブなサブスクリプション",
-    "totalSubscriptions": "サブスクリプションの総数"
+    "totalSubscriptions": "サブスクリプションの総数",
+    "yearlyEstimate": "年間予測",
+    "upcomingPayments": "今後の支払い"
   },
   "categories": {
     "entertainment": "エンターテイメント",

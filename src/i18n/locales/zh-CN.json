@@ -25,7 +25,9 @@
     "totalMonthlySpending": "月度总支出",
     "exchangeRatesUpdated": "汇率更新时间：{{date}}",
     "activeSubscriptions": "活跃订阅",
-    "totalSubscriptions": "订阅总数"
+    "totalSubscriptions": "订阅总数",
+    "yearlyEstimate": "年度预估",
+    "upcomingPayments": "即将付款"
   },
   "categories": {
     "entertainment": "娱乐",

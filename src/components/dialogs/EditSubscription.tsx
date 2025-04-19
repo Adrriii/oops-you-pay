@@ -34,6 +34,10 @@ interface EditSubscriptionProps {
   subscriptionId: string;
 }
 
+type EditSubscriptionFormData = Omit<Subscription, 'id' | 'createdAt' | 'nextBillingDate'> & {
+  nextBillingDate: string;
+};
+
 const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -45,12 +49,12 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
   const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
   const categories = useCategoryStore((state) => state.categories);
 
-  const [formData, setFormData] = useState<Omit<Subscription, 'id' | 'createdAt'>>({
+  const [formData, setFormData] = useState<EditSubscriptionFormData>({
     name: '',
     amount: 0,
     currency: getDefaultCurrency(),
     billingCycle: 'monthly',
-    nextBillingDate: new Date(),
+    nextBillingDate: '',
     categoryId: '',
     notes: '',
   });
@@ -62,7 +66,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
         amount: subscription.amount,
         currency: subscription.currency,
         billingCycle: subscription.billingCycle,
-        nextBillingDate: subscription.nextBillingDate,
+        nextBillingDate: format(new Date(subscription.nextBillingDate), 'yyyy-MM-dd'),
         categoryId: subscription.categoryId || '',
         notes: subscription.notes || '',
       });
@@ -72,9 +76,11 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (subscription) {
+      // Only create Date object when submitting and if we have a valid date
+      const nextBillingDate = formData.nextBillingDate ? new Date(formData.nextBillingDate) : new Date();
       updateSubscription(subscription.id, {
         ...formData,
-        nextBillingDate: new Date(formData.nextBillingDate),
+        nextBillingDate,
       });
       updateLastUsedCurrency(formData.currency);
       onClose();
@@ -188,7 +194,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
                     label={t('subscription.add.nextBillingDate')}
                     name="nextBillingDate"
                     type="date"
-                    value={format(new Date(formData.nextBillingDate), 'yyyy-MM-dd')}
+                    value={formData.nextBillingDate}
                     onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }}

@@ -8,7 +8,9 @@
     "totalMonthlySpending": "Gasto mensual total en",
     "exchangeRatesUpdated": "Tipos de cambio actualizados: {{date}}",
     "activeSubscriptions": "Suscripciones activas",
-    "totalSubscriptions": "Número total de suscripciones"
+    "totalSubscriptions": "Número total de suscripciones",
+    "yearlyEstimate": "Estimado anual",
+    "upcomingPayments": "Próximos pagos"
   },
   "subscription": {
     "add": {

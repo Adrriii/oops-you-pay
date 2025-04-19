@@ -25,7 +25,9 @@
     "totalMonthlySpending": "월 총 지출",
     "exchangeRatesUpdated": "환율 업데이트: {{date}}",
     "activeSubscriptions": "활성 구독",
-    "totalSubscriptions": "전체 구독 수"
+    "totalSubscriptions": "전체 구독 수",
+    "yearlyEstimate": "연간 예상액",
+    "upcomingPayments": "예정된 결제"
   },
   "categories": {
     "entertainment": "엔터테인먼트",

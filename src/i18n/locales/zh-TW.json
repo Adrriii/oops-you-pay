@@ -8,7 +8,8 @@
     "totalMonthlySpending": "月度總支出",
     "exchangeRatesUpdated": "匯率更新時間：{{date}}",
     "activeSubscriptions": "使用中的訂閱",
-    "totalSubscriptions": "訂閱總數"
+    "totalSubscriptions": "訂閱總數",
+    "upcomingPayments": "即將付款"
   },
   "subscription": {
     "add": {
