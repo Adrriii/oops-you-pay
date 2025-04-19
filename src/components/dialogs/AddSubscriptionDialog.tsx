@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next';
 import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
 import { BillingCycle } from '../../types/subscription';
 import { currencies, Currency, currencyByCode, CurrencyCode, getCurrencySymbol } from '../../config/currencies';
+import { formatDateForInput } from '../../utils/formatLocalDate';
 
 interface AddSubscriptionDialogProps {
   open: boolean;
@@ -40,7 +41,7 @@ const getInitialFormState = (currency: Currency) => ({
   amount: '',
   currency,
   billingCycle: 'monthly' as BillingCycle,
-  nextBillingDate: getDefaultNextBillingDate(),
+  nextBillingDate: formatDateForInput(getDefaultNextBillingDate()),
   categoryId: '',
   notes: '',
   wantToCancel: false,

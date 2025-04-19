@@ -25,10 +25,10 @@ import {
 import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { useSubscriptionStore } from '../../store/subscriptionStore';
 import { Subscription } from '../../types/subscription';
-import { format } from 'date-fns';
 import { useCategoryStore } from '../../store/categoryStore';
 import { useTranslation } from 'react-i18next';
 import { currencies, getCurrencySymbol, getDefaultCurrency } from '../../config/currencies';
+import { formatDateForInput } from '../../utils/formatLocalDate';
 
 interface EditSubscriptionProps {
   open: boolean;
@@ -39,6 +39,17 @@ interface EditSubscriptionProps {
 type EditSubscriptionFormData = Omit<Subscription, 'id' | 'createdAt' | 'nextBillingDate'> & {
   nextBillingDate: string;
 };
+
+const getInitialFormState = (subscription: Subscription) => ({
+  name: subscription.name,
+  amount: subscription.amount,
+  currency: subscription.currency,
+  billingCycle: subscription.billingCycle,
+  nextBillingDate: formatDateForInput(subscription.nextBillingDate),
+  categoryId: subscription.categoryId || '',
+  notes: subscription.notes || '',
+  wantToCancel: subscription.wantToCancel,
+});
 
 const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionProps) => {
   const { t } = useTranslation();
@@ -64,16 +75,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
 
   useEffect(() => {
     if (subscription) {
-      setFormData({
-        name: subscription.name,
-        amount: subscription.amount,
-        currency: subscription.currency,
-        billingCycle: subscription.billingCycle,
-        nextBillingDate: format(new Date(subscription.nextBillingDate), 'yyyy-MM-dd'),
-        categoryId: subscription.categoryId || '',
-        notes: subscription.notes || '',
-        wantToCancel: subscription.wantToCancel,
-      });
+      setFormData(getInitialFormState(subscription));
     }
   }, [subscription]);
 

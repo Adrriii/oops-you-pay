@@ -3,7 +3,7 @@ import { Language as LanguageIcon } from '@mui/icons-material';
 import { useState } from 'react';
 import i18n from '../i18n/i18n';
 
-const languages = [
+export const languages = [
   { code: 'en', name: 'English', locale: 'en-US' },
   { code: 'fr', name: 'Français', locale: 'fr-FR' },
   { code: 'de', name: 'Deutsch', locale: 'de-DE' },

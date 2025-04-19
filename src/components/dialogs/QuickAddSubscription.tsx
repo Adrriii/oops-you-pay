@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { subscriptionPresets, RegionalPrice } from '../../data/subscriptionPresets';
 import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
 import { getDefaultCurrency } from '../../config/currencies';
+import { getCurrentLocale } from '../../utils/getCurrentLocale';
 
 const PRIORITY_CATEGORIES = [
   'category.defaults.streaming',
@@ -94,7 +95,7 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
 
     if (priceInPreferredCurrency) {
       return {
-        formatted: new Intl.NumberFormat('en-US', {
+        formatted: new Intl.NumberFormat(getCurrentLocale(), {
           style: 'currency',
           currency: preferredCurrency.code
         }).format(priceInPreferredCurrency.amount),
@@ -107,7 +108,7 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
 
     const convertedAmount = convertAmount(defaultPrice.amount, getDefaultCurrency(), preferredCurrency);
     return {
-      formatted: new Intl.NumberFormat('en-US', {
+      formatted: new Intl.NumberFormat(getCurrentLocale(), {
         style: 'currency',
         currency: preferredCurrency.code
       }).format(convertedAmount),

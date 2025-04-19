@@ -2,12 +2,13 @@ import { Card, CardContent, Typography, Box, Chip, IconButton, Menu, MenuItem, T
 import { MoreVert as MoreVertIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useCategoryStore } from '../store/categoryStore';
-import { format } from 'date-fns';
 import { useState, lazy, Suspense, ComponentProps, useMemo, useEffect } from 'react';
 import { CategoryManager } from './CategoryManager';
 import { useTranslation } from 'react-i18next';
-import { CurrencyCode } from '../config/currencies';
+import { Currency } from '../config/currencies';
 import getBillingCycleTranslation from '../types/getBillingCycleTranslation';
+import { formatLocalDate } from '../utils/formatLocalDate';
+import { getCurrentLocale } from '../utils/getCurrentLocale';
 
 const EditSubscriptionComponent = lazy(() => import('./dialogs').then(m => ({ default: m.EditSubscription })));
 const DeleteConfirmationComponent = lazy(() => import('./dialogs').then(m => ({ default: m.DeleteConfirmation })));
@@ -116,10 +117,10 @@ export const SubscriptionList = () => {
     handleMenuClose();
   };
 
-  const formatCurrency = (amount: number, currency: CurrencyCode) => {
-    return new Intl.NumberFormat('en-US', {
+  const formatAmount = (amount: number, currency: Currency) => {
+    return new Intl.NumberFormat(getCurrentLocale(), {
       style: 'currency',
-      currency: currency,
+      currency: currency.code
     }).format(amount);
   };
 
@@ -294,9 +295,9 @@ export const SubscriptionList = () => {
                     component="p"
                     color="primary" 
                     sx={{ fontWeight: 'bold' }}
-                    aria-label={`Amount: ${formatCurrency(subscription.amount, subscription.currency.code)} ${t(getBillingCycleTranslation(subscription.billingCycle))}`}
+                    aria-label={`Amount: ${formatAmount(subscription.amount, subscription.currency)} ${t(getBillingCycleTranslation(subscription.billingCycle))}`}
                   >
-                    {formatCurrency(subscription.amount, subscription.currency.code)}
+                    {formatAmount(subscription.amount, subscription.currency)}
                     <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
                       {t(getBillingCycleTranslation(subscription.billingCycle))}
                     </Typography>
@@ -310,7 +311,7 @@ export const SubscriptionList = () => {
                     >
                       <span>{t('subscription.nextBilling')}</span>
                       <span style={{ fontWeight: 500 }}>
-                        {format(new Date(subscription.nextBillingDate), t('common.dateFormat'))}
+                        {formatLocalDate(subscription.nextBillingDate)}
                       </span>
                     </Typography>
 

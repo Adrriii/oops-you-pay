@@ -3,7 +3,8 @@ import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useExchangeRatesStore } from '../store/exchangeRatesStore';
 import { useTranslation } from 'react-i18next';
 import { CurrencySelector } from './CurrencySelector';
-import { format } from 'date-fns';
+import { formatLocalDate } from '../utils/formatLocalDate';
+import { getCurrentLocale } from '../utils/getCurrentLocale';
 
 export const DashboardStats = () => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ export const DashboardStats = () => {
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat(getCurrentLocale(), {
       style: 'currency',
       currency: displayCurrency.code,
     }).format(amount);
@@ -34,11 +35,14 @@ export const DashboardStats = () => {
 
   const getNextPayments = () => {
     const now = new Date();
+    const dateFormatter = new Intl.DateTimeFormat(navigator.language);
+    
     const nextPayments = subscriptions.map(sub => {
       const date = new Date(sub.nextBillingDate);
       return {
         name: sub.name,
         date,
+        formattedDate: dateFormatter.format(date),
         amount: convertAmount(sub.amount, sub.currency, displayCurrency),
         wantToCancel: sub.wantToCancel
       };
@@ -119,7 +123,7 @@ export const DashboardStats = () => {
             sx={{ mt: 2, opacity: 0.7 }}
             role="status"
           >
-            {t('dashboard.exchangeRatesUpdated', { date: new Date(lastUpdated).toLocaleDateString() })}
+            {t('dashboard.exchangeRatesUpdated', { date: formatLocalDate(lastUpdated) })}
           </Typography>
         )}
       </Paper>
@@ -160,7 +164,7 @@ export const DashboardStats = () => {
             >
               <ListItemText
                 primary={payment.name}
-                secondary={format(payment.date, 'MMM dd, yyyy')}
+                secondary={payment.formattedDate}
                 primaryTypographyProps={{ 
                   variant: 'body2',
                   fontWeight: 500,
