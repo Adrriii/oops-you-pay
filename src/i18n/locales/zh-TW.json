@@ -30,6 +30,12 @@
       "uncategorized": "未分類",
       "notes": "備註（選填）",
       "notesPlaceholder": "新增關於此訂閱的其他詳細資訊...",
+      "presets": {
+        "button": "快速新增",
+        "selectBrand": "選擇品牌",
+        "selectPlan": "選擇{{brand}}方案",
+        "backToBrands": "返回品牌列表"
+      },
       "cancel": "取消",
       "submit": "新增"
     },
@@ -74,6 +80,32 @@
       "music": "音樂",
       "health": "健康",
       "other": "其他"
+    }
+  },
+  "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix 基本方案（含廣告）",
+        "standard": "Netflix 標準方案",
+        "premium": "Netflix 高級方案"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify 個人版",
+        "duo": "Spotify 雙人版",
+        "family": "Spotify 家庭版"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium 個人版",
+        "family": "YouTube Premium 家庭版",
+        "student": "YouTube Premium 學生版"
+      }
     }
   }
 }

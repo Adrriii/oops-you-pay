@@ -1,8 +1,8 @@
 import { Box, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import { Language as LanguageIcon } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { useState, useCallback } from 'react';
-import { loadLocale } from '../i18n/i18n';
+import { useState } from 'react';
+import i18n from '../i18n/i18n';
 
 const languages = [
   { code: 'en', name: 'English' },
@@ -18,7 +18,7 @@ const languages = [
 ];
 
 export const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
 
   const handleLanguageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,10 +29,25 @@ export const Header = () => {
     setLanguageMenuAnchor(null);
   };
 
-  const handleLanguageChange = useCallback(async (languageCode: string) => {
-    await loadLocale(languageCode);
-    handleLanguageMenuClose();
-  }, [i18n]);
+  const handleLanguageChange = async (languageCode: string) => {
+    try {
+      // For English, directly change the language without loading resources
+      if (languageCode === 'en') {
+        await i18n.changeLanguage('en');
+      } else {
+        // For other languages, use the loadLocale function
+        await import('../i18n/i18n').then(({ loadLocale }) => {
+          loadLocale(languageCode);
+        });
+      }
+      handleLanguageMenuClose();
+    } catch (error) {
+      console.error('Error changing language:', error);
+      // Fallback to English on error
+      await i18n.changeLanguage('en');
+      handleLanguageMenuClose();
+    }
+  };
 
   return (
     <Box sx={{ width: '100%', position: 'relative', mb: 4 }}>

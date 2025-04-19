@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import {
   Button,
   Dialog,
@@ -19,13 +19,18 @@ import {
   InputLabel,
   Select,
   SelectChangeEvent,
+  List,
+  ListItemText,
+  ListItemButton,
 } from '@mui/material';
-import { Add as AddIcon, Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { Add as AddIcon, Close as CloseIcon, ExpandMore as ExpandMoreIcon, AutoStories as PresetIcon, Search } from '@mui/icons-material';
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { BillingCycle } from '../types/subscription';
 import { addMonths, startOfMonth, format } from 'date-fns';
 import { useCategoryStore } from '../store/categoryStore';
 import { useTranslation } from 'react-i18next';
+import { subscriptionPresets, RegionalPrice } from '../data/subscriptionPresets';
+import { useExchangeRatesStore } from '../store/exchangeRatesStore';
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
@@ -40,7 +45,7 @@ const getInitialFormState = (currency: string) => ({
   currency,
   billingCycle: 'monthly' as BillingCycle,
   nextBillingDate: getDefaultNextBillingDate(),
-  category: '',
+  categoryId: '',
   notes: '',
 });
 
@@ -48,10 +53,14 @@ export const AddSubscription = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [presetsOpen, setPresetsOpen] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  
+  const [searchTerm, setSearchTerm] = useState('');
+
   const { addSubscription, displayCurrency, updateLastUsedCurrency, lastUsedCurrency } = useSubscriptionStore();
-  const categories = useCategoryStore((state) => state.categories);
+  const { convertAmount } = useExchangeRatesStore();
+  const { categories, getCategoryByTranslationKey } = useCategoryStore();
   const [formData, setFormData] = useState(() => getInitialFormState(lastUsedCurrency || displayCurrency));
 
   const handleClose = useCallback(() => {
@@ -59,6 +68,47 @@ export const AddSubscription = () => {
     setFormData(getInitialFormState(lastUsedCurrency || displayCurrency));
     setShowAdvanced(false);
   }, [lastUsedCurrency, displayCurrency]);
+
+  const handlePresetsClose = () => {
+    setPresetsOpen(false);
+    setSelectedBrand(null);
+  };
+
+  const handleBrandSelect = (brandName: string) => {
+    setSelectedBrand(brandName);
+  };
+
+  const handlePlanSelect = (plan: any) => {
+    const preferredCurrency = lastUsedCurrency || displayCurrency;
+    const priceInPreferredCurrency = plan.prices.find(
+      (p: RegionalPrice) => p.currency === preferredCurrency
+    );
+
+    const basePrice = priceInPreferredCurrency || plan.prices.find(
+      (p: RegionalPrice) => p.currency === 'USD'
+    );
+
+    if (!basePrice) return;
+
+    const amount = priceInPreferredCurrency 
+      ? basePrice.amount 
+      : convertAmount(basePrice.amount, basePrice.currency, preferredCurrency);
+
+    // Find matching category by translation key
+    const categoryId = plan.categoryKey ? getCategoryByTranslationKey(plan.categoryKey)?.id : undefined;
+
+    addSubscription({
+      name: t(plan.translationKey),
+      amount: amount,
+      currency: preferredCurrency,
+      billingCycle: plan.billingCycle,
+      nextBillingDate: new Date(getDefaultNextBillingDate()),
+      categoryId,
+      notes: '',
+    });
+    updateLastUsedCurrency(preferredCurrency);
+    handlePresetsClose();
+  };
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -91,25 +141,144 @@ export const AddSubscription = () => {
                         formData.currency === 'EUR' ? '€' :
                         formData.currency === 'GBP' ? '£' : '';
 
+  const formatPresetPrices = (plan: any) => {
+    const preferredCurrency = lastUsedCurrency || displayCurrency;
+    
+    // Find price in preferred currency
+    const priceInPreferredCurrency = plan.prices.find(
+      (p: RegionalPrice) => p.currency === preferredCurrency
+    );
+
+    // If we have a direct price in the preferred currency, use it
+    if (priceInPreferredCurrency) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: preferredCurrency
+      }).format(priceInPreferredCurrency.amount);
+    }
+
+    // Otherwise convert from USD
+    const usdPrice = plan.prices.find((p: RegionalPrice) => p.currency === 'USD');
+    if (!usdPrice) return '';
+
+    const convertedAmount = convertAmount(usdPrice.amount, 'USD', preferredCurrency);
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: preferredCurrency
+    }).format(convertedAmount);
+  };
+
+  const filteredBrands = useMemo(() => {
+    return subscriptionPresets.filter(brand => 
+      t(brand.translationKey).toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm, t]);
+
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={() => setOpen(true)}
-        startIcon={<AddIcon />}
-        size="large"
-        sx={{
-          px: 4,
-          py: 1,
-          fontSize: '1rem',
-          backgroundColor: theme.palette.primary.main,
-          '&:hover': {
-            backgroundColor: theme.palette.primary.dark,
-          },
-        }}
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        <Button
+          variant="contained"
+          onClick={() => setOpen(true)}
+          startIcon={<AddIcon />}
+          size="large"
+          sx={{
+            px: 4,
+            py: 1,
+            fontSize: '1rem',
+            backgroundColor: theme.palette.primary.main,
+            '&:hover': {
+              backgroundColor: theme.palette.primary.dark,
+            },
+          }}
+        >
+          {t('subscription.add.button')}
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => setPresetsOpen(true)}
+          startIcon={<PresetIcon />}
+          size="large"
+          sx={{
+            px: 4,
+            py: 1,
+            fontSize: '1rem',
+          }}
+        >
+          {t('subscription.add.presets.button')}
+        </Button>
+      </Box>
+
+      {/* Presets Dialog */}
+      <Dialog 
+        open={presetsOpen} 
+        onClose={handlePresetsClose}
+        maxWidth="sm"
+        fullWidth
       >
-        {t('subscription.add.button')}
-      </Button>
+        <DialogTitle>
+          {selectedBrand 
+            ? t('subscription.add.presets.selectPlan', { brand: t(selectedBrand) })
+            : t('subscription.add.presets.selectBrand')
+          }
+        </DialogTitle>
+        <DialogContent>
+          {!selectedBrand && (
+            <TextField
+              fullWidth
+              size="small"
+              placeholder="Search brands..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              sx={{ mb: 2 }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
+          <List>
+            {!selectedBrand ? (
+              // Show filtered brands list
+              filteredBrands.map((brand) => (
+                <ListItemButton 
+                  key={brand.translationKey}
+                  onClick={() => handleBrandSelect(brand.translationKey)}
+                >
+                  <ListItemText primary={t(brand.translationKey)} />
+                </ListItemButton>
+              ))
+            ) : (
+              // Show plans for selected brand
+              subscriptionPresets
+                .find(brand => brand.translationKey === selectedBrand)
+                ?.plans.map((plan, index) => (
+                  <ListItemButton 
+                    key={index}
+                    onClick={() => handlePlanSelect(plan)}
+                  >
+                    <ListItemText 
+                      primary={t(plan.translationKey)}
+                      secondary={`${formatPresetPrices(plan)} / ${t(`subscription.add.cycles.${plan.billingCycle}`)}`}
+                    />
+                  </ListItemButton>
+                ))
+            )}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          {selectedBrand && (
+            <Button onClick={() => setSelectedBrand(null)}>
+              {t('subscription.add.presets.backToBrands')}
+            </Button>
+          )}
+          <Button onClick={handlePresetsClose}>{t('subscription.add.cancel')}</Button>
+        </DialogActions>
+      </Dialog>
+
       <Dialog 
         open={open} 
         onClose={handleClose} 
@@ -221,8 +390,8 @@ export const AddSubscription = () => {
                     <FormControl fullWidth>
                       <InputLabel>{t('subscription.add.category')}</InputLabel>
                       <Select
-                        name="category"
-                        value={formData.category}
+                        name="categoryId"
+                        value={formData.categoryId}
                         onChange={handleSelectChange}
                         label={t('subscription.add.category')}
                       >
@@ -230,7 +399,7 @@ export const AddSubscription = () => {
                           <em>{t('subscription.add.uncategorized')}</em>
                         </MenuItem>
                         {categories.map((category) => (
-                          <MenuItem key={category.id} value={category.name}>
+                          <MenuItem key={category.id} value={category.id}>
                             <Box
                               component="span"
                               sx={{

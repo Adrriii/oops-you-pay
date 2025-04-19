@@ -30,6 +30,12 @@
       "uncategorized": "Sem categoria",
       "notes": "Notas (Opcional)",
       "notesPlaceholder": "Adicione detalhes adicionais sobre esta assinatura...",
+      "presets": {
+        "button": "Adição rápida",
+        "selectBrand": "Selecionar marca",
+        "selectPlan": "Selecionar plano {{brand}}",
+        "backToBrands": "Voltar às marcas"
+      },
       "cancel": "Cancelar",
       "submit": "Adicionar"
     },

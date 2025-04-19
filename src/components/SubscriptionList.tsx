@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 export const SubscriptionList = () => {
   const { t } = useTranslation();
   const subscriptions = useSubscriptionStore((state) => state.subscriptions);
-  const categories = useCategoryStore((state) => state.categories);
+  const { categories, getCategoryById } = useCategoryStore();
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const [selectedSubscription, setSelectedSubscription] = useState<string | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -45,8 +45,15 @@ export const SubscriptionList = () => {
     }).format(amount);
   };
 
-  const getCategoryStyle = (categoryName: string) => {
-    const category = categories.find(cat => cat.name === categoryName);
+  const getCategoryStyle = (categoryId?: string) => {
+    if (!categoryId) {
+      return {
+        backgroundColor: '#e5e7eb',
+        color: '#6b7280',
+      };
+    }
+
+    const category = getCategoryById(categoryId);
     return category ? {
       backgroundColor: category.backgroundColor,
       color: category.textColor,
@@ -54,6 +61,12 @@ export const SubscriptionList = () => {
       backgroundColor: '#e5e7eb',
       color: '#6b7280',
     };
+  };
+
+  const getCategoryName = (categoryId?: string) => {
+    if (!categoryId) return t('subscription.add.uncategorized');
+    const category = getCategoryById(categoryId);
+    return category ? category.name : t('subscription.add.uncategorized');
   };
 
   return (
@@ -97,10 +110,10 @@ export const SubscriptionList = () => {
                       {subscription.name}
                     </Typography>
                     <Chip
-                      label={subscription.category || t('subscription.add.uncategorized')}
+                      label={getCategoryName(subscription.categoryId)}
                       size="small"
                       sx={{
-                        ...getCategoryStyle(subscription.category || ''),
+                        ...getCategoryStyle(subscription.categoryId),
                         fontWeight: 500,
                         borderRadius: '6px',
                       }}

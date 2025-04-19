@@ -30,6 +30,12 @@
       "uncategorized": "Ohne Kategorie",
       "notes": "Notizen (Optional)",
       "notesPlaceholder": "Füge weitere Details zu diesem Abonnement hinzu...",
+      "presets": {
+        "button": "Schnellauswahl",
+        "selectBrand": "Marke auswählen",
+        "selectPlan": "{{brand}}-Tarif auswählen",
+        "backToBrands": "Zurück zur Markenauswahl"
+      },
       "cancel": "Abbrechen",
       "submit": "Hinzufügen"
     },
@@ -74,6 +80,32 @@
       "music": "Musik",
       "health": "Gesundheit",
       "other": "Sonstiges"
+    }
+  },
+  "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix Basis mit Werbung",
+        "standard": "Netflix Standard",
+        "premium": "Netflix Premium"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify Individual",
+        "duo": "Spotify Duo",
+        "family": "Spotify Family"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium Individual",
+        "family": "YouTube Premium Familienabo",
+        "student": "YouTube Premium Student"
+      }
     }
   }
 }

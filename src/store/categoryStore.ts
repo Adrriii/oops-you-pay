@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { useSubscriptionStore } from './subscriptionStore';
 import i18next from 'i18next';
 
 export interface Category {
@@ -8,7 +7,9 @@ export interface Category {
   name: string;
   backgroundColor: string;
   textColor: string;
-  translationKey?: string;  // Added to track original translation key
+  translationKey?: string;
+  isDefault?: boolean;
+  userModified?: boolean;
 }
 
 interface CategoryState {
@@ -19,6 +20,8 @@ interface CategoryState {
   updateCategory: (id: string, updates: Partial<Omit<Category, 'id'>>) => void;
   resetToDefaults: () => void;
   updateTranslations: () => void;
+  getCategoryById: (id: string) => Category | undefined;
+  getCategoryByTranslationKey: (key: string) => Category | undefined;
 }
 
 type DefaultCategory = {
@@ -40,8 +43,10 @@ const defaultCategories: DefaultCategory[] = [
 const createDefaultCategories = () => {
   return defaultCategories.map(cat => ({
     ...cat,
-    id: crypto.randomUUID(),
+    id: `default-${cat.translationKey}`,
     name: i18next.t(cat.translationKey),
+    isDefault: true,
+    userModified: false
   }));
 };
 
@@ -51,6 +56,14 @@ export const useCategoryStore = create<CategoryState>()(
       categories: createDefaultCategories(),
       isUpdatingTranslations: false,
       
+      getCategoryById: (id: string) => {
+        return get().categories.find(cat => cat.id === id);
+      },
+
+      getCategoryByTranslationKey: (key: string) => {
+        return get().categories.find(cat => cat.translationKey === key);
+      },
+      
       addCategory: (name, backgroundColor = '#f3f4f6', textColor = '#374151') => {
         if (!name) return;
         
@@ -58,25 +71,21 @@ export const useCategoryStore = create<CategoryState>()(
           id: crypto.randomUUID(),
           name,
           backgroundColor,
-          textColor
+          textColor,
+          isDefault: false,
+          userModified: false
         };
         
         set(state => ({
           categories: [...state.categories, newCategory]
         }));
+
+        return newCategory.id;
       },
       
       removeCategory: (id) => {
-        // When removing a category, update all subscriptions using it to be uncategorized
-        const subscriptionStore = useSubscriptionStore.getState();
-        const subscriptions = subscriptionStore.subscriptions.map(sub => {
-          if (sub.category === get().categories.find(cat => cat.id === id)?.name) {
-            return { ...sub, category: '' };
-          }
-          return sub;
-        });
-        
-        subscriptionStore.updateSubscriptions(subscriptions);
+        const category = get().categories.find(cat => cat.id === id);
+        if (!category) return;
         
         set(state => ({
           categories: state.categories.filter(cat => cat.id !== id)
@@ -86,52 +95,30 @@ export const useCategoryStore = create<CategoryState>()(
       updateCategory: (id, updates) => {
         if (get().isUpdatingTranslations && updates.name) return;
 
-        // When updating a category name, also update all subscriptions using the old name
-        const oldCategory = get().categories.find(cat => cat.id === id);
-        if (!oldCategory) return;
-        
-        if (updates.name && updates.name !== oldCategory.name) {
-          const subscriptionStore = useSubscriptionStore.getState();
-          const subscriptions = subscriptionStore.subscriptions.map(sub => {
-            if (sub.category === oldCategory.name) {
-              return { ...sub, category: updates.name };
-            }
-            return sub;
-          });
-          subscriptionStore.updateSubscriptions(subscriptions);
-        }
+        const category = get().categories.find(cat => cat.id === id);
+        if (!category) return;
         
         set(state => ({
           categories: state.categories.map(cat =>
-            cat.id === id ? { ...cat, ...updates } : cat
+            cat.id === id ? {
+              ...cat,
+              ...updates,
+              userModified: true,
+              // Preserve isDefault if it's a default category
+              isDefault: cat.isDefault
+            } : cat
           )
         }));
       },
       
       resetToDefaults: () => {
-        // Create new default categories with current language translations
-        const newCategories = createDefaultCategories();
+        // Keep user-added categories but reset default ones
+        const userCategories = get().categories.filter(cat => !cat.isDefault);
+        const newDefaultCategories = createDefaultCategories();
         
-        // When resetting, update all subscriptions to match the new translated category names
-        const subscriptionStore = useSubscriptionStore.getState();
-        const subscriptions = subscriptionStore.subscriptions.map(sub => {
-          // Find if the subscription's category matches any of the default category translation keys
-          const defaultCat = defaultCategories.find(dc => 
-            i18next.t(dc.translationKey) === sub.category ||
-            get().categories.find(c => c.translationKey === dc.translationKey)?.name === sub.category
-          );
-
-          if (defaultCat) {
-            // If it matches, update to the new translated name
-            return { ...sub, category: i18next.t(defaultCat.translationKey) };
-          }
-          // If no match, set to uncategorized
-          return { ...sub, category: '' };
+        set({
+          categories: [...newDefaultCategories, ...userCategories]
         });
-        
-        subscriptionStore.updateSubscriptions(subscriptions);
-        
-        set({ categories: newCategories });
       },
 
       updateTranslations: () => {
@@ -140,21 +127,11 @@ export const useCategoryStore = create<CategoryState>()(
 
         set({ isUpdatingTranslations: true });
         
-        const subscriptionStore = useSubscriptionStore.getState();
         const updatedCategories = state.categories.map(category => {
-          if (!category.translationKey) return category;
+          if (!category.translationKey || category.userModified) return category;
           
           const newName = i18next.t(category.translationKey);
           if (newName === category.name) return category;
-
-          // Update subscriptions using this category
-          const subscriptions = subscriptionStore.subscriptions.map(sub => {
-            if (sub.category === category.name) {
-              return { ...sub, category: newName };
-            }
-            return sub;
-          });
-          subscriptionStore.updateSubscriptions(subscriptions);
 
           return { ...category, name: newName };
         });

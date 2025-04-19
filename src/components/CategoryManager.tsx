@@ -23,7 +23,8 @@ import {
   Add as AddIcon,
   Refresh as RefreshIcon,
 } from '@mui/icons-material';
-import { useCategoryStore, Category } from '../store/categoryStore';
+import { useCategoryStore } from '../store/categoryStore';
+import { useSubscriptionStore } from '../store/subscriptionStore';
 import { HexColorPicker } from 'react-colorful';
 import { useTranslation } from 'react-i18next';
 
@@ -31,15 +32,15 @@ export const CategoryManager = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [colorAnchorEl, setColorAnchorEl] = useState<HTMLElement | null>(null);
   const [colorPickerType, setColorPickerType] = useState<'background' | 'text'>('background');
   const [selectedColor, setSelectedColor] = useState('#f3f4f6');
   const [selectedTextColor, setSelectedTextColor] = useState('#374151');
 
-  const { categories, addCategory, removeCategory, updateCategory, resetToDefaults } =
-    useCategoryStore();
+  const { categories, addCategory, removeCategory, updateCategory, resetToDefaults } = useCategoryStore();
+  const removeSubscriptionCategory = useSubscriptionStore(state => state.removeCategory);
 
   const handleAddCategory = () => {
     if (newCategoryName.trim()) {
@@ -51,22 +52,30 @@ export const CategoryManager = () => {
   };
 
   const handleUpdateCategory = () => {
-    if (editingCategory && newCategoryName.trim()) {
-      updateCategory(editingCategory.id, {
+    if (editingCategoryId && newCategoryName.trim()) {
+      updateCategory(editingCategoryId, {
         name: newCategoryName.trim(),
         backgroundColor: selectedColor,
         textColor: selectedTextColor,
       });
-      setEditingCategory(null);
+      setEditingCategoryId(null);
       setNewCategoryName('');
     }
   };
 
-  const startEditing = (category: Category) => {
-    setEditingCategory(category);
-    setNewCategoryName(category.name);
-    setSelectedColor(category.backgroundColor);
-    setSelectedTextColor(category.textColor);
+  const startEditing = (categoryId: string) => {
+    const category = categories.find(c => c.id === categoryId);
+    if (category) {
+      setEditingCategoryId(categoryId);
+      setNewCategoryName(category.name);
+      setSelectedColor(category.backgroundColor);
+      setSelectedTextColor(category.textColor);
+    }
+  };
+
+  const handleDeleteCategory = (categoryId: string) => {
+    removeCategory(categoryId);
+    removeSubscriptionCategory(categoryId);
   };
 
   const handleResetToDefaults = () => {
@@ -104,7 +113,7 @@ export const CategoryManager = () => {
         open={open}
         onClose={() => {
           setOpen(false);
-          setEditingCategory(null);
+          setEditingCategoryId(null);
           setNewCategoryName('');
         }}
         maxWidth="sm"
@@ -122,7 +131,7 @@ export const CategoryManager = () => {
             <TextField
               value={newCategoryName}
               onChange={(e) => setNewCategoryName(e.target.value)}
-              placeholder={editingCategory ? t('category.manage.editCategory') : t('category.manage.newCategory')}
+              placeholder={editingCategoryId ? t('category.manage.editCategory') : t('category.manage.newCategory')}
               size="small"
               fullWidth
             />
@@ -162,13 +171,13 @@ export const CategoryManager = () => {
                 T
               </Button>
               <Button
-                onClick={editingCategory ? handleUpdateCategory : handleAddCategory}
+                onClick={editingCategoryId ? handleUpdateCategory : handleAddCategory}
                 variant="contained"
                 size="small"
-                startIcon={editingCategory ? <EditIcon /> : <AddIcon />}
+                startIcon={editingCategoryId ? <EditIcon /> : <AddIcon />}
                 disabled={!newCategoryName.trim()}
               >
-                {editingCategory ? t('category.manage.actions.update') : t('category.manage.actions.add')}
+                {editingCategoryId ? t('category.manage.actions.update') : t('category.manage.actions.add')}
               </Button>
             </Box>
           </Box>
@@ -213,7 +222,7 @@ export const CategoryManager = () => {
                       <IconButton
                         edge="end"
                         aria-label="edit"
-                        onClick={() => startEditing(category)}
+                        onClick={() => startEditing(category.id)}
                         sx={{ mr: 1 }}
                       >
                         <EditIcon />
@@ -223,7 +232,7 @@ export const CategoryManager = () => {
                       <IconButton
                         edge="end"
                         aria-label="delete"
-                        onClick={() => removeCategory(category.id)}
+                        onClick={() => handleDeleteCategory(category.id)}
                       >
                         <DeleteIcon />
                       </IconButton>

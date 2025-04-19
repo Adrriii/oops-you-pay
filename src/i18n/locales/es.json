@@ -30,6 +30,12 @@
       "uncategorized": "Sin categoría",
       "notes": "Notas (Opcional)",
       "notesPlaceholder": "Añade detalles adicionales sobre esta suscripción...",
+      "presets": {
+        "button": "Añadir rápido",
+        "selectBrand": "Seleccionar marca",
+        "selectPlan": "Seleccionar plan de {{brand}}",
+        "backToBrands": "Volver a marcas"
+      },
       "cancel": "Cancelar",
       "submit": "Añadir"
     },
@@ -74,6 +80,32 @@
       "music": "Música",
       "health": "Salud",
       "other": "Otros"
+    }
+  },
+  "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix Básico con anuncios",
+        "standard": "Netflix Estándar",
+        "premium": "Netflix Premium"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify Individual",
+        "duo": "Spotify Dúo",
+        "family": "Spotify Familiar"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium Individual",
+        "family": "YouTube Premium Familiar",
+        "student": "YouTube Premium Estudiantes"
+      }
     }
   }
 }

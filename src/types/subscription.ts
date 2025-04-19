@@ -5,7 +5,7 @@ export interface Subscription {
   currency: string;
   billingCycle: 'monthly' | 'yearly' | 'weekly';
   nextBillingDate: Date;
-  category?: string;
+  categoryId?: string;  // Changed from category to categoryId
   notes?: string;
   createdAt: Date;
 }

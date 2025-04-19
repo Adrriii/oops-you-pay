@@ -10,6 +10,7 @@ export const DashboardStats = () => {
   const subscriptions = useSubscriptionStore((state) => state.subscriptions);
   const displayCurrency = useSubscriptionStore((state) => state.displayCurrency);
   const updateDisplayCurrency = useSubscriptionStore((state) => state.updateDisplayCurrency);
+  const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
   const { convertAmount, lastUpdated } = useExchangeRatesStore();
 
   const calculateTotalMonthly = () => {
@@ -32,6 +33,11 @@ export const DashboardStats = () => {
       style: 'currency',
       currency: displayCurrency,
     }).format(amount);
+  };
+
+  const handleCurrencyChange = (value: string) => {
+    updateDisplayCurrency(value);
+    updateLastUsedCurrency(value);
   };
 
   return (
@@ -62,7 +68,7 @@ export const DashboardStats = () => {
             <FormControl size="small" sx={{ minWidth: 80 }}>
               <Select
                 value={displayCurrency}
-                onChange={(e) => updateDisplayCurrency(e.target.value)}
+                onChange={(e) => handleCurrencyChange(e.target.value)}
                 variant="standard"
                 sx={{ 
                   '& .MuiSelect-select': { 

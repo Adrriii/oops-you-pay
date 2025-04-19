@@ -54,7 +54,13 @@
       "notes": "备注（可选）",
       "notesPlaceholder": "添加关于此订阅的其他详细信息...",
       "cancel": "取消",
-      "submit": "添加"
+      "submit": "添加",
+      "presets": {
+        "button": "快速添加",
+        "selectBrand": "选择品牌",
+        "selectPlan": "选择{{brand}}套餐",
+        "backToBrands": "返回品牌列表"
+      }
     },
     "edit": {
       "title": "编辑订阅",
@@ -97,6 +103,32 @@
       "music": "音乐",
       "health": "健康",
       "other": "其他"
+    }
+  },
+  "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix 基础套餐（含广告）",
+        "standard": "Netflix 标准套餐",
+        "premium": "Netflix 高级套餐"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify 个人版",
+        "duo": "Spotify 双人版",
+        "family": "Spotify 家庭版"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium 个人版",
+        "family": "YouTube Premium 家庭版",
+        "student": "YouTube Premium 学生版"
+      }
     }
   }
 }

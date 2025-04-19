@@ -12,6 +12,7 @@ interface SubscriptionState {
   updateSubscriptions: (subscriptions: Subscription[]) => void;
   updateDisplayCurrency: (currency: string) => void;
   updateLastUsedCurrency: (currency: string) => void;
+  removeCategory: (categoryId: string) => void;
 }
 
 export const useSubscriptionStore = create<SubscriptionState>()(
@@ -52,6 +53,12 @@ export const useSubscriptionStore = create<SubscriptionState>()(
       updateLastUsedCurrency: (currency) =>
         set(() => ({
           lastUsedCurrency: currency,
+        })),
+      removeCategory: (categoryId) =>
+        set((state) => ({
+          subscriptions: state.subscriptions.map(sub => 
+            sub.categoryId === categoryId ? { ...sub, categoryId: undefined } : sub
+          ),
         })),
     }),
     {

@@ -31,7 +31,13 @@
       "notes": "Note (Opzionale)",
       "notesPlaceholder": "Aggiungi ulteriori dettagli su questo abbonamento...",
       "cancel": "Annulla",
-      "submit": "Aggiungi"
+      "submit": "Aggiungi",
+      "presets": {
+        "button": "Aggiunta rapida",
+        "selectBrand": "Seleziona marca",
+        "selectPlan": "Seleziona piano {{brand}}",
+        "backToBrands": "Torna alle marche"
+      }
     },
     "edit": {
       "title": "Modifica abbonamento",
@@ -74,6 +80,32 @@
       "music": "Musica",
       "health": "Salute",
       "other": "Altro"
+    }
+  },
+  "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix Base con pubblicità",
+        "standard": "Netflix Standard",
+        "premium": "Netflix Premium"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify Individual",
+        "duo": "Spotify Duo",
+        "family": "Spotify Family"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium Individual",
+        "family": "YouTube Premium Family",
+        "student": "YouTube Premium Studenti"
+      }
     }
   }
 }

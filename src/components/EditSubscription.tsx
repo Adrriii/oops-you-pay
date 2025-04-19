@@ -52,7 +52,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     currency: 'USD',
     billingCycle: 'monthly',
     nextBillingDate: new Date(),
-    category: '',
+    categoryId: '',
     notes: '',
   });
 
@@ -64,7 +64,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
         currency: subscription.currency,
         billingCycle: subscription.billingCycle,
         nextBillingDate: subscription.nextBillingDate,
-        category: subscription.category || '',
+        categoryId: subscription.categoryId || '',
         notes: subscription.notes || '',
       });
     }
@@ -214,8 +214,8 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                   <FormControl fullWidth>
                     <InputLabel>{t('subscription.add.category')}</InputLabel>
                     <Select
-                      name="category"
-                      value={formData.category}
+                      name="categoryId"
+                      value={formData.categoryId}
                       onChange={handleSelectChange}
                       label={t('subscription.add.category')}
                     >
@@ -223,7 +223,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                         <em>{t('subscription.add.uncategorized')}</em>
                       </MenuItem>
                       {categories.map((category) => (
-                        <MenuItem key={category.id} value={category.name}>
+                        <MenuItem key={category.id} value={category.id}>
                           <Box
                             component="span"
                             sx={{
