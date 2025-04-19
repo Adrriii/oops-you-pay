@@ -200,7 +200,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 980, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.productivity'
+        categoryKey: 'category.defaults.software'  // Changed from productivity
       },
       {
         translationKey: 'brands.microsoftoffice.plans.family',
@@ -211,7 +211,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 1280, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.productivity'
+        categoryKey: 'category.defaults.software'  // Changed from productivity
       }
     ]
   },
@@ -227,7 +227,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 1280, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.creativity'
+        categoryKey: 'category.defaults.software'  // Changed from creativity
       },
       {
         translationKey: 'brands.adobe.plans.allapps',
@@ -238,7 +238,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 6480, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.creativity'
+        categoryKey: 'category.defaults.software'  // Changed from creativity
       }
     ]
   },
@@ -308,7 +308,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 1480, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.storage'
+        categoryKey: 'category.defaults.services'  // Changed from storage
       },
       {
         translationKey: 'brands.dropbox.plans.family',
@@ -319,7 +319,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 2480, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.storage'
+        categoryKey: 'category.defaults.services'  // Changed from storage
       }
     ]
   },

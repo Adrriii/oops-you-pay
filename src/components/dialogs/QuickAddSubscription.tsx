@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -10,6 +10,8 @@ import {
   List,
   ListItemText,
   ListItemButton,
+  Typography,
+  Box,
 } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { useSubscriptionStore } from '../../store/subscriptionStore';
@@ -19,6 +21,13 @@ import { useTranslation } from 'react-i18next';
 import { subscriptionPresets, RegionalPrice } from '../../data/subscriptionPresets';
 import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
 import { getDefaultCurrency } from '../../config/currencies';
+
+const PRIORITY_CATEGORIES = [
+  'category.defaults.streaming',
+  'category.defaults.services',
+  'category.defaults.music',
+  'category.defaults.software',
+];
 
 interface QuickAddSubscriptionProps {
   open: boolean;
@@ -114,9 +123,69 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
     });
   };
 
-  const filteredBrands = subscriptionPresets.filter(brand => 
-    t(brand.translationKey).toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Group brands by category and sort alphabetically
+  const groupedBrands = useMemo(() => {
+    const brandsByCategory = new Map<string, Array<{brand: typeof subscriptionPresets[0], category: ReturnType<typeof getCategoryByTranslationKey> | null}>>();
+    const translatedBrandNames = new Map<string, string>();
+
+    // Pre-translate all brand names
+    subscriptionPresets.forEach(brand => {
+      translatedBrandNames.set(brand.translationKey, t(brand.translationKey));
+    });
+
+    const filteredBrands = subscriptionPresets.filter(brand => 
+      translatedBrandNames.get(brand.translationKey)?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Sort brands alphabetically by translated name
+    const sortedBrands = [...filteredBrands].sort((a, b) => {
+      const aName = translatedBrandNames.get(a.translationKey) || '';
+      const bName = translatedBrandNames.get(b.translationKey) || '';
+      return aName.localeCompare(bName);
+    });
+
+    // Group by category using actual category data
+    sortedBrands.forEach(brand => {
+      const categoryKey = brand.plans[0]?.categoryKey || 'category.defaults.other';
+      const category = getCategoryByTranslationKey(categoryKey);
+      
+      // Group under uncategorized if category doesn't exist
+      const categoryId = category?.id || 'uncategorized';
+      if (!brandsByCategory.has(categoryId)) {
+        brandsByCategory.set(categoryId, []);
+      }
+      brandsByCategory.get(categoryId)?.push({ brand, category });
+    });
+
+    // Sort categories with priority categories first, then alphabetically
+    return new Map([...brandsByCategory.entries()].sort((a, b) => {
+      const categoryA = a[1][0].category;
+      const categoryB = b[1][0].category;
+      
+      const categoryAKey = a[1][0].brand.plans[0].categoryKey;
+      const categoryBKey = b[1][0].brand.plans[0].categoryKey;
+      
+      // If either is uncategorized, put it at the end
+      if (a[0] === 'uncategorized') return 1;
+      if (b[0] === 'uncategorized') return -1;
+      
+      // Check if either category is in the priority list
+      const priorityA = PRIORITY_CATEGORIES.indexOf(categoryAKey);
+      const priorityB = PRIORITY_CATEGORIES.indexOf(categoryBKey);
+      
+      // If both are priority categories, sort by their order in PRIORITY_CATEGORIES
+      if (priorityA !== -1 && priorityB !== -1) {
+        return priorityA - priorityB;
+      }
+      
+      // If only one is a priority category, it should come first
+      if (priorityA !== -1) return -1;
+      if (priorityB !== -1) return 1;
+      
+      // For non-priority categories, sort alphabetically by name
+      return (categoryA?.name || '').localeCompare(categoryB?.name || '');
+    }));
+  }, [searchTerm, t, getCategoryByTranslationKey]);
 
   return (
     <Dialog 
@@ -136,10 +205,10 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
           <TextField
             fullWidth
             size="small"
-            placeholder="Search brands..."
+            placeholder={t('subscription.search')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{ mb: 2 }}
+            sx={{ mb: 3 }} // Increased margin bottom
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -149,16 +218,56 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
             }}
           />
         )}
-        <List>
+        <List sx={{ 
+          '& > .MuiBox-root + .MuiBox-root': { 
+            mt: 3 // Add margin top between category groups
+          }
+        }}>
           {!selectedBrand ? (
-            filteredBrands.map((brand) => (
-              <ListItemButton 
-                key={brand.translationKey}
-                onClick={() => handleBrandSelect(brand.translationKey)}
-              >
-                <ListItemText primary={t(brand.translationKey)} />
-              </ListItemButton>
-            ))
+            Array.from(groupedBrands.entries()).map(([categoryId, brands]) => {
+              const category = brands[0].category;
+              const isUncategorized = categoryId === 'uncategorized';
+              
+              return (
+                <Box key={categoryId}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      px: 2,
+                      py: 1,
+                      backgroundColor: isUncategorized ? '#e5e7eb' : category?.backgroundColor,
+                      color: isUncategorized ? '#6b7280' : category?.textColor,
+                      borderRadius: '8px 8px 0 0', // Rounded corners only on top
+                      mb: 0, // Remove margin bottom
+                    }}
+                  >
+                    {isUncategorized ? t('subscription.add.uncategorized') : category?.name}
+                  </Typography>
+                  <Box sx={{ 
+                    backgroundColor: 'action.hover',
+                    borderRadius: '0 0 8px 8px', // Rounded corners only on bottom
+                    mt: 0, // Remove margin top
+                    p: 0.5, // Add padding around the list
+                  }}>
+                    {brands.map(({ brand }) => (
+                      <ListItemButton 
+                        key={brand.translationKey}
+                        onClick={() => handleBrandSelect(brand.translationKey)}
+                        sx={{
+                          borderRadius: 1,
+                          mx: 0.5,
+                          '&:hover': {
+                            backgroundColor: 'action.selected',
+                          }
+                        }}
+                      >
+                        <ListItemText primary={t(brand.translationKey)} />
+                      </ListItemButton>
+                    ))}
+                  </Box>
+                </Box>
+              );
+            })
           ) : (
             getSortedPlans(
               subscriptionPresets
