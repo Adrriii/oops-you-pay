@@ -1,7 +1,18 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "智慧管理您的訂閱服務"
+    "subtitle": "智慧管理您的訂閱"
+  },
+  "common": {
+    "dateFormat": "yyyy年MM月dd日",
+    "colors": {
+      "background": "背景顏色",
+      "text": "文字顏色"
+    },
+    "footer": {
+      "github": "在GitHub上查看",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
     "monthlyOverview": "月度概覽",
@@ -9,6 +20,7 @@
     "exchangeRatesUpdated": "匯率更新時間：{{date}}",
     "activeSubscriptions": "使用中的訂閱",
     "totalSubscriptions": "訂閱總數",
+    "yearlyEstimate": "年度預估",
     "upcomingPayments": "即將付款"
   },
   "subscription": {
@@ -25,20 +37,20 @@
         "weekly": "每週"
       },
       "advancedOptions": "進階選項",
-      "nextBillingDate": "下次計費日期",
+      "nextBillingDate": "下次付款日期",
       "currency": "貨幣",
-      "category": "類別（選填）",
+      "category": "分類（選填）",
       "uncategorized": "未分類",
       "notes": "備註（選填）",
       "notesPlaceholder": "新增關於此訂閱的其他詳細資訊...",
+      "cancel": "取消",
+      "submit": "新增",
       "presets": {
         "button": "快速新增",
-        "selectBrand": "選擇品牌",
+        "selectBrand": "選擇服務",
         "selectPlan": "選擇{{brand}}方案",
-        "backToBrands": "返回品牌列表"
-      },
-      "cancel": "取消",
-      "submit": "新增"
+        "backToBrands": "返回服務列表"
+      }
     },
     "edit": {
       "title": "編輯訂閱",
@@ -51,26 +63,31 @@
       "cancel": "取消",
       "confirm": "刪除"
     },
-    "nextBilling": "下次計費：",
-    "noSubscriptions": "目前沒有訂閱。新增您的第一個訂閱！"
+    "nextBilling": "下次付款：",
+    "noSubscriptions": "目前沒有訂閱。新增您的第一個訂閱！",
+    "billingCycle": {
+      "monthly": "/月",
+      "yearly": "/年",
+      "weekly": "/週"
+    }
   },
   "category": {
     "manage": {
-      "button": "管理類別",
-      "title": "管理類別",
-      "description": "新增、編輯或刪除訂閱類別。變更將影響使用這些類別的所有訂閱。",
-      "newCategory": "新增類別...",
-      "editCategory": "新類別名稱...",
+      "button": "管理分類",
+      "title": "管理分類",
+      "description": "新增、編輯或刪除訂閱分類。變更將影響使用這些分類的所有訂閱。",
+      "newCategory": "新增分類...",
+      "editCategory": "新分類名稱...",
       "backgroundColor": "背景顏色",
       "textColor": "文字顏色",
-      "confirmation": "確定要重設為預設類別嗎？這將影響您的所有訂閱。",
+      "confirmation": "確定要重設為預設分類嗎？這將影響您的所有訂閱。",
       "actions": {
         "add": "新增",
         "update": "更新",
         "edit": "編輯",
         "delete": "刪除"
       },
-      "resetToDefaults": "重設",
+      "resetToDefaults": "重設為預設值",
       "done": "完成"
     },
     "defaults": {
@@ -80,6 +97,7 @@
       "gaming": "遊戲",
       "music": "音樂",
       "health": "健康",
+      "services": "服務",
       "other": "其他"
     }
   },
@@ -87,9 +105,9 @@
     "netflix": {
       "name": "Netflix",
       "plans": {
-        "basic": "Netflix 基本方案（含廣告）",
-        "standard": "Netflix 標準方案",
-        "premium": "Netflix 高級方案"
+        "basic": "Netflix 基本版（含廣告）",
+        "standard": "Netflix 標準版",
+        "premium": "Netflix 高級版"
       }
     },
     "spotify": {
@@ -111,57 +129,57 @@
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "標準版",
-        "premium": "進階版"
+        "standard": "Disney+ 標準版",
+        "premium": "Disney+ 高級版"
       }
     },
     "amazonprime": {
-      "name": "亞馬遜Prime會員",
+      "name": "Amazon Prime",
       "plans": {
-        "monthly": "月付",
-        "annual": "年付"
+        "monthly": "Amazon Prime 月費會員",
+        "annual": "Amazon Prime 年費會員"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "個人版",
-        "family": "家庭版"
+        "personal": "Microsoft 365 個人版",
+        "family": "Microsoft 365 家庭版"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "攝影計劃",
-        "allapps": "所有應用程式"
+        "photography": "Adobe 攝影計畫",
+        "allapps": "Adobe Creative Cloud 完整版"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "個人版",
-        "family": "家庭版"
+        "individual": "Apple One 個人版",
+        "family": "Apple One 家庭版"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "家庭版"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox 家庭版"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "含廣告",
-        "adsfree": "無廣告"
+        "withads": "HBO Max 含廣告版",
+        "adsfree": "HBO Max 無廣告版"
       }
     }
   }

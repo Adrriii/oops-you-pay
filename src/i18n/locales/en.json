@@ -3,6 +3,17 @@
     "title": "OopsYouPay",
     "subtitle": "Track and manage your subscriptions wisely"
   },
+  "common": {
+    "dateFormat": "MMM dd, yyyy",
+    "colors": {
+      "background": "Background Color",
+      "text": "Text Color"
+    },
+    "footer": {
+      "github": "View on GitHub",
+      "copyright": "© {{year}}"
+    }
+  },
   "dashboard": {
     "monthlyOverview": "Monthly Overview",
     "totalMonthlySpending": "Total monthly spending in",
@@ -52,6 +63,11 @@
       "cancel": "Cancel",
       "confirm": "Delete"
     },
+    "billingCycle": {
+      "monthly": "/ month",
+      "yearly": "/ year",
+      "weekly": "/ week"
+    },
     "nextBilling": "Next billing:",
     "noSubscriptions": "No subscriptions yet. Add your first one!"
   },
@@ -81,6 +97,7 @@
       "gaming": "Gaming",
       "music": "Music",
       "health": "Health",
+      "services": "Services",
       "other": "Other"
     }
   },
@@ -112,57 +129,57 @@
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "Standard",
-        "premium": "Premium"
+        "standard": "Disney+ Standard",
+        "premium": "Disney+ Premium"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "Monthly",
-        "annual": "Annual"
+        "monthly": "Amazon Prime Monthly",
+        "annual": "Amazon Prime Annual"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "Personal",
-        "family": "Family"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Family"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "Photography Plan",
-        "allapps": "All Apps"
+        "photography": "Adobe Photography Plan",
+        "allapps": "Adobe Creative Cloud All Apps"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "Individual",
-        "family": "Family"
+        "individual": "Apple One Individual",
+        "family": "Apple One Family"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "Family"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox Family"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "With Ads",
-        "adsfree": "Ad-Free"
+        "withads": "HBO Max With Ads",
+        "adsfree": "HBO Max Ad-Free"
       }
     }
   }

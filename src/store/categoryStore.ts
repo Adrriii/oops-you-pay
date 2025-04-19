@@ -37,6 +37,7 @@ const defaultCategories: DefaultCategory[] = [
   { translationKey: 'category.defaults.gaming', backgroundColor: '#dcfce7', textColor: '#166534' },
   { translationKey: 'category.defaults.music', backgroundColor: '#fef9c3', textColor: '#854d0e' },
   { translationKey: 'category.defaults.health', backgroundColor: '#ffedd5', textColor: '#9a3412' },
+  { translationKey: 'category.defaults.services', backgroundColor: '#e0f2fe', textColor: '#0369a1' },
   { translationKey: 'category.defaults.other', backgroundColor: '#f3f4f6', textColor: '#374151' }
 ];
 

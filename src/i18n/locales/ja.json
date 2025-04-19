@@ -1,46 +1,34 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "サブスクリプション管理を簡単に"
+    "subtitle": "サブスクリプションをスマートに管理"
   },
   "common": {
-    "add": "追加",
-    "edit": "編集",
-    "delete": "削除",
-    "cancel": "キャンセル",
-    "save": "保存",
-    "confirm": "確認",
-    "category": "カテゴリー",
-    "name": "名前",
-    "price": "価格",
-    "billing": "支払い",
-    "currency": "通貨",
-    "next_billing": "次回の支払日"
+    "dateFormat": "yyyy年MM月dd日",
+    "colors": {
+      "background": "背景色",
+      "text": "文字色"
+    },
+    "footer": {
+      "github": "GitHubで見る",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
-    "total_monthly": "月額合計",
-    "most_expensive": "最も高額なサブスクリプション",
-    "categories": "カテゴリー別",
-    "monthlyOverview": "月次概要",
-    "totalMonthlySpending": "月間総支出",
-    "exchangeRatesUpdated": "為替レート更新日：{{date}}",
+    "monthlyOverview": "月間概要",
+    "totalMonthlySpending": "月間総支出額",
+    "exchangeRatesUpdated": "為替レート更新: {{date}}",
     "activeSubscriptions": "アクティブなサブスクリプション",
-    "totalSubscriptions": "サブスクリプションの総数",
+    "totalSubscriptions": "総サブスクリプション数",
     "yearlyEstimate": "年間予測",
     "upcomingPayments": "今後の支払い"
-  },
-  "categories": {
-    "entertainment": "エンターテイメント",
-    "productivity": "生産性",
-    "utilities": "ユーティリティ",
-    "other": "その他"
   },
   "subscription": {
     "add": {
       "button": "サブスクリプションを追加",
-      "title": "新規サブスクリプション",
+      "title": "新規サブスクリプション追加",
       "name": "サブスクリプション名",
-      "namePlaceholder": "例：Netflix、Spotify など",
+      "namePlaceholder": "例: Netflix、Spotify など",
       "amount": "金額",
       "billingCycle": "請求サイクル",
       "cycles": {
@@ -51,18 +39,18 @@
       "advancedOptions": "詳細設定",
       "nextBillingDate": "次回請求日",
       "currency": "通貨",
-      "category": "カテゴリー（任意）",
+      "category": "カテゴリー (任意)",
       "uncategorized": "未分類",
-      "notes": "メモ（任意）",
-      "notesPlaceholder": "このサブスクリプションに関する追加情報を入力...",
+      "notes": "メモ (任意)",
+      "notesPlaceholder": "このサブスクリプションの追加情報を入力...",
+      "cancel": "キャンセル",
+      "submit": "追加",
       "presets": {
         "button": "クイック追加",
-        "selectBrand": "ブランドを選択",
+        "selectBrand": "サービスを選択",
         "selectPlan": "{{brand}}のプランを選択",
-        "backToBrands": "ブランド一覧に戻る"
-      },
-      "cancel": "キャンセル",
-      "submit": "追加"
+        "backToBrands": "サービス一覧に戻る"
+      }
     },
     "edit": {
       "title": "サブスクリプションを編集",
@@ -75,16 +63,21 @@
       "cancel": "キャンセル",
       "confirm": "削除"
     },
-    "nextBilling": "次回請求：",
-    "noSubscriptions": "サブスクリプションがありません。最初のサブスクリプションを追加しましょう！"
+    "nextBilling": "次回請求:",
+    "noSubscriptions": "サブスクリプションがありません。最初のサブスクリプションを追加しましょう！",
+    "billingCycle": {
+      "monthly": "/月",
+      "yearly": "/年",
+      "weekly": "/週"
+    }
   },
   "category": {
     "manage": {
       "button": "カテゴリー管理",
-      "title": "カテゴリーを管理",
-      "description": "サブスクリプションのカテゴリーを追加、編集、削除します。変更は、これらのカテゴリーを使用するすべてのサブスクリプションに影響します。",
+      "title": "カテゴリー管理",
+      "description": "サブスクリプションのカテゴリーを追加、編集、削除できます。変更は、これらのカテゴリーを使用するすべてのサブスクリプションに影響します。",
       "newCategory": "カテゴリーを追加...",
-      "editCategory": "新しいカテゴリー名...",
+      "editCategory": "カテゴリー名を変更...",
       "backgroundColor": "背景色",
       "textColor": "文字色",
       "confirmation": "デフォルトのカテゴリーにリセットしてもよろしいですか？すべてのサブスクリプションに影響します。",
@@ -94,7 +87,7 @@
         "edit": "編集",
         "delete": "削除"
       },
-      "resetToDefaults": "デフォルトに戻す",
+      "resetToDefaults": "デフォルトにリセット",
       "done": "完了"
     },
     "defaults": {
@@ -104,6 +97,7 @@
       "gaming": "ゲーム",
       "music": "音楽",
       "health": "健康",
+      "services": "サービス",
       "other": "その他"
     }
   },
@@ -111,7 +105,7 @@
     "netflix": {
       "name": "Netflix",
       "plans": {
-        "basic": "Netflix ベーシック (広告付き)",
+        "basic": "Netflix ベーシック（広告あり）",
         "standard": "Netflix スタンダード",
         "premium": "Netflix プレミアム"
       }
@@ -127,65 +121,65 @@
     "youtube": {
       "name": "YouTube",
       "plans": {
-        "individual": "YouTube Premium 個人プラン",
-        "family": "YouTube Premium ファミリープラン",
+        "individual": "YouTube Premium",
+        "family": "YouTube Premium ファミリー",
         "student": "YouTube Premium 学生プラン"
       }
     },
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "スタンダード",
-        "premium": "プレミアム"
+        "standard": "Disney+ スタンダード",
+        "premium": "Disney+ プレミアム"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "月額プラン",
-        "annual": "年額プラン"
+        "monthly": "Amazon Prime 月間プラン",
+        "annual": "Amazon Prime 年間プラン"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "パーソナル",
-        "family": "ファミリー"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Family"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "フォトプラン",
-        "allapps": "コンプリートプラン"
+        "photography": "Adobe 写真プラン",
+        "allapps": "Adobe Creative Cloud コンプリート"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "個人プラン",
-        "family": "ファミリープラン"
+        "individual": "Apple One Individual",
+        "family": "Apple One ファミリー"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "ファミリー"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox ファミリー"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "広告付き",
-        "adsfree": "広告なし"
+        "withads": "HBO Max（広告あり）",
+        "adsfree": "HBO Max（広告なし）"
       }
     }
   }

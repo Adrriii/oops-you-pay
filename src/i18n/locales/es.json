@@ -1,7 +1,18 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "Gestiona tus suscripciones de manera inteligente"
+    "subtitle": "Gestiona y controla tus suscripciones de forma inteligente"
+  },
+  "common": {
+    "dateFormat": "dd/MM/yyyy",
+    "colors": {
+      "background": "Color de fondo",
+      "text": "Color del texto"
+    },
+    "footer": {
+      "github": "Ver en GitHub",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
     "monthlyOverview": "Resumen mensual",
@@ -9,13 +20,13 @@
     "exchangeRatesUpdated": "Tipos de cambio actualizados: {{date}}",
     "activeSubscriptions": "Suscripciones activas",
     "totalSubscriptions": "Número total de suscripciones",
-    "yearlyEstimate": "Estimado anual",
+    "yearlyEstimate": "Estimación anual",
     "upcomingPayments": "Próximos pagos"
   },
   "subscription": {
     "add": {
       "button": "Añadir suscripción",
-      "title": "Nueva suscripción",
+      "title": "Añadir nueva suscripción",
       "name": "Nombre de la suscripción",
       "namePlaceholder": "ej: Netflix, Spotify, etc.",
       "amount": "Importe",
@@ -32,14 +43,14 @@
       "uncategorized": "Sin categoría",
       "notes": "Notas (Opcional)",
       "notesPlaceholder": "Añade detalles adicionales sobre esta suscripción...",
+      "cancel": "Cancelar",
+      "submit": "Añadir",
       "presets": {
         "button": "Añadir rápido",
-        "selectBrand": "Seleccionar marca",
+        "selectBrand": "Seleccionar servicio",
         "selectPlan": "Seleccionar plan de {{brand}}",
-        "backToBrands": "Volver a marcas"
-      },
-      "cancel": "Cancelar",
-      "submit": "Añadir"
+        "backToBrands": "Volver a servicios"
+      }
     },
     "edit": {
       "title": "Editar suscripción",
@@ -53,7 +64,12 @@
       "confirm": "Eliminar"
     },
     "nextBilling": "Próxima facturación:",
-    "noSubscriptions": "No hay suscripciones todavía. ¡Añade tu primera!"
+    "noSubscriptions": "Aún no hay suscripciones. ¡Añade tu primera!",
+    "billingCycle": {
+      "monthly": "/ mes",
+      "yearly": "/ año",
+      "weekly": "/ semana"
+    }
   },
   "category": {
     "manage": {
@@ -64,14 +80,14 @@
       "editCategory": "Nuevo nombre de categoría...",
       "backgroundColor": "Color de fondo",
       "textColor": "Color del texto",
-      "confirmation": "¿Estás seguro de que quieres restablecer las categorías por defecto? Esto afectará a todas tus suscripciones.",
+      "confirmation": "¿Estás seguro de que quieres restablecer las categorías predeterminadas? Esto afectará a todas tus suscripciones.",
       "actions": {
         "add": "Añadir",
         "update": "Actualizar",
         "edit": "Editar",
         "delete": "Eliminar"
       },
-      "resetToDefaults": "Restablecer",
+      "resetToDefaults": "Restablecer valores",
       "done": "Hecho"
     },
     "defaults": {
@@ -81,6 +97,7 @@
       "gaming": "Juegos",
       "music": "Música",
       "health": "Salud",
+      "services": "Servicios",
       "other": "Otros"
     }
   },
@@ -112,57 +129,57 @@
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "Estándar",
-        "premium": "Premium"
+        "standard": "Disney+ Estándar",
+        "premium": "Disney+ Premium"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "Mensual",
-        "annual": "Anual"
+        "monthly": "Amazon Prime Mensual",
+        "annual": "Amazon Prime Anual"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "Personal",
-        "family": "Familiar"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Familiar"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "Plan Fotografía",
-        "allapps": "Todas las Aplicaciones"
+        "photography": "Adobe Plan Fotografía",
+        "allapps": "Adobe Creative Cloud Todas las aplicaciones"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "Individual",
-        "family": "Familiar"
+        "individual": "Apple One Individual",
+        "family": "Apple One Familiar"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "Familiar"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox Familiar"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "Con Anuncios",
-        "adsfree": "Sin Anuncios"
+        "withads": "HBO Max Con anuncios",
+        "adsfree": "HBO Max Sin anuncios"
       }
     }
   }

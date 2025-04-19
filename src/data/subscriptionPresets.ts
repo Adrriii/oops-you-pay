@@ -173,7 +173,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 1900, currency: CURRENCY.JPY }
         ],
         billingCycle: 'monthly',
-        categoryKey: 'category.defaults.streaming'
+        categoryKey: 'category.defaults.services'
       },
       {
         translationKey: 'brands.amazonprime.plans.annual',
@@ -184,7 +184,7 @@ export const subscriptionPresets: Brand[] = [
           { amount: 19000, currency: CURRENCY.JPY }
         ],
         billingCycle: 'yearly',
-        categoryKey: 'category.defaults.streaming'
+        categoryKey: 'category.defaults.services'
       }
     ]
   },

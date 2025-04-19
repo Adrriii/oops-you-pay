@@ -1,39 +1,27 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "구독 관리를 더 쉽게"
+    "subtitle": "구독을 스마트하게 관리하세요"
   },
   "common": {
-    "add": "추가",
-    "edit": "수정",
-    "delete": "삭제",
-    "cancel": "취소",
-    "save": "저장",
-    "confirm": "확인",
-    "category": "카테고리",
-    "name": "이름",
-    "price": "가격",
-    "billing": "결제",
-    "currency": "통화",
-    "next_billing": "다음 결제일"
+    "dateFormat": "yyyy년 MM월 dd일",
+    "colors": {
+      "background": "배경색",
+      "text": "글자색"
+    },
+    "footer": {
+      "github": "GitHub에서 보기",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
-    "total_monthly": "월간 총액",
-    "most_expensive": "가장 비싼 구독",
-    "categories": "카테고리별",
     "monthlyOverview": "월간 개요",
-    "totalMonthlySpending": "월 총 지출",
+    "totalMonthlySpending": "월 총 지출액",
     "exchangeRatesUpdated": "환율 업데이트: {{date}}",
     "activeSubscriptions": "활성 구독",
-    "totalSubscriptions": "전체 구독 수",
-    "yearlyEstimate": "연간 예상액",
+    "totalSubscriptions": "총 구독 수",
+    "yearlyEstimate": "연간 예상 금액",
     "upcomingPayments": "예정된 결제"
-  },
-  "categories": {
-    "entertainment": "엔터테인먼트",
-    "productivity": "생산성",
-    "utilities": "유틸리티",
-    "other": "기타"
   },
   "subscription": {
     "add": {
@@ -48,7 +36,7 @@
         "yearly": "매년",
         "weekly": "매주"
       },
-      "advancedOptions": "고급 설정",
+      "advancedOptions": "고급 옵션",
       "nextBillingDate": "다음 결제일",
       "currency": "통화",
       "category": "카테고리 (선택사항)",
@@ -59,9 +47,9 @@
       "submit": "추가",
       "presets": {
         "button": "빠른 추가",
-        "selectBrand": "브랜드 선택",
+        "selectBrand": "서비스 선택",
         "selectPlan": "{{brand}} 요금제 선택",
-        "backToBrands": "브랜드 목록으로 돌아가기"
+        "backToBrands": "서비스 목록으로 돌아가기"
       }
     },
     "edit": {
@@ -76,13 +64,18 @@
       "confirm": "삭제"
     },
     "nextBilling": "다음 결제일:",
-    "noSubscriptions": "아직 구독이 없습니다. 첫 번째 구독을 추가하세요!"
+    "noSubscriptions": "아직 구독이 없습니다. 첫 번째 구독을 추가해보세요!",
+    "billingCycle": {
+      "monthly": "/월",
+      "yearly": "/년",
+      "weekly": "/주"
+    }
   },
   "category": {
     "manage": {
       "button": "카테고리 관리",
       "title": "카테고리 관리",
-      "description": "구독 카테고리를 추가, 수정 또는 삭제합니다. 변경사항은 해당 카테고리를 사용하는 모든 구독에 영향을 미칩니다.",
+      "description": "구독 카테고리를 추가, 수정 또는 삭제합니다. 변경 사항은 해당 카테고리를 사용하는 모든 구독에 영향을 미칩니다.",
       "newCategory": "카테고리 추가...",
       "editCategory": "새 카테고리 이름...",
       "backgroundColor": "배경색",
@@ -104,88 +97,89 @@
       "gaming": "게임",
       "music": "음악",
       "health": "건강",
+      "services": "서비스",
       "other": "기타"
     }
   },
   "brands": {
     "netflix": {
-      "name": "넷플릭스",
+      "name": "Netflix",
       "plans": {
-        "basic": "넷플릭스 베이직 (광고 포함)",
-        "standard": "넷플릭스 스탠다드",
-        "premium": "넷플릭스 프리미엄"
+        "basic": "Netflix 베이직 (광고 포함)",
+        "standard": "Netflix 스탠다드",
+        "premium": "Netflix 프리미엄"
       }
     },
     "spotify": {
-      "name": "스포티파이",
+      "name": "Spotify",
       "plans": {
-        "individual": "스포티파이 개인",
-        "duo": "스포티파이 듀오",
-        "family": "스포티파이 패밀리"
+        "individual": "Spotify 개인",
+        "duo": "Spotify 듀오",
+        "family": "Spotify 패밀리"
       }
     },
     "youtube": {
-      "name": "유튜브",
+      "name": "YouTube",
       "plans": {
-        "individual": "유튜브 프리미엄 개인",
-        "family": "유튜브 프리미엄 패밀리",
-        "student": "유튜브 프리미엄 학생"
+        "individual": "YouTube Premium 개인",
+        "family": "YouTube Premium 패밀리",
+        "student": "YouTube Premium 학생"
       }
     },
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "스탠다드",
-        "premium": "프리미엄"
+        "standard": "Disney+ 스탠다드",
+        "premium": "Disney+ 프리미엄"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "월간 구독",
-        "annual": "연간 구독"
+        "monthly": "Amazon Prime 월간",
+        "annual": "Amazon Prime 연간"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "개인",
-        "family": "가족"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Family"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "포토그래피 플랜",
-        "allapps": "모든 앱"
+        "photography": "Adobe 포토그래피 플랜",
+        "allapps": "Adobe Creative Cloud 모든 앱"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "개인",
-        "family": "가족"
+        "individual": "Apple One 개인",
+        "family": "Apple One 패밀리"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "패밀리"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox 패밀리"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "광고 포함",
-        "adsfree": "광고 없음"
+        "withads": "HBO Max (광고 포함)",
+        "adsfree": "HBO Max (광고 없음)"
       }
     }
   }

@@ -2,8 +2,10 @@ import { Box, Link, Typography } from '@mui/material';
 import { GitHub as GitHubIcon } from '@mui/icons-material';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { CurrencySelector } from './CurrencySelector';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -52,7 +54,7 @@ export const Footer = () => {
             <Typography variant="body2">Adrien Boitelle</Typography>
           </Link>
           <Typography variant="body2" color="text.secondary">
-            © {currentYear}
+            {t('common.footer.copyright', { year: currentYear })}
           </Typography>
         </Box>
       </Box>

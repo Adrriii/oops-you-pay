@@ -197,7 +197,7 @@ export const CategoryManager = () => {
           >
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
-                {colorPickerType === 'background' ? t('category.manage.backgroundColor') : t('category.manage.textColor')}
+                {colorPickerType === 'background' ? t('common.colors.background') : t('common.colors.text')}
               </Typography>
               <HexColorPicker
                 color={colorPickerType === 'background' ? selectedColor : selectedTextColor}

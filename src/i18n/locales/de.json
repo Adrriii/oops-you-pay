@@ -1,7 +1,18 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "Verwalte deine Abonnements intelligent"
+    "subtitle": "Verfolgen und verwalten Sie Ihre Abonnements intelligent"
+  },
+  "common": {
+    "dateFormat": "dd.MM.yyyy",
+    "colors": {
+      "background": "Hintergrundfarbe",
+      "text": "Textfarbe"
+    },
+    "footer": {
+      "github": "Auf GitHub ansehen",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
     "monthlyOverview": "Monatsübersicht",
@@ -15,9 +26,9 @@
   "subscription": {
     "add": {
       "button": "Abonnement hinzufügen",
-      "title": "Neues Abonnement",
-      "name": "Name des Abonnements",
-      "namePlaceholder": "z.B.: Netflix, Spotify, etc.",
+      "title": "Neues Abonnement hinzufügen",
+      "name": "Abonnementname",
+      "namePlaceholder": "z.B. Netflix, Spotify, etc.",
       "amount": "Betrag",
       "billingCycle": "Abrechnungszyklus",
       "cycles": {
@@ -29,17 +40,17 @@
       "nextBillingDate": "Nächstes Abrechnungsdatum",
       "currency": "Währung",
       "category": "Kategorie (Optional)",
-      "uncategorized": "Ohne Kategorie",
+      "uncategorized": "Nicht kategorisiert",
       "notes": "Notizen (Optional)",
-      "notesPlaceholder": "Füge weitere Details zu diesem Abonnement hinzu...",
-      "presets": {
-        "button": "Schnellauswahl",
-        "selectBrand": "Marke auswählen",
-        "selectPlan": "{{brand}}-Tarif auswählen",
-        "backToBrands": "Zurück zur Markenauswahl"
-      },
+      "notesPlaceholder": "Fügen Sie zusätzliche Details zu diesem Abonnement hinzu...",
       "cancel": "Abbrechen",
-      "submit": "Hinzufügen"
+      "submit": "Hinzufügen",
+      "presets": {
+        "button": "Schnell hinzufügen",
+        "selectBrand": "Dienst auswählen",
+        "selectPlan": "{{brand}}-Tarif auswählen",
+        "backToBrands": "Zurück zu den Diensten"
+      }
     },
     "edit": {
       "title": "Abonnement bearbeiten",
@@ -48,39 +59,45 @@
     },
     "delete": {
       "title": "Abonnement löschen",
-      "confirmation": "Bist du sicher, dass du das Abonnement für {{name}} löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmation": "Sind Sie sicher, dass Sie das Abonnement für {{name}} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
       "cancel": "Abbrechen",
       "confirm": "Löschen"
     },
     "nextBilling": "Nächste Abrechnung:",
-    "noSubscriptions": "Noch keine Abonnements. Füge dein erstes hinzu!"
+    "noSubscriptions": "Noch keine Abonnements. Fügen Sie Ihr erstes hinzu!",
+    "billingCycle": {
+      "monthly": "/ Monat",
+      "yearly": "/ Jahr",
+      "weekly": "/ Woche"
+    }
   },
   "category": {
     "manage": {
       "button": "Kategorien verwalten",
       "title": "Kategorien verwalten",
-      "description": "Füge Kategorien hinzu, bearbeite oder lösche sie. Änderungen wirken sich auf alle Abonnements aus, die diese Kategorien verwenden.",
+      "description": "Fügen Sie Abonnementkategorien hinzu, bearbeiten oder entfernen Sie sie. Änderungen betreffen alle Abonnements, die diese Kategorien verwenden.",
       "newCategory": "Kategorie hinzufügen...",
       "editCategory": "Neuer Kategoriename...",
       "backgroundColor": "Hintergrundfarbe",
       "textColor": "Textfarbe",
-      "confirmation": "Bist du sicher, dass du die Standardkategorien wiederherstellen möchtest? Dies wirkt sich auf alle deine Abonnements aus.",
+      "confirmation": "Sind Sie sicher, dass Sie die Standardkategorien wiederherstellen möchten? Dies wird alle Ihre Abonnements betreffen.",
       "actions": {
         "add": "Hinzufügen",
         "update": "Aktualisieren",
         "edit": "Bearbeiten",
         "delete": "Löschen"
       },
-      "resetToDefaults": "Zurücksetzen",
+      "resetToDefaults": "Auf Standard zurücksetzen",
       "done": "Fertig"
     },
     "defaults": {
       "entertainment": "Unterhaltung",
       "software": "Software",
       "streaming": "Streaming",
-      "gaming": "Spiele",
+      "gaming": "Gaming",
       "music": "Musik",
       "health": "Gesundheit",
+      "services": "Dienste",
       "other": "Sonstiges"
     }
   },
@@ -105,64 +122,64 @@
       "name": "YouTube",
       "plans": {
         "individual": "YouTube Premium Individual",
-        "family": "YouTube Premium Familienabo",
+        "family": "YouTube Premium Family",
         "student": "YouTube Premium Student"
       }
     },
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "Standard",
-        "premium": "Premium"
+        "standard": "Disney+ Standard",
+        "premium": "Disney+ Premium"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "Monatlich",
-        "annual": "Jährlich"
+        "monthly": "Amazon Prime Monatlich",
+        "annual": "Amazon Prime Jährlich"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "Personal",
-        "family": "Familie"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Family"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "Foto-Paket",
-        "allapps": "Alle Programme"
+        "photography": "Adobe Fotografie-Plan",
+        "allapps": "Adobe Creative Cloud Alle Apps"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "Individual",
-        "family": "Familie"
+        "individual": "Apple One Individual",
+        "family": "Apple One Family"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "Familie"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox Family"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "Mit Werbung",
-        "adsfree": "Ohne Werbung"
+        "withads": "HBO Max Mit Werbung",
+        "adsfree": "HBO Max Werbefrei"
       }
     }
   }

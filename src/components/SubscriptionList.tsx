@@ -7,6 +7,7 @@ import { useState, lazy, Suspense, ComponentProps } from 'react';
 import { CategoryManager } from './CategoryManager';
 import { useTranslation } from 'react-i18next';
 import { CurrencyCode } from '../config/currencies';
+import getBillingCycleTranslation from '../types/getBillingCycleTranslation';
 
 const EditSubscriptionComponent = lazy(() => import('./dialogs').then(m => ({ default: m.EditSubscription })));
 const DeleteConfirmationComponent = lazy(() => import('./dialogs').then(m => ({ default: m.DeleteConfirmation })));
@@ -139,14 +140,14 @@ export const SubscriptionList = () => {
                 <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold' }}>
                   {formatCurrency(subscription.amount, subscription.currency.code)}
                   <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-                    / {subscription.billingCycle}
+                    {t(getBillingCycleTranslation(subscription.billingCycle))}
                   </Typography>
                 </Typography>
 
                 <Box sx={{ mt: 'auto', pt: 1 }}>
                   <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>{t('subscription.nextBilling')}</span>
-                    <span style={{ fontWeight: 500 }}>{format(new Date(subscription.nextBillingDate), 'MMM dd, yyyy')}</span>
+                    <span style={{ fontWeight: 500 }}>{format(new Date(subscription.nextBillingDate), t('common.dateFormat'))}</span>
                   </Typography>
 
                   {subscription.notes && (

@@ -1,26 +1,20 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "轻松管理您的订阅"
+    "subtitle": "智能管理您的订阅"
   },
   "common": {
-    "add": "添加",
-    "edit": "编辑",
-    "delete": "删除",
-    "cancel": "取消",
-    "save": "保存",
-    "confirm": "确认",
-    "category": "类别",
-    "name": "名称",
-    "price": "价格",
-    "billing": "付款",
-    "currency": "货币",
-    "next_billing": "下次付款日期"
+    "dateFormat": "yyyy年MM月dd日",
+    "colors": {
+      "background": "背景颜色",
+      "text": "文字颜色"
+    },
+    "footer": {
+      "github": "在GitHub上查看",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
-    "total_monthly": "每月总额",
-    "most_expensive": "最贵的订阅",
-    "categories": "按类别",
     "monthlyOverview": "月度概览",
     "totalMonthlySpending": "月度总支出",
     "exchangeRatesUpdated": "汇率更新时间：{{date}}",
@@ -28,12 +22,6 @@
     "totalSubscriptions": "订阅总数",
     "yearlyEstimate": "年度预估",
     "upcomingPayments": "即将付款"
-  },
-  "categories": {
-    "entertainment": "娱乐",
-    "productivity": "生产力",
-    "utilities": "实用工具",
-    "other": "其他"
   },
   "subscription": {
     "add": {
@@ -49,9 +37,9 @@
         "weekly": "每周"
       },
       "advancedOptions": "高级选项",
-      "nextBillingDate": "下次计费日期",
+      "nextBillingDate": "下次付款日期",
       "currency": "货币",
-      "category": "类别（可选）",
+      "category": "分类（可选）",
       "uncategorized": "未分类",
       "notes": "备注（可选）",
       "notesPlaceholder": "添加关于此订阅的其他详细信息...",
@@ -59,9 +47,9 @@
       "submit": "添加",
       "presets": {
         "button": "快速添加",
-        "selectBrand": "选择品牌",
+        "selectBrand": "选择服务",
         "selectPlan": "选择{{brand}}套餐",
-        "backToBrands": "返回品牌列表"
+        "backToBrands": "返回服务列表"
       }
     },
     "edit": {
@@ -71,30 +59,35 @@
     },
     "delete": {
       "title": "删除订阅",
-      "confirmation": "确定要删除{{name}}的订阅吗？此操作无法撤销。",
+      "confirmation": "确定要删除{{name}}的订阅吗？此操作无法撤消。",
       "cancel": "取消",
       "confirm": "删除"
     },
-    "nextBilling": "下次计费：",
-    "noSubscriptions": "暂无订阅。添加您的第一个订阅！"
+    "nextBilling": "下次付款：",
+    "noSubscriptions": "暂无订阅。添加您的第一个订阅！",
+    "billingCycle": {
+      "monthly": "/月",
+      "yearly": "/年",
+      "weekly": "/周"
+    }
   },
   "category": {
     "manage": {
-      "button": "管理类别",
-      "title": "管理类别",
-      "description": "添加、编辑或删除订阅类别。更改将影响使用这些类别的所有订阅。",
-      "newCategory": "添加类别...",
-      "editCategory": "新类别名称...",
+      "button": "管理分类",
+      "title": "管理分类",
+      "description": "添加、编辑或删除订阅分类。更改将影响使用这些分类的所有订阅。",
+      "newCategory": "添加分类...",
+      "editCategory": "新分类名称...",
       "backgroundColor": "背景颜色",
       "textColor": "文字颜色",
-      "confirmation": "确定要重置为默认类别吗？这将影响所有订阅。",
+      "confirmation": "确定要重置为默认分类吗？这将影响您的所有订阅。",
       "actions": {
         "add": "添加",
         "update": "更新",
         "edit": "编辑",
         "delete": "删除"
       },
-      "resetToDefaults": "重置为默认",
+      "resetToDefaults": "重置为默认值",
       "done": "完成"
     },
     "defaults": {
@@ -104,6 +97,7 @@
       "gaming": "游戏",
       "music": "音乐",
       "health": "健康",
+      "services": "服务",
       "other": "其他"
     }
   },
@@ -111,9 +105,9 @@
     "netflix": {
       "name": "Netflix",
       "plans": {
-        "basic": "Netflix 基础套餐（含广告）",
-        "standard": "Netflix 标准套餐",
-        "premium": "Netflix 高级套餐"
+        "basic": "Netflix 基础版（含广告）",
+        "standard": "Netflix 标准版",
+        "premium": "Netflix 高级版"
       }
     },
     "spotify": {
@@ -135,57 +129,57 @@
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "标准版",
-        "premium": "高级版"
+        "standard": "Disney+ 标准版",
+        "premium": "Disney+ 高级版"
       }
     },
     "amazonprime": {
-      "name": "亚马逊Prime会员",
+      "name": "Amazon Prime",
       "plans": {
-        "monthly": "月付",
-        "annual": "年付"
+        "monthly": "Amazon Prime 月度会员",
+        "annual": "Amazon Prime 年度会员"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "个人版",
-        "family": "家庭版"
+        "personal": "Microsoft 365 个人版",
+        "family": "Microsoft 365 家庭版"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "摄影计划",
-        "allapps": "所有应用程序"
+        "photography": "Adobe 摄影计划",
+        "allapps": "Adobe Creative Cloud 所有应用"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "个人版",
-        "family": "家庭版"
+        "individual": "Apple One 个人版",
+        "family": "Apple One 家庭版"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "家庭版"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox 家庭版"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "含广告",
-        "adsfree": "无广告"
+        "withads": "HBO Max 含广告版",
+        "adsfree": "HBO Max 无广告版"
       }
     }
   }

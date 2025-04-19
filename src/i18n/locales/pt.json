@@ -1,10 +1,21 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "Gerencie suas assinaturas de forma inteligente"
+    "subtitle": "Acompanhe e gerencie suas assinaturas de forma inteligente"
+  },
+  "common": {
+    "dateFormat": "dd/MM/yyyy",
+    "colors": {
+      "background": "Cor de fundo",
+      "text": "Cor do texto"
+    },
+    "footer": {
+      "github": "Ver no GitHub",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
-    "monthlyOverview": "Visão geral mensal",
+    "monthlyOverview": "Resumo mensal",
     "totalMonthlySpending": "Gasto mensal total em",
     "exchangeRatesUpdated": "Taxas de câmbio atualizadas: {{date}}",
     "activeSubscriptions": "Assinaturas ativas",
@@ -15,7 +26,7 @@
   "subscription": {
     "add": {
       "button": "Adicionar assinatura",
-      "title": "Nova assinatura",
+      "title": "Adicionar nova assinatura",
       "name": "Nome da assinatura",
       "namePlaceholder": "ex: Netflix, Spotify, etc.",
       "amount": "Valor",
@@ -32,14 +43,14 @@
       "uncategorized": "Sem categoria",
       "notes": "Notas (Opcional)",
       "notesPlaceholder": "Adicione detalhes adicionais sobre esta assinatura...",
+      "cancel": "Cancelar",
+      "submit": "Adicionar",
       "presets": {
         "button": "Adição rápida",
-        "selectBrand": "Selecionar marca",
+        "selectBrand": "Selecionar serviço",
         "selectPlan": "Selecionar plano {{brand}}",
-        "backToBrands": "Voltar às marcas"
-      },
-      "cancel": "Cancelar",
-      "submit": "Adicionar"
+        "backToBrands": "Voltar aos serviços"
+      }
     },
     "edit": {
       "title": "Editar assinatura",
@@ -53,7 +64,12 @@
       "confirm": "Excluir"
     },
     "nextBilling": "Próxima cobrança:",
-    "noSubscriptions": "Nenhuma assinatura ainda. Adicione sua primeira!"
+    "noSubscriptions": "Ainda não há assinaturas. Adicione sua primeira!",
+    "billingCycle": {
+      "monthly": "/ mês",
+      "yearly": "/ ano",
+      "weekly": "/ semana"
+    }
   },
   "category": {
     "manage": {
@@ -61,18 +77,18 @@
       "title": "Gerenciar categorias",
       "description": "Adicione, edite ou remova categorias de assinatura. As alterações afetarão todas as assinaturas que usam essas categorias.",
       "newCategory": "Adicionar categoria...",
-      "editCategory": "Novo nome de categoria...",
+      "editCategory": "Novo nome da categoria...",
       "backgroundColor": "Cor de fundo",
       "textColor": "Cor do texto",
-      "confirmation": "Tem certeza que deseja restaurar as categorias padrão? Isso afetará todas as suas assinaturas.",
+      "confirmation": "Tem certeza que deseja redefinir para as categorias padrão? Isso afetará todas as suas assinaturas.",
       "actions": {
         "add": "Adicionar",
         "update": "Atualizar",
         "edit": "Editar",
         "delete": "Excluir"
       },
-      "resetToDefaults": "Restaurar",
-      "done": "Concluir"
+      "resetToDefaults": "Redefinir padrões",
+      "done": "Concluído"
     },
     "defaults": {
       "entertainment": "Entretenimento",
@@ -81,64 +97,89 @@
       "gaming": "Jogos",
       "music": "Música",
       "health": "Saúde",
+      "services": "Serviços",
       "other": "Outros"
     }
   },
   "brands": {
+    "netflix": {
+      "name": "Netflix",
+      "plans": {
+        "basic": "Netflix Básico com anúncios",
+        "standard": "Netflix Padrão",
+        "premium": "Netflix Premium"
+      }
+    },
+    "spotify": {
+      "name": "Spotify",
+      "plans": {
+        "individual": "Spotify Individual",
+        "duo": "Spotify Duo",
+        "family": "Spotify Família"
+      }
+    },
+    "youtube": {
+      "name": "YouTube",
+      "plans": {
+        "individual": "YouTube Premium Individual",
+        "family": "YouTube Premium Família",
+        "student": "YouTube Premium Estudante"
+      }
+    },
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "Standard",
-        "premium": "Premium"
+        "standard": "Disney+ Padrão",
+        "premium": "Disney+ Premium"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "Mensal",
-        "annual": "Anual"
+        "monthly": "Amazon Prime Mensal",
+        "annual": "Amazon Prime Anual"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "Pessoal",
-        "family": "Família"
+        "personal": "Microsoft 365 Pessoal",
+        "family": "Microsoft 365 Família"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "Plano Fotografia",
-        "allapps": "Todos os Aplicativos"
+        "photography": "Adobe Plano Fotografia",
+        "allapps": "Adobe Creative Cloud Todos os apps"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "Individual",
-        "family": "Família"
+        "individual": "Apple One Individual",
+        "family": "Apple One Família"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "Família"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox Família"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "Com Anúncios",
-        "adsfree": "Sem Anúncios"
+        "withads": "HBO Max Com anúncios",
+        "adsfree": "HBO Max Sem anúncios"
       }
     }
   }

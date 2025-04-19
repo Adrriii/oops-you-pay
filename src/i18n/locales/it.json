@@ -1,7 +1,18 @@
 {
   "app": {
     "title": "OopsYouPay",
-    "subtitle": "Gestisci i tuoi abbonamenti in modo intelligente"
+    "subtitle": "Monitora e gestisci i tuoi abbonamenti in modo intelligente"
+  },
+  "common": {
+    "dateFormat": "dd/MM/yyyy",
+    "colors": {
+      "background": "Colore di sfondo",
+      "text": "Colore del testo"
+    },
+    "footer": {
+      "github": "Vedi su GitHub",
+      "copyright": "© {{year}}"
+    }
   },
   "dashboard": {
     "monthlyOverview": "Panoramica mensile",
@@ -15,7 +26,7 @@
   "subscription": {
     "add": {
       "button": "Aggiungi abbonamento",
-      "title": "Nuovo abbonamento",
+      "title": "Aggiungi nuovo abbonamento",
       "name": "Nome abbonamento",
       "namePlaceholder": "es: Netflix, Spotify, ecc.",
       "amount": "Importo",
@@ -29,16 +40,16 @@
       "nextBillingDate": "Prossima data di fatturazione",
       "currency": "Valuta",
       "category": "Categoria (Opzionale)",
-      "uncategorized": "Senza categoria",
+      "uncategorized": "Non categorizzato",
       "notes": "Note (Opzionale)",
-      "notesPlaceholder": "Aggiungi ulteriori dettagli su questo abbonamento...",
+      "notesPlaceholder": "Aggiungi dettagli aggiuntivi su questo abbonamento...",
       "cancel": "Annulla",
       "submit": "Aggiungi",
       "presets": {
         "button": "Aggiunta rapida",
-        "selectBrand": "Seleziona marca",
+        "selectBrand": "Seleziona servizio",
         "selectPlan": "Seleziona piano {{brand}}",
-        "backToBrands": "Torna alle marche"
+        "backToBrands": "Torna ai servizi"
       }
     },
     "edit": {
@@ -53,7 +64,12 @@
       "confirm": "Elimina"
     },
     "nextBilling": "Prossima fatturazione:",
-    "noSubscriptions": "Ancora nessun abbonamento. Aggiungi il tuo primo!"
+    "noSubscriptions": "Ancora nessun abbonamento. Aggiungi il tuo primo!",
+    "billingCycle": {
+      "monthly": "/ mese",
+      "yearly": "/ anno",
+      "weekly": "/ settimana"
+    }
   },
   "category": {
     "manage": {
@@ -71,16 +87,17 @@
         "edit": "Modifica",
         "delete": "Elimina"
       },
-      "resetToDefaults": "Ripristina",
+      "resetToDefaults": "Ripristina valori",
       "done": "Fatto"
     },
     "defaults": {
       "entertainment": "Intrattenimento",
       "software": "Software",
       "streaming": "Streaming",
-      "gaming": "Videogiochi",
+      "gaming": "Giochi",
       "music": "Musica",
       "health": "Salute",
+      "services": "Servizi",
       "other": "Altro"
     }
   },
@@ -88,7 +105,7 @@
     "netflix": {
       "name": "Netflix",
       "plans": {
-        "basic": "Netflix Base con pubblicità",
+        "basic": "Netflix Basic con pubblicità",
         "standard": "Netflix Standard",
         "premium": "Netflix Premium"
       }
@@ -112,57 +129,57 @@
     "disney": {
       "name": "Disney+",
       "plans": {
-        "standard": "Standard",
-        "premium": "Premium"
+        "standard": "Disney+ Standard",
+        "premium": "Disney+ Premium"
       }
     },
     "amazonprime": {
       "name": "Amazon Prime",
       "plans": {
-        "monthly": "Mensile",
-        "annual": "Annuale"
+        "monthly": "Amazon Prime Mensile",
+        "annual": "Amazon Prime Annuale"
       }
     },
     "microsoftoffice": {
       "name": "Microsoft 365",
       "plans": {
-        "personal": "Personale",
-        "family": "Famiglia"
+        "personal": "Microsoft 365 Personal",
+        "family": "Microsoft 365 Family"
       }
     },
     "adobe": {
       "name": "Adobe Creative Cloud",
       "plans": {
-        "photography": "Piano Fotografia",
-        "allapps": "Tutte le Applicazioni"
+        "photography": "Adobe Piano Fotografia",
+        "allapps": "Adobe Creative Cloud Tutte le app"
       }
     },
     "xboxgamepass": {
       "name": "Xbox Game Pass",
       "plans": {
-        "core": "Core",
-        "ultimate": "Ultimate"
+        "core": "Xbox Game Pass Core",
+        "ultimate": "Xbox Game Pass Ultimate"
       }
     },
     "appleone": {
       "name": "Apple One",
       "plans": {
-        "individual": "Individuale",
-        "family": "Famiglia"
+        "individual": "Apple One Individual",
+        "family": "Apple One Family"
       }
     },
     "dropbox": {
       "name": "Dropbox",
       "plans": {
-        "plus": "Plus",
-        "family": "Famiglia"
+        "plus": "Dropbox Plus",
+        "family": "Dropbox Family"
       }
     },
     "hbomax": {
       "name": "HBO Max",
       "plans": {
-        "withads": "Con Pubblicità",
-        "adsfree": "Senza Pubblicità"
+        "withads": "HBO Max Con pubblicità",
+        "adsfree": "HBO Max Senza pubblicità"
       }
     }
   }
