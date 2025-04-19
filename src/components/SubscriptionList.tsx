@@ -3,12 +3,19 @@ import { MoreVert as MoreVertIcon, Edit as EditIcon, Delete as DeleteIcon } from
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useCategoryStore } from '../store/categoryStore';
 import { format } from 'date-fns';
-import { useState } from 'react';
-import { EditSubscription } from './EditSubscription';
-import { DeleteConfirmation } from './DeleteConfirmation';
+import { useState, lazy, Suspense, ComponentProps } from 'react';
 import { CategoryManager } from './CategoryManager';
 import { useTranslation } from 'react-i18next';
 import { CurrencyCode } from '../config/currencies';
+
+const EditSubscriptionComponent = lazy(() => import('./dialogs').then(m => ({ default: m.EditSubscription })));
+const DeleteConfirmationComponent = lazy(() => import('./dialogs').then(m => ({ default: m.DeleteConfirmation })));
+
+type EditSubscriptionProps = ComponentProps<typeof EditSubscriptionComponent>;
+type DeleteConfirmationProps = ComponentProps<typeof DeleteConfirmationComponent>;
+
+const EditSubscription = EditSubscriptionComponent as React.ComponentType<EditSubscriptionProps>;
+const DeleteConfirmation = DeleteConfirmationComponent as React.ComponentType<DeleteConfirmationProps>;
 
 export const SubscriptionList = () => {
   const { t } = useTranslation();
@@ -177,24 +184,28 @@ export const SubscriptionList = () => {
         </Menu>
 
         {selectedSubscription && (
-          <>
-            <EditSubscription
-              open={isEditDialogOpen}
-              onClose={() => {
-                setIsEditDialogOpen(false);
-                setSelectedSubscription(null);
-              }}
-              subscriptionId={selectedSubscription}
-            />
-            <DeleteConfirmation
-              open={isDeleteDialogOpen}
-              onClose={() => {
-                setIsDeleteDialogOpen(false);
-                setSelectedSubscription(null);
-              }}
-              subscriptionId={selectedSubscription}
-            />
-          </>
+          <Suspense fallback={null}>
+            {isEditDialogOpen && (
+              <EditSubscription
+                open={isEditDialogOpen}
+                onClose={() => {
+                  setIsEditDialogOpen(false);
+                  setSelectedSubscription(null);
+                }}
+                subscriptionId={selectedSubscription}
+              />
+            )}
+            {isDeleteDialogOpen && (
+              <DeleteConfirmation
+                open={isDeleteDialogOpen}
+                onClose={() => {
+                  setIsDeleteDialogOpen(false);
+                  setSelectedSubscription(null);
+                }}
+                subscriptionId={selectedSubscription}
+              />
+            )}
+          </Suspense>
         )}
 
         {subscriptions.length === 0 && (

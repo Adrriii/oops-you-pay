@@ -12,20 +12,20 @@ import {
   ListItemButton,
 } from '@mui/material';
 import { Search } from '@mui/icons-material';
-import { useSubscriptionStore } from '../store/subscriptionStore';
-import { useExchangeRatesStore } from '../store/exchangeRatesStore';
-import { useCategoryStore } from '../store/categoryStore';
+import { useSubscriptionStore } from '../../store/subscriptionStore';
+import { useExchangeRatesStore } from '../../store/exchangeRatesStore';
+import { useCategoryStore } from '../../store/categoryStore';
 import { useTranslation } from 'react-i18next';
-import { subscriptionPresets, RegionalPrice } from '../data/subscriptionPresets';
-import getDefaultNextBillingDate from '../utils/getDefaultNextBillingDate';
-import { getDefaultCurrency } from '../config/currencies';
+import { subscriptionPresets, RegionalPrice } from '../../data/subscriptionPresets';
+import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
+import { getDefaultCurrency } from '../../config/currencies';
 
 interface QuickAddSubscriptionProps {
   open: boolean;
   onClose: () => void;
 }
 
-export const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
+const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
   const { t } = useTranslation();
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -188,3 +188,5 @@ export const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProp
     </Dialog>
   );
 };
+
+export default QuickAddSubscription;
