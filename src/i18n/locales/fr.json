@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Suivez et gérez vos abonnements intelligemment"
+  },
+  "dashboard": {
+    "monthlyOverview": "Aperçu mensuel",
+    "totalMonthlySpending": "Dépenses mensuelles totales en",
+    "exchangeRatesUpdated": "Taux de change mis à jour le : {{date}}",
+    "activeSubscriptions": "Abonnements actifs",
+    "totalSubscriptions": "Nombre total d'abonnements"
+  },
+  "subscription": {
+    "add": {
+      "button": "Ajouter un abonnement",
+      "title": "Nouvel abonnement",
+      "name": "Nom de l'abonnement",
+      "namePlaceholder": "ex : Netflix, Spotify, etc.",
+      "amount": "Montant",
+      "billingCycle": "Cycle de facturation",
+      "cycles": {
+        "monthly": "Mensuel",
+        "yearly": "Annuel",
+        "weekly": "Hebdomadaire"
+      },
+      "advancedOptions": "Options avancées",
+      "nextBillingDate": "Prochaine date de facturation",
+      "currency": "Devise",
+      "category": "Catégorie (Optionnel)",
+      "uncategorized": "Sans catégorie",
+      "notes": "Notes (Optionnel)",
+      "notesPlaceholder": "Ajoutez des détails supplémentaires sur cet abonnement...",
+      "cancel": "Annuler",
+      "submit": "Ajouter"
+    },
+    "edit": {
+      "title": "Modifier l'abonnement",
+      "cancel": "Annuler",
+      "submit": "Enregistrer"
+    },
+    "delete": {
+      "title": "Supprimer l'abonnement",
+      "confirmation": "Êtes-vous sûr de vouloir supprimer l'abonnement à {{name}} ? Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
+    },
+    "nextBilling": "Prochaine facturation :",
+    "noSubscriptions": "Aucun abonnement pour le moment. Ajoutez en un !"
+  },
+  "category": {
+    "manage": {
+      "button": "Gérer les catégories",
+      "title": "Gérer les catégories",
+      "description": "Ajoutez, modifiez ou supprimez des catégories d'abonnement. Les modifications affecteront tous les abonnements utilisant ces catégories.",
+      "newCategory": "Ajouter une catégorie...",
+      "editCategory": "Nouveau nom de catégorie...",
+      "backgroundColor": "Couleur de fond",
+      "textColor": "Couleur du texte",
+      "confirmation": "Êtes-vous sûr de vouloir réinitialiser les catégories par défaut ? Cela affectera tous vos abonnements.",
+      "actions": {
+        "add": "Ajouter",
+        "update": "Mettre à jour",
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      },
+      "resetToDefaults": "Réinitialiser",
+      "done": "Terminé"
+    },
+    "defaults": {
+      "entertainment": "Divertissement",
+      "software": "Logiciels",
+      "streaming": "Streaming",
+      "gaming": "Jeux vidéo",
+      "music": "Musique",
+      "health": "Santé",
+      "other": "Autre"
+    }
+  }
+}

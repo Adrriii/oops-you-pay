@@ -8,6 +8,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useSubscriptionStore } from '../store/subscriptionStore';
+import { useTranslation } from 'react-i18next';
 
 interface DeleteConfirmationProps {
   open: boolean;
@@ -16,6 +17,7 @@ interface DeleteConfirmationProps {
 }
 
 export const DeleteConfirmation = ({ open, onClose, subscriptionId }: DeleteConfirmationProps) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const removeSubscription = useSubscriptionStore((state) => state.removeSubscription);
   const subscription = useSubscriptionStore(
@@ -45,10 +47,10 @@ export const DeleteConfirmation = ({ open, onClose, subscriptionId }: DeleteConf
         }
       }}
     >
-      <DialogTitle>Delete Subscription</DialogTitle>
+      <DialogTitle>{t('subscription.delete.title')}</DialogTitle>
       <DialogContent>
         <Typography>
-          Are you sure you want to delete the subscription for {subscription.name}? This action cannot be undone.
+          {t('subscription.delete.confirmation', { name: subscription.name })}
         </Typography>
       </DialogContent>
       <DialogActions sx={{ p: 3, pt: 2 }}>
@@ -61,7 +63,7 @@ export const DeleteConfirmation = ({ open, onClose, subscriptionId }: DeleteConf
             }
           }}
         >
-          Cancel
+          {t('subscription.delete.cancel')}
         </Button>
         <Button
           onClick={handleDelete}
@@ -71,7 +73,7 @@ export const DeleteConfirmation = ({ open, onClose, subscriptionId }: DeleteConf
             px: 4,
           }}
         >
-          Delete
+          {t('subscription.delete.confirm')}
         </Button>
       </DialogActions>
     </Dialog>

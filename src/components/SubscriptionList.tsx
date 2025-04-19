@@ -7,8 +7,10 @@ import { useState } from 'react';
 import { EditSubscription } from './EditSubscription';
 import { DeleteConfirmation } from './DeleteConfirmation';
 import { CategoryManager } from './CategoryManager';
+import { useTranslation } from 'react-i18next';
 
 export const SubscriptionList = () => {
+  const { t } = useTranslation();
   const subscriptions = useSubscriptionStore((state) => state.subscriptions);
   const categories = useCategoryStore((state) => state.categories);
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -95,7 +97,7 @@ export const SubscriptionList = () => {
                       {subscription.name}
                     </Typography>
                     <Chip
-                      label={subscription.category || 'Uncategorized'}
+                      label={subscription.category || t('subscription.add.uncategorized')}
                       size="small"
                       sx={{
                         ...getCategoryStyle(subscription.category || ''),
@@ -122,7 +124,7 @@ export const SubscriptionList = () => {
 
                 <Box sx={{ mt: 'auto', pt: 1 }}>
                   <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Next billing:</span>
+                    <span>{t('subscription.nextBilling')}</span>
                     <span style={{ fontWeight: 500 }}>{format(new Date(subscription.nextBillingDate), 'MMM dd, yyyy')}</span>
                   </Typography>
 
@@ -152,11 +154,11 @@ export const SubscriptionList = () => {
         >
           <MenuItem onClick={handleEditClick}>
             <EditIcon fontSize="small" sx={{ mr: 1 }} />
-            Edit
+            {t('category.manage.actions.edit')}
           </MenuItem>
           <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
             <DeleteIcon fontSize="small" sx={{ mr: 1 }} />
-            Delete
+            {t('category.manage.actions.delete')}
           </MenuItem>
         </Menu>
 
@@ -188,7 +190,7 @@ export const SubscriptionList = () => {
             py: 8 
           }}>
             <Typography variant="h6" color="text.secondary">
-              No subscriptions yet. Add your first one!
+              {t('subscription.noSubscriptions')}
             </Typography>
           </Box>
         )}

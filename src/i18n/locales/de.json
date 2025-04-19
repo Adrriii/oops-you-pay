@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Verwalte deine Abonnements intelligent"
+  },
+  "dashboard": {
+    "monthlyOverview": "Monatsübersicht",
+    "totalMonthlySpending": "Monatliche Gesamtausgaben in",
+    "exchangeRatesUpdated": "Wechselkurse aktualisiert: {{date}}",
+    "activeSubscriptions": "Aktive Abonnements",
+    "totalSubscriptions": "Gesamtzahl der Abonnements"
+  },
+  "subscription": {
+    "add": {
+      "button": "Abonnement hinzufügen",
+      "title": "Neues Abonnement",
+      "name": "Name des Abonnements",
+      "namePlaceholder": "z.B.: Netflix, Spotify, etc.",
+      "amount": "Betrag",
+      "billingCycle": "Abrechnungszyklus",
+      "cycles": {
+        "monthly": "Monatlich",
+        "yearly": "Jährlich",
+        "weekly": "Wöchentlich"
+      },
+      "advancedOptions": "Erweiterte Optionen",
+      "nextBillingDate": "Nächstes Abrechnungsdatum",
+      "currency": "Währung",
+      "category": "Kategorie (Optional)",
+      "uncategorized": "Ohne Kategorie",
+      "notes": "Notizen (Optional)",
+      "notesPlaceholder": "Füge weitere Details zu diesem Abonnement hinzu...",
+      "cancel": "Abbrechen",
+      "submit": "Hinzufügen"
+    },
+    "edit": {
+      "title": "Abonnement bearbeiten",
+      "cancel": "Abbrechen",
+      "submit": "Änderungen speichern"
+    },
+    "delete": {
+      "title": "Abonnement löschen",
+      "confirmation": "Bist du sicher, dass du das Abonnement für {{name}} löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "confirm": "Löschen"
+    },
+    "nextBilling": "Nächste Abrechnung:",
+    "noSubscriptions": "Noch keine Abonnements. Füge dein erstes hinzu!"
+  },
+  "category": {
+    "manage": {
+      "button": "Kategorien verwalten",
+      "title": "Kategorien verwalten",
+      "description": "Füge Kategorien hinzu, bearbeite oder lösche sie. Änderungen wirken sich auf alle Abonnements aus, die diese Kategorien verwenden.",
+      "newCategory": "Kategorie hinzufügen...",
+      "editCategory": "Neuer Kategoriename...",
+      "backgroundColor": "Hintergrundfarbe",
+      "textColor": "Textfarbe",
+      "confirmation": "Bist du sicher, dass du die Standardkategorien wiederherstellen möchtest? Dies wirkt sich auf alle deine Abonnements aus.",
+      "actions": {
+        "add": "Hinzufügen",
+        "update": "Aktualisieren",
+        "edit": "Bearbeiten",
+        "delete": "Löschen"
+      },
+      "resetToDefaults": "Zurücksetzen",
+      "done": "Fertig"
+    },
+    "defaults": {
+      "entertainment": "Unterhaltung",
+      "software": "Software",
+      "streaming": "Streaming",
+      "gaming": "Spiele",
+      "music": "Musik",
+      "health": "Gesundheit",
+      "other": "Sonstiges"
+    }
+  }
+}

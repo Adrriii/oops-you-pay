@@ -20,7 +20,7 @@ export const useSubscriptionStore = create<SubscriptionState>()(
       subscriptions: [],
       displayCurrency: 'USD',
       lastUsedCurrency: 'USD',
-      addSubscription: (subscription) =>
+      addSubscription: (subscription) => 
         set((state) => ({
           subscriptions: [
             ...state.subscriptions,
@@ -30,7 +30,6 @@ export const useSubscriptionStore = create<SubscriptionState>()(
               createdAt: new Date(),
             },
           ],
-          lastUsedCurrency: subscription.currency,
         })),
       removeSubscription: (id) =>
         set((state) => ({

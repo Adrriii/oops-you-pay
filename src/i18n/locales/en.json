@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Track and manage your subscriptions wisely"
+  },
+  "dashboard": {
+    "monthlyOverview": "Monthly Overview",
+    "totalMonthlySpending": "Total monthly spending in",
+    "exchangeRatesUpdated": "Exchange rates updated: {{date}}",
+    "activeSubscriptions": "Active Subscriptions",
+    "totalSubscriptions": "Total number of subscriptions"
+  },
+  "subscription": {
+    "add": {
+      "button": "Add Subscription",
+      "title": "Add New Subscription",
+      "name": "Subscription Name",
+      "namePlaceholder": "e.g., Netflix, Spotify, etc.",
+      "amount": "Amount",
+      "billingCycle": "Billing Cycle",
+      "cycles": {
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "weekly": "Weekly"
+      },
+      "advancedOptions": "Advanced Options",
+      "nextBillingDate": "Next Billing Date",
+      "currency": "Currency",
+      "category": "Category (Optional)",
+      "uncategorized": "Uncategorized",
+      "notes": "Notes (Optional)",
+      "notesPlaceholder": "Add any additional details about this subscription...",
+      "cancel": "Cancel",
+      "submit": "Add"
+    },
+    "edit": {
+      "title": "Edit Subscription",
+      "cancel": "Cancel",
+      "submit": "Save Changes"
+    },
+    "delete": {
+      "title": "Delete Subscription",
+      "confirmation": "Are you sure you want to delete the subscription for {{name}}? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "nextBilling": "Next billing:",
+    "noSubscriptions": "No subscriptions yet. Add your first one!"
+  },
+  "category": {
+    "manage": {
+      "button": "Manage Categories",
+      "title": "Manage Categories",
+      "description": "Add, edit, or remove subscription categories. Changes will affect all subscriptions using these categories.",
+      "newCategory": "Add category...",
+      "editCategory": "New category name...",
+      "backgroundColor": "Background Color",
+      "textColor": "Text Color",
+      "confirmation": "Are you sure you want to reset to default categories? This will affect all your subscriptions.",
+      "actions": {
+        "add": "Add",
+        "update": "Update",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "resetToDefaults": "Reset to Defaults",
+      "done": "Done"
+    },
+    "defaults": {
+      "entertainment": "Entertainment",
+      "software": "Software",
+      "streaming": "Streaming",
+      "gaming": "Gaming",
+      "music": "Music",
+      "health": "Health",
+      "other": "Other"
+    }
+  }
+}

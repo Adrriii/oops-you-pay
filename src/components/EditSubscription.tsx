@@ -25,6 +25,7 @@ import { useSubscriptionStore } from '../store/subscriptionStore';
 import { Subscription } from '../types/subscription';
 import { format } from 'date-fns';
 import { useCategoryStore } from '../store/categoryStore';
+import { useTranslation } from 'react-i18next';
 
 interface EditSubscriptionProps {
   open: boolean;
@@ -35,6 +36,7 @@ interface EditSubscriptionProps {
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
 export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionProps) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [showAdvanced, setShowAdvanced] = useState(false);
   const updateSubscription = useSubscriptionStore((state) => state.updateSubscription);
@@ -71,12 +73,12 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (subscription) {
-		updateSubscription(subscription.id, {
-			...formData,
-			nextBillingDate: new Date(formData.nextBillingDate),
-		});
-		updateLastUsedCurrency(formData.currency);
-		onClose();
+      updateSubscription(subscription.id, {
+        ...formData,
+        nextBillingDate: new Date(formData.nextBillingDate),
+      });
+      updateLastUsedCurrency(formData.currency);
+      onClose();
     }
   };
 
@@ -113,7 +115,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     >
       <form onSubmit={handleSubmit}>
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2 }}>
-          Edit Subscription
+          {t('subscription.edit.title')}
           <IconButton onClick={onClose} size="small">
             <CloseIcon />
           </IconButton>
@@ -121,17 +123,17 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
         <DialogContent>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
             <TextField
-              label="Subscription Name"
+              label={t('subscription.add.name')}
               name="name"
               value={formData.name}
               onChange={handleInputChange}
               required
               fullWidth
               autoFocus
-              placeholder="e.g., Netflix, Spotify, etc."
+              placeholder={t('subscription.add.namePlaceholder')}
             />
             <TextField
-              label="Amount"
+              label={t('subscription.add.amount')}
               name="amount"
               type="number"
               value={formData.amount}
@@ -149,16 +151,16 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
               }}
             />
             <FormControl fullWidth required>
-              <InputLabel>Billing Cycle</InputLabel>
+              <InputLabel>{t('subscription.add.billingCycle')}</InputLabel>
               <Select
                 name="billingCycle"
                 value={formData.billingCycle}
                 onChange={handleSelectChange}
-                label="Billing Cycle"
+                label={t('subscription.add.billingCycle')}
               >
-                <MenuItem value="monthly">Monthly</MenuItem>
-                <MenuItem value="yearly">Yearly</MenuItem>
-                <MenuItem value="weekly">Weekly</MenuItem>
+                <MenuItem value="monthly">{t('subscription.add.cycles.monthly')}</MenuItem>
+                <MenuItem value="yearly">{t('subscription.add.cycles.yearly')}</MenuItem>
+                <MenuItem value="weekly">{t('subscription.add.cycles.weekly')}</MenuItem>
               </Select>
             </FormControl>
 
@@ -181,12 +183,12 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                   },
                 }}
               >
-                <Typography color="primary">Advanced Options</Typography>
+                <Typography color="primary">{t('subscription.add.advancedOptions')}</Typography>
               </AccordionSummary>
               <AccordionDetails sx={{ px: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   <TextField
-                    label="Next Billing Date"
+                    label={t('subscription.add.nextBillingDate')}
                     name="nextBillingDate"
                     type="date"
                     value={format(new Date(formData.nextBillingDate), 'yyyy-MM-dd')}
@@ -195,12 +197,12 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                     InputLabelProps={{ shrink: true }}
                   />
                   <FormControl fullWidth>
-                    <InputLabel>Currency</InputLabel>
+                    <InputLabel>{t('subscription.add.currency')}</InputLabel>
                     <Select
                       name="currency"
                       value={formData.currency}
                       onChange={handleSelectChange}
-                      label="Currency"
+                      label={t('subscription.add.currency')}
                     >
                       {currencies.map((currency) => (
                         <MenuItem key={currency} value={currency}>
@@ -210,15 +212,15 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
-                    <InputLabel>Category (Optional)</InputLabel>
+                    <InputLabel>{t('subscription.add.category')}</InputLabel>
                     <Select
                       name="category"
                       value={formData.category}
                       onChange={handleSelectChange}
-                      label="Category (Optional)"
+                      label={t('subscription.add.category')}
                     >
                       <MenuItem value="">
-                        <em>Uncategorized</em>
+                        <em>{t('subscription.add.uncategorized')}</em>
                       </MenuItem>
                       {categories.map((category) => (
                         <MenuItem key={category.id} value={category.name}>
@@ -240,14 +242,14 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                     </Select>
                   </FormControl>
                   <TextField
-                    label="Notes (Optional)"
+                    label={t('subscription.add.notes')}
                     name="notes"
                     multiline
                     rows={2}
                     value={formData.notes}
                     onChange={handleInputChange}
                     fullWidth
-                    placeholder="Add any additional details about this subscription..."
+                    placeholder={t('subscription.add.notesPlaceholder')}
                   />
                 </Box>
               </AccordionDetails>
@@ -264,7 +266,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
               }
             }}
           >
-            Cancel
+            {t('subscription.edit.cancel')}
           </Button>
           <Button 
             type="submit" 
@@ -277,7 +279,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
               },
             }}
           >
-            Save Changes
+            {t('subscription.edit.submit')}
           </Button>
         </DialogActions>
       </form>

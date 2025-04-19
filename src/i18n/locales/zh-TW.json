@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "智慧管理您的訂閱服務"
+  },
+  "dashboard": {
+    "monthlyOverview": "月度概覽",
+    "totalMonthlySpending": "月度總支出",
+    "exchangeRatesUpdated": "匯率更新時間：{{date}}",
+    "activeSubscriptions": "使用中的訂閱",
+    "totalSubscriptions": "訂閱總數"
+  },
+  "subscription": {
+    "add": {
+      "button": "新增訂閱",
+      "title": "新增訂閱",
+      "name": "訂閱名稱",
+      "namePlaceholder": "例如：Netflix、Spotify等",
+      "amount": "金額",
+      "billingCycle": "計費週期",
+      "cycles": {
+        "monthly": "每月",
+        "yearly": "每年",
+        "weekly": "每週"
+      },
+      "advancedOptions": "進階選項",
+      "nextBillingDate": "下次計費日期",
+      "currency": "貨幣",
+      "category": "類別（選填）",
+      "uncategorized": "未分類",
+      "notes": "備註（選填）",
+      "notesPlaceholder": "新增關於此訂閱的其他詳細資訊...",
+      "cancel": "取消",
+      "submit": "新增"
+    },
+    "edit": {
+      "title": "編輯訂閱",
+      "cancel": "取消",
+      "submit": "儲存變更"
+    },
+    "delete": {
+      "title": "刪除訂閱",
+      "confirmation": "確定要刪除{{name}}的訂閱嗎？此操作無法復原。",
+      "cancel": "取消",
+      "confirm": "刪除"
+    },
+    "nextBilling": "下次計費：",
+    "noSubscriptions": "目前沒有訂閱。新增您的第一個訂閱！"
+  },
+  "category": {
+    "manage": {
+      "button": "管理類別",
+      "title": "管理類別",
+      "description": "新增、編輯或刪除訂閱類別。變更將影響使用這些類別的所有訂閱。",
+      "newCategory": "新增類別...",
+      "editCategory": "新類別名稱...",
+      "backgroundColor": "背景顏色",
+      "textColor": "文字顏色",
+      "confirmation": "確定要重設為預設類別嗎？這將影響您的所有訂閱。",
+      "actions": {
+        "add": "新增",
+        "update": "更新",
+        "edit": "編輯",
+        "delete": "刪除"
+      },
+      "resetToDefaults": "重設",
+      "done": "完成"
+    },
+    "defaults": {
+      "entertainment": "娛樂",
+      "software": "軟體",
+      "streaming": "串流媒體",
+      "gaming": "遊戲",
+      "music": "音樂",
+      "health": "健康",
+      "other": "其他"
+    }
+  }
+}

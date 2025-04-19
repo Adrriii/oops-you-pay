@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Gerencie suas assinaturas de forma inteligente"
+  },
+  "dashboard": {
+    "monthlyOverview": "Visão geral mensal",
+    "totalMonthlySpending": "Gasto mensal total em",
+    "exchangeRatesUpdated": "Taxas de câmbio atualizadas: {{date}}",
+    "activeSubscriptions": "Assinaturas ativas",
+    "totalSubscriptions": "Número total de assinaturas"
+  },
+  "subscription": {
+    "add": {
+      "button": "Adicionar assinatura",
+      "title": "Nova assinatura",
+      "name": "Nome da assinatura",
+      "namePlaceholder": "ex: Netflix, Spotify, etc.",
+      "amount": "Valor",
+      "billingCycle": "Ciclo de cobrança",
+      "cycles": {
+        "monthly": "Mensal",
+        "yearly": "Anual",
+        "weekly": "Semanal"
+      },
+      "advancedOptions": "Opções avançadas",
+      "nextBillingDate": "Próxima data de cobrança",
+      "currency": "Moeda",
+      "category": "Categoria (Opcional)",
+      "uncategorized": "Sem categoria",
+      "notes": "Notas (Opcional)",
+      "notesPlaceholder": "Adicione detalhes adicionais sobre esta assinatura...",
+      "cancel": "Cancelar",
+      "submit": "Adicionar"
+    },
+    "edit": {
+      "title": "Editar assinatura",
+      "cancel": "Cancelar",
+      "submit": "Salvar alterações"
+    },
+    "delete": {
+      "title": "Excluir assinatura",
+      "confirmation": "Tem certeza que deseja excluir a assinatura de {{name}}? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Excluir"
+    },
+    "nextBilling": "Próxima cobrança:",
+    "noSubscriptions": "Nenhuma assinatura ainda. Adicione sua primeira!"
+  },
+  "category": {
+    "manage": {
+      "button": "Gerenciar categorias",
+      "title": "Gerenciar categorias",
+      "description": "Adicione, edite ou remova categorias de assinatura. As alterações afetarão todas as assinaturas que usam essas categorias.",
+      "newCategory": "Adicionar categoria...",
+      "editCategory": "Novo nome de categoria...",
+      "backgroundColor": "Cor de fundo",
+      "textColor": "Cor do texto",
+      "confirmation": "Tem certeza que deseja restaurar as categorias padrão? Isso afetará todas as suas assinaturas.",
+      "actions": {
+        "add": "Adicionar",
+        "update": "Atualizar",
+        "edit": "Editar",
+        "delete": "Excluir"
+      },
+      "resetToDefaults": "Restaurar",
+      "done": "Concluir"
+    },
+    "defaults": {
+      "entertainment": "Entretenimento",
+      "software": "Software",
+      "streaming": "Streaming",
+      "gaming": "Jogos",
+      "music": "Música",
+      "health": "Saúde",
+      "other": "Outros"
+    }
+  }
+}

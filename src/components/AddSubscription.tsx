@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import {
   Button,
   Dialog,
@@ -25,6 +25,7 @@ import { useSubscriptionStore } from '../store/subscriptionStore';
 import { BillingCycle } from '../types/subscription';
 import { addMonths, startOfMonth, format } from 'date-fns';
 import { useCategoryStore } from '../store/categoryStore';
+import { useTranslation } from 'react-i18next';
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
 
@@ -33,106 +34,68 @@ const getDefaultNextBillingDate = () => {
   return format(startOfMonth(nextMonth), 'yyyy-MM-dd');
 };
 
+const getInitialFormState = (currency: string) => ({
+  name: '',
+  amount: '',
+  currency,
+  billingCycle: 'monthly' as BillingCycle,
+  nextBillingDate: getDefaultNextBillingDate(),
+  category: '',
+  notes: '',
+});
+
 export const AddSubscription = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const addSubscription = useSubscriptionStore((state) => state.addSubscription);
-  const displayCurrency = useSubscriptionStore((state) => state.displayCurrency);
-  const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
-  const lastUsedCurrency = useSubscriptionStore((state) => state.lastUsedCurrency);
+  
+  const { addSubscription, displayCurrency, updateLastUsedCurrency, lastUsedCurrency } = useSubscriptionStore();
   const categories = useCategoryStore((state) => state.categories);
+  const [formData, setFormData] = useState(() => getInitialFormState(lastUsedCurrency || displayCurrency));
 
-  console.log('Last used currency:', lastUsedCurrency);
-  console.log('Display currency:', displayCurrency);
-
-  const [formData, setFormData] = useState({
-    name: '',
-    amount: '',
-    currency: lastUsedCurrency || displayCurrency,
-    billingCycle: 'monthly' as BillingCycle,
-    nextBillingDate: getDefaultNextBillingDate(),
-    category: '',
-    notes: '',
-  });
-
-  const resetForm = () => {
-    setFormData({
-      name: '',
-      amount: '',
-      currency: lastUsedCurrency || displayCurrency,
-      billingCycle: 'monthly',
-      nextBillingDate: getDefaultNextBillingDate(),
-      category: '',
-      notes: '',
-    });
+  const handleClose = useCallback(() => {
+    setOpen(false);
+    setFormData(getInitialFormState(lastUsedCurrency || displayCurrency));
     setShowAdvanced(false);
-  };
+  }, [lastUsedCurrency, displayCurrency]);
 
-  // Reset form when opening dialog
-  const handleOpen = () => {
-    resetForm();
-    setOpen(true);
-  };
-
-  // Sync form with displayCurrency changes
-  useEffect(() => {
-    setFormData(prev => ({
-      ...prev,
-      currency: displayCurrency,
-    }));
-  }, [displayCurrency]);
-
-  // Sync form with lastUsedCurrency changes
-  useEffect(() => {
-    setFormData(prev => ({
-      ...prev,
-      currency: lastUsedCurrency,
-    }));
-  }, [lastUsedCurrency]);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     addSubscription({
       ...formData,
       amount: Number(formData.amount),
       nextBillingDate: new Date(formData.nextBillingDate),
     });
-	updateLastUsedCurrency(formData.currency);
-    setOpen(false);
-    setFormData({
-      name: '',
-      amount: '',
-      currency: lastUsedCurrency || displayCurrency,
-      billingCycle: 'monthly',
-      nextBillingDate: getDefaultNextBillingDate(),
-      category: '',
-      notes: '',
-    });
-    setShowAdvanced(false);
-  };
+    updateLastUsedCurrency(formData.currency);
+    handleClose();
+  }, [formData, addSubscription, updateLastUsedCurrency, handleClose]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
 
-  const handleSelectChange = (e: SelectChangeEvent) => {
+  const handleSelectChange = useCallback((e: SelectChangeEvent) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
+
+  const currencySymbol = formData.currency === 'USD' ? '$' : 
+                        formData.currency === 'EUR' ? '€' :
+                        formData.currency === 'GBP' ? '£' : '';
 
   return (
     <>
       <Button
         variant="contained"
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
         startIcon={<AddIcon />}
         size="large"
         sx={{
@@ -145,11 +108,11 @@ export const AddSubscription = () => {
           },
         }}
       >
-        Add Subscription
+        {t('subscription.add.button')}
       </Button>
       <Dialog 
         open={open} 
-        onClose={() => setOpen(false)} 
+        onClose={handleClose} 
         maxWidth="sm" 
         fullWidth
         PaperProps={{
@@ -161,25 +124,25 @@ export const AddSubscription = () => {
       >
         <form onSubmit={handleSubmit}>
           <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 2 }}>
-            Add New Subscription
-            <IconButton onClick={() => setOpen(false)} size="small">
+            {t('subscription.add.title')}
+            <IconButton onClick={handleClose} size="small">
               <CloseIcon />
             </IconButton>
           </DialogTitle>
           <DialogContent>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
               <TextField
-                label="Subscription Name"
+                label={t('subscription.add.name')}
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
                 fullWidth
                 autoFocus
-                placeholder="e.g., Netflix, Spotify, etc."
+                placeholder={t('subscription.add.namePlaceholder')}
               />
               <TextField
-                label="Amount"
+                label={t('subscription.add.amount')}
                 name="amount"
                 type="number"
                 value={formData.amount}
@@ -189,24 +152,22 @@ export const AddSubscription = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      {formData.currency === 'USD' ? '$' : 
-                       formData.currency === 'EUR' ? '€' :
-                       formData.currency === 'GBP' ? '£' : ''}
+                      {currencySymbol}
                     </InputAdornment>
                   ),
                 }}
               />
               <FormControl fullWidth required>
-                <InputLabel>Billing Cycle</InputLabel>
+                <InputLabel>{t('subscription.add.billingCycle')}</InputLabel>
                 <Select
                   name="billingCycle"
                   value={formData.billingCycle}
                   onChange={handleSelectChange}
-                  label="Billing Cycle"
+                  label={t('subscription.add.billingCycle')}
                 >
-                  <MenuItem value="monthly">Monthly</MenuItem>
-                  <MenuItem value="yearly">Yearly</MenuItem>
-                  <MenuItem value="weekly">Weekly</MenuItem>
+                  <MenuItem value="monthly">{t('subscription.add.cycles.monthly')}</MenuItem>
+                  <MenuItem value="yearly">{t('subscription.add.cycles.yearly')}</MenuItem>
+                  <MenuItem value="weekly">{t('subscription.add.cycles.weekly')}</MenuItem>
                 </Select>
               </FormControl>
 
@@ -229,12 +190,12 @@ export const AddSubscription = () => {
                     },
                   }}
                 >
-                  <Typography color="primary">Advanced Options</Typography>
+                  <Typography color="primary">{t('subscription.add.advancedOptions')}</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ px: 0 }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                     <TextField
-                      label="Next Billing Date"
+                      label={t('subscription.add.nextBillingDate')}
                       name="nextBillingDate"
                       type="date"
                       value={formData.nextBillingDate}
@@ -243,12 +204,12 @@ export const AddSubscription = () => {
                       InputLabelProps={{ shrink: true }}
                     />
                     <FormControl fullWidth>
-                      <InputLabel>Currency</InputLabel>
+                      <InputLabel>{t('subscription.add.currency')}</InputLabel>
                       <Select
                         name="currency"
                         value={formData.currency}
                         onChange={handleSelectChange}
-                        label="Currency"
+                        label={t('subscription.add.currency')}
                       >
                         {currencies.map((currency) => (
                           <MenuItem key={currency} value={currency}>
@@ -258,15 +219,15 @@ export const AddSubscription = () => {
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
-                      <InputLabel>Category (Optional)</InputLabel>
+                      <InputLabel>{t('subscription.add.category')}</InputLabel>
                       <Select
                         name="category"
                         value={formData.category}
                         onChange={handleSelectChange}
-                        label="Category (Optional)"
+                        label={t('subscription.add.category')}
                       >
                         <MenuItem value="">
-                          <em>Uncategorized</em>
+                          <em>{t('subscription.add.uncategorized')}</em>
                         </MenuItem>
                         {categories.map((category) => (
                           <MenuItem key={category.id} value={category.name}>
@@ -288,14 +249,14 @@ export const AddSubscription = () => {
                       </Select>
                     </FormControl>
                     <TextField
-                      label="Notes (Optional)"
+                      label={t('subscription.add.notes')}
                       name="notes"
                       multiline
                       rows={2}
                       value={formData.notes}
                       onChange={handleInputChange}
                       fullWidth
-                      placeholder="Add any additional details about this subscription..."
+                      placeholder={t('subscription.add.notesPlaceholder')}
                     />
                   </Box>
                 </AccordionDetails>
@@ -304,7 +265,7 @@ export const AddSubscription = () => {
           </DialogContent>
           <DialogActions sx={{ p: 3, pt: 2 }}>
             <Button 
-              onClick={() => setOpen(false)}
+              onClick={handleClose}
               sx={{ 
                 color: theme.palette.text.secondary,
                 '&:hover': {
@@ -312,7 +273,7 @@ export const AddSubscription = () => {
                 }
               }}
             >
-              Cancel
+              {t('subscription.add.cancel')}
             </Button>
             <Button 
               type="submit" 
@@ -325,7 +286,7 @@ export const AddSubscription = () => {
                 },
               }}
             >
-              Add
+              {t('subscription.add.submit')}
             </Button>
           </DialogActions>
         </form>

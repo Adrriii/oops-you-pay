@@ -53,56 +53,30 @@ export const useExchangeRatesStore = create<ExchangeRatesState>()(
         }
       },
       convertAmount: (amount: number, fromCurrency: string, toCurrency: string) => {
-        console.log(`Converting ${amount} from ${fromCurrency} to ${toCurrency}`);
-        
         if (fromCurrency === toCurrency) {
-          console.log('Same currency, returning original amount:', amount);
           return amount;
         }
         
         const rates = get().rates;
         const baseCurrency = get().baseCurrency;
-        console.log('Current rates:', rates);
-        console.log('Base currency:', baseCurrency);
 
-        // Both currencies are the same as base
-        if (fromCurrency === baseCurrency && toCurrency === baseCurrency) {
-          console.log('Both currencies are base currency, returning:', amount);
-          return amount;
-        }
-
-        // Converting from base currency to another currency
         if (fromCurrency === baseCurrency) {
           const rate = rates[toCurrency];
-          const result = rate ? amount * rate : amount;
-          console.log(`Converting from base ${fromCurrency} to ${toCurrency}, rate: ${rate}, result: ${result}`);
-          return result;
+          return rate ? amount * rate : amount;
         }
 
-        // Converting from another currency to base currency
         if (toCurrency === baseCurrency) {
           const rate = rates[fromCurrency];
-          const result = rate ? amount / rate : amount;
-          console.log(`Converting to base ${toCurrency} from ${fromCurrency}, rate: ${rate}, result: ${result}`);
-          return result;
+          return rate ? amount / rate : amount;
         }
 
-        // Converting between two non-base currencies
         const fromRate = rates[fromCurrency];
         const toRate = rates[toCurrency];
         if (fromRate && toRate) {
-          // First convert to base currency, then to target currency
-          const amountInBase = amount / fromRate;
-          const result = amountInBase * toRate;
-          console.log(`Cross-currency conversion ${fromCurrency}->${baseCurrency}->${toCurrency}`);
-          console.log(`Rates: ${fromCurrency}=${fromRate}, ${toCurrency}=${toRate}`);
-          console.log(`Step 1: ${amount} ${fromCurrency} -> ${amountInBase} ${baseCurrency}`);
-          console.log(`Step 2: ${amountInBase} ${baseCurrency} -> ${result} ${toCurrency}`);
-          return result;
+          return (amount / fromRate) * toRate;
         }
 
-        console.log('No conversion rates available, returning original amount:', amount);
-        return amount; // fallback if rates are not available
+        return amount;
       },
     }),
     {

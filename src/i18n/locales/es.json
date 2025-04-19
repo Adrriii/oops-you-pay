@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Gestiona tus suscripciones de manera inteligente"
+  },
+  "dashboard": {
+    "monthlyOverview": "Resumen mensual",
+    "totalMonthlySpending": "Gasto mensual total en",
+    "exchangeRatesUpdated": "Tipos de cambio actualizados: {{date}}",
+    "activeSubscriptions": "Suscripciones activas",
+    "totalSubscriptions": "Número total de suscripciones"
+  },
+  "subscription": {
+    "add": {
+      "button": "Añadir suscripción",
+      "title": "Nueva suscripción",
+      "name": "Nombre de la suscripción",
+      "namePlaceholder": "ej: Netflix, Spotify, etc.",
+      "amount": "Importe",
+      "billingCycle": "Ciclo de facturación",
+      "cycles": {
+        "monthly": "Mensual",
+        "yearly": "Anual",
+        "weekly": "Semanal"
+      },
+      "advancedOptions": "Opciones avanzadas",
+      "nextBillingDate": "Próxima fecha de facturación",
+      "currency": "Moneda",
+      "category": "Categoría (Opcional)",
+      "uncategorized": "Sin categoría",
+      "notes": "Notas (Opcional)",
+      "notesPlaceholder": "Añade detalles adicionales sobre esta suscripción...",
+      "cancel": "Cancelar",
+      "submit": "Añadir"
+    },
+    "edit": {
+      "title": "Editar suscripción",
+      "cancel": "Cancelar",
+      "submit": "Guardar cambios"
+    },
+    "delete": {
+      "title": "Eliminar suscripción",
+      "confirmation": "¿Estás seguro de que quieres eliminar la suscripción a {{name}}? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar"
+    },
+    "nextBilling": "Próxima facturación:",
+    "noSubscriptions": "No hay suscripciones todavía. ¡Añade tu primera!"
+  },
+  "category": {
+    "manage": {
+      "button": "Gestionar categorías",
+      "title": "Gestionar categorías",
+      "description": "Añade, edita o elimina categorías de suscripción. Los cambios afectarán a todas las suscripciones que usen estas categorías.",
+      "newCategory": "Añadir categoría...",
+      "editCategory": "Nuevo nombre de categoría...",
+      "backgroundColor": "Color de fondo",
+      "textColor": "Color del texto",
+      "confirmation": "¿Estás seguro de que quieres restablecer las categorías por defecto? Esto afectará a todas tus suscripciones.",
+      "actions": {
+        "add": "Añadir",
+        "update": "Actualizar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+      },
+      "resetToDefaults": "Restablecer",
+      "done": "Hecho"
+    },
+    "defaults": {
+      "entertainment": "Entretenimiento",
+      "software": "Software",
+      "streaming": "Streaming",
+      "gaming": "Juegos",
+      "music": "Música",
+      "health": "Salud",
+      "other": "Otros"
+    }
+  }
+}

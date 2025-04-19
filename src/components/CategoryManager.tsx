@@ -25,8 +25,10 @@ import {
 } from '@mui/icons-material';
 import { useCategoryStore, Category } from '../store/categoryStore';
 import { HexColorPicker } from 'react-colorful';
+import { useTranslation } from 'react-i18next';
 
 export const CategoryManager = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -68,7 +70,7 @@ export const CategoryManager = () => {
   };
 
   const handleResetToDefaults = () => {
-    if (confirm('Are you sure you want to reset to default categories? This will affect all your subscriptions.')) {
+    if (confirm(t('category.manage.confirmation'))) {
       resetToDefaults();
     }
   };
@@ -95,7 +97,7 @@ export const CategoryManager = () => {
         startIcon={<EditIcon />}
         sx={{ mr: 2 }}
       >
-        Manage Categories
+        {t('category.manage.button')}
       </Button>
 
       <Dialog
@@ -108,11 +110,11 @@ export const CategoryManager = () => {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>Manage Categories</DialogTitle>
+        <DialogTitle>{t('category.manage.title')}</DialogTitle>
         <DialogContent>
           <Box sx={{ mb: 3 }}>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              Add, edit, or remove subscription categories. Changes will affect all subscriptions using these categories.
+              {t('category.manage.description')}
             </Typography>
           </Box>
 
@@ -120,7 +122,7 @@ export const CategoryManager = () => {
             <TextField
               value={newCategoryName}
               onChange={(e) => setNewCategoryName(e.target.value)}
-              placeholder={editingCategory ? "New category name..." : "Add category..."}
+              placeholder={editingCategory ? t('category.manage.editCategory') : t('category.manage.newCategory')}
               size="small"
               fullWidth
             />
@@ -166,7 +168,7 @@ export const CategoryManager = () => {
                 startIcon={editingCategory ? <EditIcon /> : <AddIcon />}
                 disabled={!newCategoryName.trim()}
               >
-                {editingCategory ? 'Update' : 'Add'}
+                {editingCategory ? t('category.manage.actions.update') : t('category.manage.actions.add')}
               </Button>
             </Box>
           </Box>
@@ -186,7 +188,7 @@ export const CategoryManager = () => {
           >
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" gutterBottom>
-                {colorPickerType === 'background' ? 'Background Color' : 'Text Color'}
+                {colorPickerType === 'background' ? t('category.manage.backgroundColor') : t('category.manage.textColor')}
               </Typography>
               <HexColorPicker
                 color={colorPickerType === 'background' ? selectedColor : selectedTextColor}
@@ -207,7 +209,7 @@ export const CategoryManager = () => {
                 key={category.id}
                 secondaryAction={
                   <Box>
-                    <Tooltip title="Edit">
+                    <Tooltip title={t('category.manage.actions.edit')}>
                       <IconButton
                         edge="end"
                         aria-label="edit"
@@ -217,7 +219,7 @@ export const CategoryManager = () => {
                         <EditIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Delete">
+                    <Tooltip title={t('category.manage.actions.delete')}>
                       <IconButton
                         edge="end"
                         aria-label="delete"
@@ -256,10 +258,10 @@ export const CategoryManager = () => {
             startIcon={<RefreshIcon />}
             color="inherit"
           >
-            Reset to Defaults
+            {t('category.manage.resetToDefaults')}
           </Button>
           <Button onClick={() => setOpen(false)} variant="contained">
-            Done
+            {t('category.manage.done')}
           </Button>
         </DialogActions>
       </Dialog>

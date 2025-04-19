@@ -1,0 +1,77 @@
+import { Box, Typography, IconButton, Menu, MenuItem } from '@mui/material';
+import { Language as LanguageIcon } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { useState, useCallback } from 'react';
+import { loadLocale } from '../i18n/i18n';
+
+const languages = [
+  { code: 'en', name: 'English' },
+  { code: 'fr', name: 'Français' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'es', name: 'Español' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'pt', name: 'Português' },
+  { code: 'zh-TW', name: '繁體中文' }
+];
+
+export const Header = () => {
+  const { t, i18n } = useTranslation();
+  const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
+
+  const handleLanguageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setLanguageMenuAnchor(event.currentTarget);
+  };
+
+  const handleLanguageMenuClose = () => {
+    setLanguageMenuAnchor(null);
+  };
+
+  const handleLanguageChange = useCallback(async (languageCode: string) => {
+    await loadLocale(languageCode);
+    handleLanguageMenuClose();
+  }, [i18n]);
+
+  return (
+    <Box sx={{ width: '100%', position: 'relative', mb: 4 }}>
+      <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+        <IconButton
+          onClick={handleLanguageMenuOpen}
+          size="large"
+          sx={{ color: 'primary.main' }}
+        >
+          <LanguageIcon />
+        </IconButton>
+        <Menu
+          anchorEl={languageMenuAnchor}
+          open={Boolean(languageMenuAnchor)}
+          onClose={handleLanguageMenuClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          {languages.map((lang) => (
+            <MenuItem
+              key={lang.code}
+              onClick={() => handleLanguageChange(lang.code)}
+              selected={i18n.language === lang.code}
+            >
+              {lang.name}
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
+      
+      <Typography variant="h1" component="h1" gutterBottom align="center">
+        {t('app.title')}
+      </Typography>
+      <Typography variant="h6" color="text.secondary" gutterBottom align="center">
+        {t('app.subtitle')}
+      </Typography>
+    </Box>
+  );
+};

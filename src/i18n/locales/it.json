@@ -1,0 +1,79 @@
+{
+  "app": {
+    "title": "OopsYouPay",
+    "subtitle": "Gestisci i tuoi abbonamenti in modo intelligente"
+  },
+  "dashboard": {
+    "monthlyOverview": "Panoramica mensile",
+    "totalMonthlySpending": "Spesa mensile totale in",
+    "exchangeRatesUpdated": "Tassi di cambio aggiornati: {{date}}",
+    "activeSubscriptions": "Abbonamenti attivi",
+    "totalSubscriptions": "Numero totale di abbonamenti"
+  },
+  "subscription": {
+    "add": {
+      "button": "Aggiungi abbonamento",
+      "title": "Nuovo abbonamento",
+      "name": "Nome abbonamento",
+      "namePlaceholder": "es: Netflix, Spotify, ecc.",
+      "amount": "Importo",
+      "billingCycle": "Ciclo di fatturazione",
+      "cycles": {
+        "monthly": "Mensile",
+        "yearly": "Annuale",
+        "weekly": "Settimanale"
+      },
+      "advancedOptions": "Opzioni avanzate",
+      "nextBillingDate": "Prossima data di fatturazione",
+      "currency": "Valuta",
+      "category": "Categoria (Opzionale)",
+      "uncategorized": "Senza categoria",
+      "notes": "Note (Opzionale)",
+      "notesPlaceholder": "Aggiungi ulteriori dettagli su questo abbonamento...",
+      "cancel": "Annulla",
+      "submit": "Aggiungi"
+    },
+    "edit": {
+      "title": "Modifica abbonamento",
+      "cancel": "Annulla",
+      "submit": "Salva modifiche"
+    },
+    "delete": {
+      "title": "Elimina abbonamento",
+      "confirmation": "Sei sicuro di voler eliminare l'abbonamento a {{name}}? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina"
+    },
+    "nextBilling": "Prossima fatturazione:",
+    "noSubscriptions": "Ancora nessun abbonamento. Aggiungi il tuo primo!"
+  },
+  "category": {
+    "manage": {
+      "button": "Gestisci categorie",
+      "title": "Gestisci categorie",
+      "description": "Aggiungi, modifica o rimuovi categorie di abbonamenti. Le modifiche influenzeranno tutti gli abbonamenti che utilizzano queste categorie.",
+      "newCategory": "Aggiungi categoria...",
+      "editCategory": "Nuovo nome categoria...",
+      "backgroundColor": "Colore di sfondo",
+      "textColor": "Colore del testo",
+      "confirmation": "Sei sicuro di voler ripristinare le categorie predefinite? Questo influenzerà tutti i tuoi abbonamenti.",
+      "actions": {
+        "add": "Aggiungi",
+        "update": "Aggiorna",
+        "edit": "Modifica",
+        "delete": "Elimina"
+      },
+      "resetToDefaults": "Ripristina",
+      "done": "Fatto"
+    },
+    "defaults": {
+      "entertainment": "Intrattenimento",
+      "software": "Software",
+      "streaming": "Streaming",
+      "gaming": "Videogiochi",
+      "music": "Musica",
+      "health": "Salute",
+      "other": "Altro"
+    }
+  }
+}
