@@ -3,7 +3,7 @@ import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useExchangeRatesStore } from '../store/exchangeRatesStore';
 import { useTranslation } from 'react-i18next';
 import { CurrencySelector } from './CurrencySelector';
-import { format, addWeeks, addMonths, addYears } from 'date-fns';
+import { format } from 'date-fns';
 
 export const DashboardStats = () => {
   const { t } = useTranslation();
@@ -21,8 +21,7 @@ export const DashboardStats = () => {
         monthlyAmount = (monthlyAmount * 52) / 12;
       }
       
-      const convertedAmount = Number(convertAmount(monthlyAmount, sub.currency, displayCurrency));
-      return Number(total) + convertedAmount;
+      return total + convertAmount(monthlyAmount, sub.currency, displayCurrency);
     }, 0);
   };
 
@@ -34,47 +33,32 @@ export const DashboardStats = () => {
   };
 
   const getNextPayments = () => {
-    const payments = subscriptions.flatMap(sub => {
-      const nextDate = new Date(sub.nextBillingDate);
-      const amount = Number(convertAmount(sub.amount, sub.currency, displayCurrency));
-      
-      // Generate next 5 billing dates for this subscription
-      const dates = [nextDate];
-      for (let i = 1; i < 5; i++) {
-        if (sub.billingCycle === 'weekly') {
-          dates.push(addWeeks(nextDate, i));
-        } else if (sub.billingCycle === 'monthly') {
-          dates.push(addMonths(nextDate, i));
-        } else if (sub.billingCycle === 'yearly') {
-          dates.push(addYears(nextDate, i));
-        }
-      }
-      
-      return dates.map(date => ({
-        date,
-        amount,
+    const now = new Date();
+    const nextPayments = subscriptions.map(sub => {
+      const date = new Date(sub.nextBillingDate);
+      return {
         name: sub.name,
+        date,
+        amount: convertAmount(sub.amount, sub.currency, displayCurrency),
         wantToCancel: sub.wantToCancel
-      }));
-    });
-    
-    // Sort by date first, then use wantToCancel as a tiebreaker for same day payments
-    return payments
-      .sort((a, b) => {
-        const dateA = a.date.getTime();
-        const dateB = b.date.getTime();
-        
-        if (dateA === dateB) {
-          // Same day - use wantToCancel as tiebreaker (cancelled ones first)
-          return b.wantToCancel ? 1 : -1;
-        }
-        return dateA - dateB;
-      })
+      };
+    }).filter(payment => payment.date >= now)
+      .sort((a, b) => a.date.getTime() - b.date.getTime())
       .slice(0, 5);
+    return nextPayments;
   };
 
   return (
-    <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2, width: '100%' }}>
+    <Box 
+      component="section"
+      aria-label="Dashboard Statistics"
+      sx={{ 
+        display: 'flex', 
+        gap: 2,
+        flexWrap: { xs: 'wrap', sm: 'nowrap' },
+        mb: 4 
+      }}
+    >
       <Paper sx={{ 
         flex: 1,
         minWidth: { xs: '100%', sm: '48%' },
@@ -85,10 +69,29 @@ export const DashboardStats = () => {
         justifyContent: 'center',
         minHeight: '200px'
       }}>
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 1 }}>
+        <Typography 
+          variant="h2" 
+          component="h2"
+          color="text.secondary"
+          sx={{ 
+            mb: 1,
+            fontSize: '1.25rem',
+            fontWeight: 500
+          }}
+        >
           {t('dashboard.monthlyOverview')}
         </Typography>
-        <Typography variant="h3" color="primary" sx={{ fontWeight: 'bold', mb: 2 }}>
+        <Typography 
+          variant="h3" 
+          component="p"
+          color="primary" 
+          sx={{ 
+            fontWeight: 'bold', 
+            mb: 2,
+            fontSize: { xs: '2rem', sm: '2.5rem' }
+          }}
+          aria-label={`${t('dashboard.totalMonthlySpending')}: ${formatCurrency(calculateTotalMonthly())}`}
+        >
           {formatCurrency(calculateTotalMonthly())}
         </Typography>
         <Box sx={{ 
@@ -101,12 +104,21 @@ export const DashboardStats = () => {
             {t('dashboard.totalMonthlySpending')}
           </Typography>
           <CurrencySelector />
-          <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+          <Typography 
+            variant="caption" 
+            color="text.secondary" 
+            sx={{ mt: 1 }}
+            aria-label={`${t('dashboard.yearlyEstimate')}: ${formatCurrency(calculateTotalMonthly() * 12)}`}
+          >
             {t('dashboard.yearlyEstimate')}: {formatCurrency(calculateTotalMonthly() * 12)}
           </Typography>
         </Box>
         {lastUpdated && (
-          <Typography variant="caption" sx={{ mt: 2, opacity: 0.7 }}>
+          <Typography 
+            variant="caption" 
+            sx={{ mt: 2, opacity: 0.7 }}
+            role="status"
+          >
             {t('dashboard.exchangeRatesUpdated', { date: new Date(lastUpdated).toLocaleDateString() })}
           </Typography>
         )}
@@ -119,10 +131,22 @@ export const DashboardStats = () => {
         display: 'flex',
         flexDirection: 'column'
       }}>
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 1 }}>
+        <Typography 
+          variant="h2" 
+          component="h2"
+          color="text.secondary" 
+          sx={{ 
+            mb: 1,
+            fontSize: '1.25rem',
+            fontWeight: 500
+          }}
+        >
           {t('dashboard.upcomingPayments')}
         </Typography>
-        <List sx={{ py: 0 }}>
+        <List 
+          sx={{ py: 0 }}
+          aria-label="Upcoming payments list"
+        >
           {getNextPayments().map((payment, index) => (
             <ListItem 
               key={index} 
@@ -146,7 +170,11 @@ export const DashboardStats = () => {
                   variant: 'caption'
                 }}
               />
-              <Typography variant="body2" sx={{ fontWeight: 500, color: 'primary.main' }}>
+              <Typography 
+                variant="body2" 
+                sx={{ fontWeight: 500, color: 'primary.main' }}
+                aria-label={`Payment amount: ${formatCurrency(payment.amount)}`}
+              >
                 {formatCurrency(payment.amount)}
               </Typography>
             </ListItem>

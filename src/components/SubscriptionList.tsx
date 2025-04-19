@@ -148,18 +148,33 @@ export const SubscriptionList = () => {
   };
 
   return (
-    <>
+    <Box 
+      component="section"
+      role="region"
+      aria-label="Subscription Management"
+    >
       {subscriptions.length > 0 && (
-        <Box sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+        <Box 
+          component="div"
+          role="toolbar"
+          aria-label="Category filters"
+          sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}
+        >
           <CategoryManager />
           {activeCategories.length > 1 && (
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+            <Box 
+              component="div"
+              role="group"
+              aria-label="Category filter buttons"
+              sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}
+            >
               {activeCategories.map((category) => (
                 <ToggleButton
                   key={category.id}
                   value={category.id}
                   selected={selectedCategories.has(category.id)}
                   onChange={() => handleCategoryToggle(category.id)}
+                  aria-label={`Filter by ${category.name}`}
                   sx={{
                     backgroundColor: category.backgroundColor,
                     color: category.textColor,
@@ -189,16 +204,23 @@ export const SubscriptionList = () => {
         </Box>
       )}
 
-      <Box sx={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        gap: 2.5,
-        width: '100%',
-        justifyContent: 'flex-start'
-      }}>
+      <Box 
+        component="div"
+        role="list"
+        aria-label="Subscriptions list"
+        sx={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          gap: 2.5,
+          width: '100%',
+          justifyContent: 'flex-start'
+        }}
+      >
         {filteredSubscriptions.length > 0 ? (
           filteredSubscriptions.map((subscription) => (
             <Box 
+              component="div"
+              role="listitem"
               key={subscription.id} 
               sx={{ 
                 width: { 
@@ -227,12 +249,17 @@ export const SubscriptionList = () => {
                 <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
                     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1, flex: 1 }}>
-                      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                      <Typography 
+                        variant="h6" 
+                        component="h3"
+                        sx={{ fontWeight: 600 }}
+                      >
                         {subscription.name}
                       </Typography>
                       <Chip
                         label={getCategoryName(subscription.categoryId)}
                         size="small"
+                        aria-label={`Category: ${getCategoryName(subscription.categoryId)}`}
                         sx={{
                           ...getCategoryStyle(subscription.categoryId),
                           fontWeight: 500,
@@ -244,6 +271,7 @@ export const SubscriptionList = () => {
                           label={t('subscription.wantToCancel')}
                           size="small"
                           color="error"
+                          aria-label="Marked for cancellation"
                           sx={{
                             fontWeight: 500,
                             borderRadius: '6px',
@@ -254,12 +282,20 @@ export const SubscriptionList = () => {
                     <IconButton 
                       size="small" 
                       onClick={(e) => handleMenuOpen(e, subscription.id)}
+                      aria-label="Subscription actions"
+                      aria-haspopup="true"
                     >
                       <MoreVertIcon />
                     </IconButton>
                   </Box>
                   
-                  <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold' }}>
+                  <Typography 
+                    variant="h5" 
+                    component="p"
+                    color="primary" 
+                    sx={{ fontWeight: 'bold' }}
+                    aria-label={`Amount: ${formatCurrency(subscription.amount, subscription.currency.code)} ${t(getBillingCycleTranslation(subscription.billingCycle))}`}
+                  >
                     {formatCurrency(subscription.amount, subscription.currency.code)}
                     <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
                       {t(getBillingCycleTranslation(subscription.billingCycle))}
@@ -267,13 +303,24 @@ export const SubscriptionList = () => {
                   </Typography>
 
                   <Box sx={{ mt: 'auto', pt: 1 }}>
-                    <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary" 
+                      sx={{ display: 'flex', justifyContent: 'space-between' }}
+                    >
                       <span>{t('subscription.nextBilling')}</span>
-                      <span style={{ fontWeight: 500 }}>{format(new Date(subscription.nextBillingDate), t('common.dateFormat'))}</span>
+                      <span style={{ fontWeight: 500 }}>
+                        {format(new Date(subscription.nextBillingDate), t('common.dateFormat'))}
+                      </span>
                     </Typography>
 
                     {subscription.notes && (
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1, fontSize: '0.875rem' }}>
+                      <Typography 
+                        variant="body2" 
+                        color="text.secondary" 
+                        sx={{ mt: 1, fontSize: '0.875rem' }}
+                        aria-label={`Notes: ${subscription.notes}`}
+                      >
                         {subscription.notes}
                       </Typography>
                     )}
@@ -311,11 +358,18 @@ export const SubscriptionList = () => {
             horizontal: 'right',
           }}
         >
-          <MenuItem onClick={handleEditClick}>
+          <MenuItem 
+            onClick={handleEditClick}
+            aria-label="Edit subscription"
+          >
             <EditIcon fontSize="small" sx={{ mr: 1 }} />
             {t('category.manage.actions.edit')}
           </MenuItem>
-          <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
+          <MenuItem 
+            onClick={handleDeleteClick} 
+            sx={{ color: 'error.main' }}
+            aria-label="Delete subscription"
+          >
             <DeleteIcon fontSize="small" sx={{ mr: 1 }} />
             {t('category.manage.actions.delete')}
           </MenuItem>
@@ -346,6 +400,6 @@ export const SubscriptionList = () => {
           </Suspense>
         )}
       </Box>
-    </>
+    </Box>
   );
 };

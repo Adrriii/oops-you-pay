@@ -2,12 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preload" href="/icons/icon-192x192.png" as="image">
+    <link rel="preload" href="/manifest.json" as="fetch" crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OopsYouPay</title>
+    <meta name="description" content="OopsYouPay - Smart subscription management tool to track and manage your recurring payments and subscriptions" />
+    <meta name="keywords" content="subscription manager, recurring payments, subscription tracking, payment management, expense tracker" />
+    <meta name="author" content="Adrien Boitelle" />
+    <meta property="og:title" content="OopsYouPay - Smart Subscription Manager" />
+    <meta property="og:description" content="Track and manage your recurring payments and subscriptions efficiently" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oops-you-pay.adri-web.dev/" />
+    <meta property="og:image" content="https://oops-you-pay.adri-web.dev/icons/icon-512x512.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OopsYouPay - Smart Subscription Manager" />
+    <meta name="twitter:description" content="Track and manage your recurring payments and subscriptions efficiently" />
+    <meta name="twitter:image" content="https://oops-you-pay.adri-web.dev/icons/icon-512x512.png" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="application-name" content="OopsYouPay" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="OopsYouPay" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="canonical" href="https://oops-you-pay.adri-web.dev/" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <title>OopsYouPay - Smart Subscription Manager</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "OopsYouPay",
+        "alternateName": "OopsYouPay - Smart Subscription Manager",
+        "description": "Track and manage your recurring payments and subscriptions efficiently with OopsYouPay. Get insights into your monthly spending and upcoming payments.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Adrien Boitelle"
+        },
+        "url": "https://oops-you-pay.adri-web.dev/",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "softwareVersion": "1.0.0",
+        "keywords": "subscription manager, recurring payments, subscription tracking, payment management, expense tracker",
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <noscript>
+      <p>Please enable JavaScript to use OopsYouPay - Smart Subscription Manager.</p>
+    </noscript>
   </body>
 </html>
