@@ -81,5 +81,63 @@
       "health": "Saúde",
       "other": "Outros"
     }
+  },
+  "brands": {
+    "disney": {
+      "name": "Disney+",
+      "plans": {
+        "standard": "Standard",
+        "premium": "Premium"
+      }
+    },
+    "amazonprime": {
+      "name": "Amazon Prime",
+      "plans": {
+        "monthly": "Mensal",
+        "annual": "Anual"
+      }
+    },
+    "microsoftoffice": {
+      "name": "Microsoft 365",
+      "plans": {
+        "personal": "Pessoal",
+        "family": "Família"
+      }
+    },
+    "adobe": {
+      "name": "Adobe Creative Cloud",
+      "plans": {
+        "photography": "Plano Fotografia",
+        "allapps": "Todos os Aplicativos"
+      }
+    },
+    "xboxgamepass": {
+      "name": "Xbox Game Pass",
+      "plans": {
+        "core": "Core",
+        "ultimate": "Ultimate"
+      }
+    },
+    "appleone": {
+      "name": "Apple One",
+      "plans": {
+        "individual": "Individual",
+        "family": "Família"
+      }
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "plans": {
+        "plus": "Plus",
+        "family": "Família"
+      }
+    },
+    "hbomax": {
+      "name": "HBO Max",
+      "plans": {
+        "withads": "Com Anúncios",
+        "adsfree": "Sem Anúncios"
+      }
+    }
   }
 }

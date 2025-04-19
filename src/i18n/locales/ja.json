@@ -129,6 +129,62 @@
         "family": "YouTube Premium ファミリープラン",
         "student": "YouTube Premium 学生プラン"
       }
+    },
+    "disney": {
+      "name": "Disney+",
+      "plans": {
+        "standard": "スタンダード",
+        "premium": "プレミアム"
+      }
+    },
+    "amazonprime": {
+      "name": "Amazon Prime",
+      "plans": {
+        "monthly": "月額プラン",
+        "annual": "年額プラン"
+      }
+    },
+    "microsoftoffice": {
+      "name": "Microsoft 365",
+      "plans": {
+        "personal": "パーソナル",
+        "family": "ファミリー"
+      }
+    },
+    "adobe": {
+      "name": "Adobe Creative Cloud",
+      "plans": {
+        "photography": "フォトプラン",
+        "allapps": "コンプリートプラン"
+      }
+    },
+    "xboxgamepass": {
+      "name": "Xbox Game Pass",
+      "plans": {
+        "core": "Core",
+        "ultimate": "Ultimate"
+      }
+    },
+    "appleone": {
+      "name": "Apple One",
+      "plans": {
+        "individual": "個人プラン",
+        "family": "ファミリープラン"
+      }
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "plans": {
+        "plus": "Plus",
+        "family": "ファミリー"
+      }
+    },
+    "hbomax": {
+      "name": "HBO Max",
+      "plans": {
+        "withads": "広告付き",
+        "adsfree": "広告なし"
+      }
     }
   }
 }

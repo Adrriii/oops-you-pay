@@ -129,6 +129,62 @@
         "family": "유튜브 프리미엄 패밀리",
         "student": "유튜브 프리미엄 학생"
       }
+    },
+    "disney": {
+      "name": "Disney+",
+      "plans": {
+        "standard": "스탠다드",
+        "premium": "프리미엄"
+      }
+    },
+    "amazonprime": {
+      "name": "Amazon Prime",
+      "plans": {
+        "monthly": "월간 구독",
+        "annual": "연간 구독"
+      }
+    },
+    "microsoftoffice": {
+      "name": "Microsoft 365",
+      "plans": {
+        "personal": "개인",
+        "family": "가족"
+      }
+    },
+    "adobe": {
+      "name": "Adobe Creative Cloud",
+      "plans": {
+        "photography": "포토그래피 플랜",
+        "allapps": "모든 앱"
+      }
+    },
+    "xboxgamepass": {
+      "name": "Xbox Game Pass",
+      "plans": {
+        "core": "Core",
+        "ultimate": "Ultimate"
+      }
+    },
+    "appleone": {
+      "name": "Apple One",
+      "plans": {
+        "individual": "개인",
+        "family": "가족"
+      }
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "plans": {
+        "plus": "Plus",
+        "family": "패밀리"
+      }
+    },
+    "hbomax": {
+      "name": "HBO Max",
+      "plans": {
+        "withads": "광고 포함",
+        "adsfree": "광고 없음"
+      }
     }
   }
 }

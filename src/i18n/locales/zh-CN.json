@@ -129,6 +129,62 @@
         "family": "YouTube Premium 家庭版",
         "student": "YouTube Premium 学生版"
       }
+    },
+    "disney": {
+      "name": "Disney+",
+      "plans": {
+        "standard": "标准版",
+        "premium": "高级版"
+      }
+    },
+    "amazonprime": {
+      "name": "亚马逊Prime会员",
+      "plans": {
+        "monthly": "月付",
+        "annual": "年付"
+      }
+    },
+    "microsoftoffice": {
+      "name": "Microsoft 365",
+      "plans": {
+        "personal": "个人版",
+        "family": "家庭版"
+      }
+    },
+    "adobe": {
+      "name": "Adobe Creative Cloud",
+      "plans": {
+        "photography": "摄影计划",
+        "allapps": "所有应用程序"
+      }
+    },
+    "xboxgamepass": {
+      "name": "Xbox Game Pass",
+      "plans": {
+        "core": "Core",
+        "ultimate": "Ultimate"
+      }
+    },
+    "appleone": {
+      "name": "Apple One",
+      "plans": {
+        "individual": "个人版",
+        "family": "家庭版"
+      }
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "plans": {
+        "plus": "Plus",
+        "family": "家庭版"
+      }
+    },
+    "hbomax": {
+      "name": "HBO Max",
+      "plans": {
+        "withads": "含广告",
+        "adsfree": "无广告"
+      }
     }
   }
 }

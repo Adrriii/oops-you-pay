@@ -106,6 +106,62 @@
         "family": "YouTube Premium Familienabo",
         "student": "YouTube Premium Student"
       }
+    },
+    "disney": {
+      "name": "Disney+",
+      "plans": {
+        "standard": "Standard",
+        "premium": "Premium"
+      }
+    },
+    "amazonprime": {
+      "name": "Amazon Prime",
+      "plans": {
+        "monthly": "Monatlich",
+        "annual": "Jährlich"
+      }
+    },
+    "microsoftoffice": {
+      "name": "Microsoft 365",
+      "plans": {
+        "personal": "Personal",
+        "family": "Familie"
+      }
+    },
+    "adobe": {
+      "name": "Adobe Creative Cloud",
+      "plans": {
+        "photography": "Foto-Paket",
+        "allapps": "Alle Programme"
+      }
+    },
+    "xboxgamepass": {
+      "name": "Xbox Game Pass",
+      "plans": {
+        "core": "Core",
+        "ultimate": "Ultimate"
+      }
+    },
+    "appleone": {
+      "name": "Apple One",
+      "plans": {
+        "individual": "Individual",
+        "family": "Familie"
+      }
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "plans": {
+        "plus": "Plus",
+        "family": "Familie"
+      }
+    },
+    "hbomax": {
+      "name": "HBO Max",
+      "plans": {
+        "withads": "Mit Werbung",
+        "adsfree": "Ohne Werbung"
+      }
     }
   }
 }
