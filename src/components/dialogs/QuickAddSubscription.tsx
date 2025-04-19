@@ -70,6 +70,7 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
       nextBillingDate: new Date(getDefaultNextBillingDate()),
       categoryId,
       notes: '',
+      wantToCancel: false,
     });
     updateLastUsedCurrency(preferredCurrency);
     handleClose();

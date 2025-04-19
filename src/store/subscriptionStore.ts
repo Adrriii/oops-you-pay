@@ -30,6 +30,7 @@ export const useSubscriptionStore = create<SubscriptionState>()(
               ...subscription,
               id: crypto.randomUUID(),
               createdAt: new Date(),
+              wantToCancel: false,
             },
           ],
         })),

@@ -19,6 +19,8 @@ import {
   Select,
   SelectChangeEvent,
   Button,
+  FormControlLabel,
+  Switch,
 } from '@mui/material';
 import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { useSubscriptionStore } from '../store/subscriptionStore';
@@ -26,7 +28,7 @@ import { Subscription } from '../types/subscription';
 import { format } from 'date-fns';
 import { useCategoryStore } from '../store/categoryStore';
 import { useTranslation } from 'react-i18next';
-import { currencies, getCurrencySymbol } from '../config/currencies';
+import { currencies, getCurrencySymbol, getDefaultCurrency } from '../config/currencies';
 
 interface EditSubscriptionProps {
   open: boolean;
@@ -48,11 +50,12 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
   const [formData, setFormData] = useState<Omit<Subscription, 'id' | 'createdAt'>>({
     name: '',
     amount: 0,
-    currency: currencies[0],
+    currency: getDefaultCurrency(),
     billingCycle: 'monthly',
     nextBillingDate: new Date(),
     categoryId: '',
     notes: '',
+    wantToCancel: false,
   });
 
   useEffect(() => {
@@ -65,6 +68,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
         nextBillingDate: subscription.nextBillingDate,
         categoryId: subscription.categoryId || '',
         notes: subscription.notes || '',
+        wantToCancel: subscription.wantToCancel,
       });
     }
   }, [subscription]);
@@ -94,6 +98,13 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     setFormData(prev => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      wantToCancel: e.target.checked,
     }));
   };
 
@@ -184,6 +195,16 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
               </AccordionSummary>
               <AccordionDetails sx={{ px: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={formData.wantToCancel}
+                        onChange={handleSwitchChange}
+                        color="error"
+                      />
+                    }
+                    label={t('subscription.wantToCancel')}
+                  />
                   <TextField
                     label={t('subscription.add.nextBillingDate')}
                     name="nextBillingDate"

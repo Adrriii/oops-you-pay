@@ -53,13 +53,23 @@ export const DashboardStats = () => {
       return dates.map(date => ({
         date,
         amount,
-        name: sub.name
+        name: sub.name,
+        wantToCancel: sub.wantToCancel
       }));
     });
     
-    // Sort by date and take first 5
+    // Sort by date first, then use wantToCancel as a tiebreaker for same day payments
     return payments
-      .sort((a, b) => a.date.getTime() - b.date.getTime())
+      .sort((a, b) => {
+        const dateA = a.date.getTime();
+        const dateB = b.date.getTime();
+        
+        if (dateA === dateB) {
+          // Same day - use wantToCancel as tiebreaker (cancelled ones first)
+          return b.wantToCancel ? 1 : -1;
+        }
+        return dateA - dateB;
+      })
       .slice(0, 5);
   };
 
@@ -120,7 +130,8 @@ export const DashboardStats = () => {
                 px: 0, 
                 py: 0.5,
                 borderBottom: index < getNextPayments().length - 1 ? '1px solid' : 'none',
-                borderColor: 'divider'
+                borderColor: 'divider',
+                backgroundColor: payment.wantToCancel ? 'error.lighter' : 'transparent'
               }}
             >
               <ListItemText
@@ -128,7 +139,8 @@ export const DashboardStats = () => {
                 secondary={format(payment.date, 'MMM dd, yyyy')}
                 primaryTypographyProps={{ 
                   variant: 'body2',
-                  fontWeight: 500 
+                  fontWeight: 500,
+                  color: payment.wantToCancel ? 'error.main' : 'inherit'
                 }}
                 secondaryTypographyProps={{
                   variant: 'caption'

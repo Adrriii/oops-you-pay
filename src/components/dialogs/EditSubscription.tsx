@@ -19,6 +19,8 @@ import {
   Select,
   SelectChangeEvent,
   Button,
+  FormControlLabel,
+  Switch,
 } from '@mui/material';
 import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { useSubscriptionStore } from '../../store/subscriptionStore';
@@ -57,6 +59,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
     nextBillingDate: '',
     categoryId: '',
     notes: '',
+    wantToCancel: false,
   });
 
   useEffect(() => {
@@ -69,6 +72,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
         nextBillingDate: format(new Date(subscription.nextBillingDate), 'yyyy-MM-dd'),
         categoryId: subscription.categoryId || '',
         notes: subscription.notes || '',
+        wantToCancel: subscription.wantToCancel,
       });
     }
   }, [subscription]);
@@ -100,6 +104,13 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
     setFormData(prev => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleCancelToggle = () => {
+    setFormData(prev => ({
+      ...prev,
+      wantToCancel: !prev.wantToCancel,
     }));
   };
 
@@ -166,6 +177,18 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
                 <MenuItem value="weekly">{t('subscription.add.cycles.weekly')}</MenuItem>
               </Select>
             </FormControl>
+
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formData.wantToCancel}
+                  onChange={handleCancelToggle}
+                  color="error"
+                />
+              }
+              label={t('subscription.wantToCancel')}
+              sx={{ mt: 1 }}
+            />
 
             <Accordion 
               expanded={showAdvanced}

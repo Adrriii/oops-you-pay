@@ -19,6 +19,8 @@ import {
   Select,
   SelectChangeEvent,
   Button,
+  FormControlLabel,
+  Switch,
 } from '@mui/material';
 import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { useSubscriptionStore } from '../../store/subscriptionStore';
@@ -41,6 +43,7 @@ const getInitialFormState = (currency: Currency) => ({
   nextBillingDate: getDefaultNextBillingDate(),
   categoryId: '',
   notes: '',
+  wantToCancel: false,
 });
 
 const AddSubscriptionDialog = ({ open, onClose }: AddSubscriptionDialogProps) => {
@@ -88,6 +91,13 @@ const AddSubscriptionDialog = ({ open, onClose }: AddSubscriptionDialogProps) =>
     setFormData(prev => ({
       ...prev,
       [name]: value,
+    }));
+  }, []);
+
+  const handleSwitchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      wantToCancel: e.target.checked,
     }));
   }, []);
 
@@ -152,6 +162,17 @@ const AddSubscriptionDialog = ({ open, onClose }: AddSubscriptionDialogProps) =>
                 <MenuItem value="weekly">{t('subscription.add.cycles.weekly')}</MenuItem>
               </Select>
             </FormControl>
+			
+			<FormControlLabel
+			control={
+				<Switch
+				checked={formData.wantToCancel}
+				onChange={handleSwitchChange}
+				color="error"
+				/>
+			}
+			label={t('subscription.wantToCancel')}
+			/>
 
             <Accordion 
               expanded={showAdvanced}

@@ -111,7 +111,13 @@ export const SubscriptionList = () => {
               }
             }}
           >
-            <Card sx={{ height: '100%' }}>
+            <Card sx={{ 
+              height: '100%',
+              backgroundColor: subscription.wantToCancel ? 'error.lighter' : 'background.paper',
+              borderColor: subscription.wantToCancel ? 'error.light' : 'divider',
+              borderWidth: 1,
+              borderStyle: 'solid'
+           }}>
               <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1, flex: 1 }}>
@@ -127,11 +133,21 @@ export const SubscriptionList = () => {
                         borderRadius: '6px',
                       }}
                     />
+                    {subscription.wantToCancel && (
+                      <Chip
+                        label={t('subscription.wantToCancel')}
+                        size="small"
+                        color="error"
+                        sx={{
+                          fontWeight: 500,
+                          borderRadius: '6px',
+                        }}
+                      />
+                    )}
                   </Box>
                   <IconButton 
                     size="small" 
                     onClick={(e) => handleMenuOpen(e, subscription.id)}
-                    sx={{ ml: 1 }}
                   >
                     <MoreVertIcon />
                   </IconButton>

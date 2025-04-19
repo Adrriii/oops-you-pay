@@ -63,13 +63,14 @@
       "cancel": "Cancel",
       "confirm": "Delete"
     },
+    "nextBilling": "Next billing:",
+    "noSubscriptions": "No subscriptions yet. Add your first one!",
+    "wantToCancel": "Want to Cancel",
     "billingCycle": {
       "monthly": "/ month",
       "yearly": "/ year",
       "weekly": "/ week"
-    },
-    "nextBilling": "Next billing:",
-    "noSubscriptions": "No subscriptions yet. Add your first one!"
+    }
   },
   "category": {
     "manage": {

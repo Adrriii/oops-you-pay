@@ -10,6 +10,7 @@ export interface Subscription {
   categoryId?: string;  // Changed from category to categoryId
   notes?: string;
   createdAt: Date;
+  wantToCancel: boolean;  // Track if user wants to cancel this subscription
 }
 
 export type BillingCycle = Subscription['billingCycle'];
