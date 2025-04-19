@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { ThemeProvider, CssBaseline, Container, Box } from '@mui/material';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { DashboardStats } from './components/DashboardStats';
 import { AddSubscription } from './components/AddSubscription';
 import { SubscriptionList } from './components/SubscriptionList';
@@ -9,7 +10,6 @@ import { theme } from './theme';
 import './i18n/i18n';
 
 function App() {
-console.log('App component rendered');
   const { fetchRatesIfNeeded } = useExchangeRatesStore();
 
   useEffect(() => {
@@ -21,20 +21,18 @@ console.log('App component rendered');
       <CssBaseline />
       <Box 
         sx={{ 
+          display: 'flex',
+          flexDirection: 'column',
           minHeight: '100vh',
-          width: '100%',
-          bgcolor: 'background.default',
-          py: { xs: 3, md: 5 },
-          px: 2
         }}
       >
         <Container 
           maxWidth="lg" 
           sx={{ 
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'stretch'
+            flex: 1, 
+            display: 'flex', 
+            flexDirection: 'column', 
+            py: 4 
           }}
         >
           <Header />
@@ -48,6 +46,7 @@ console.log('App component rendered');
             <SubscriptionList />
           </Box>
         </Container>
+        <Footer />
       </Box>
     </ThemeProvider>
   );

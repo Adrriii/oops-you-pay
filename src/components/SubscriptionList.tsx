@@ -13,7 +13,7 @@ import { CurrencyCode } from '../config/currencies';
 export const SubscriptionList = () => {
   const { t } = useTranslation();
   const subscriptions = useSubscriptionStore((state) => state.subscriptions);
-  const { categories, getCategoryById } = useCategoryStore();
+  const { getCategoryById } = useCategoryStore();
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
   const [selectedSubscription, setSelectedSubscription] = useState<string | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);

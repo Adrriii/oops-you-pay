@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { currencies, Currency, getDefaultCurrency } from '../config/currencies';
+import { Currency, getDefaultCurrency } from '../config/currencies';
 
 const ratesJSON = '/rates.json';
 

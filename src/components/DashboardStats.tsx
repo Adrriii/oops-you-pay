@@ -1,15 +1,13 @@
-import { Box, Typography, Paper, FormControl, Select, MenuItem } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 import { useSubscriptionStore } from '../store/subscriptionStore';
 import { useExchangeRatesStore } from '../store/exchangeRatesStore';
 import { useTranslation } from 'react-i18next';
-import { currencies, Currency, currencyByCode, CurrencyCode } from '../config/currencies';
+import { CurrencySelector } from './CurrencySelector';
 
 export const DashboardStats = () => {
   const { t } = useTranslation();
   const subscriptions = useSubscriptionStore((state) => state.subscriptions);
   const displayCurrency = useSubscriptionStore((state) => state.displayCurrency);
-  const updateDisplayCurrency = useSubscriptionStore((state) => state.updateDisplayCurrency);
-  const updateLastUsedCurrency = useSubscriptionStore((state) => state.updateLastUsedCurrency);
   const { convertAmount, lastUpdated } = useExchangeRatesStore();
 
   const calculateTotalMonthly = () => {
@@ -32,11 +30,6 @@ export const DashboardStats = () => {
       style: 'currency',
       currency: displayCurrency.code,
     }).format(amount);
-  };
-
-  const handleCurrencyChange = (value: Currency) => {
-    updateDisplayCurrency(value);
-    updateLastUsedCurrency(value);
   };
 
   return (
@@ -64,25 +57,7 @@ export const DashboardStats = () => {
             <Typography variant="body2" color="text.secondary" sx={{ mr: 1 }}>
               {t('dashboard.totalMonthlySpending')}
             </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={displayCurrency.code}
-                onChange={(e) => handleCurrencyChange(currencyByCode[e.target.value as CurrencyCode])}
-                variant="standard"
-                sx={{ 
-                  '& .MuiSelect-select': { 
-                    py: 0,
-                    color: 'text.secondary',
-                  }
-                }}
-              >
-                {currencies.map((currency) => (
-                  <MenuItem key={currency.code} value={currency.code}>
-                    {currency.code}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <CurrencySelector />
           </Box>
           {lastUpdated && (
             <Typography variant="caption" sx={{ mt: 0.5, opacity: 0.8 }}>

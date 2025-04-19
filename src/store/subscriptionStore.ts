@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Subscription } from '../types/subscription';
 import { persist } from 'zustand/middleware';
-import { currencies, Currency, getDefaultCurrency } from '../config/currencies';
+import { Currency, getDefaultCurrency } from '../config/currencies';
 
 interface SubscriptionState {
   subscriptions: Subscription[];
