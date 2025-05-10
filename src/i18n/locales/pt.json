@@ -37,7 +37,7 @@
         "weekly": "Semanal"
       },
       "advancedOptions": "Opções avançadas",
-      "nextBillingDate": "Próxima data de cobrança",
+      "startBillingDate": "Data de início da cobrança",
       "currency": "Moeda",
       "category": "Categoria (Opcional)",
       "uncategorized": "Sem categoria",

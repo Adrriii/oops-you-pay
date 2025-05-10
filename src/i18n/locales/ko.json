@@ -37,7 +37,7 @@
         "weekly": "매주"
       },
       "advancedOptions": "고급 옵션",
-      "nextBillingDate": "다음 결제일",
+      "startBillingDate": "결제 시작일",
       "currency": "통화",
       "category": "카테고리 (선택사항)",
       "uncategorized": "미분류",

@@ -37,7 +37,7 @@
         "weekly": "Settimanale"
       },
       "advancedOptions": "Opzioni avanzate",
-      "nextBillingDate": "Prossima data di fatturazione",
+      "startBillingDate": "Data di inizio fatturazione",
       "currency": "Valuta",
       "category": "Categoria (Opzionale)",
       "uncategorized": "Non categorizzato",

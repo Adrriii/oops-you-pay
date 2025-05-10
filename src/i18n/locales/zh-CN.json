@@ -37,7 +37,7 @@
         "weekly": "每周"
       },
       "advancedOptions": "高级选项",
-      "nextBillingDate": "下次付款日期",
+      "startBillingDate": "开始计费日期",
       "currency": "货币",
       "category": "分类（可选）",
       "uncategorized": "未分类",

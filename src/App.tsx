@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     fetchRatesIfNeeded();
-  }, []); 
+  }, [fetchRatesIfNeeded]); 
 
   // Update hreflang tags when language changes
   useEffect(() => {

@@ -36,8 +36,8 @@ interface EditSubscriptionProps {
   subscriptionId: string;
 }
 
-type EditSubscriptionFormData = Omit<Subscription, 'id' | 'createdAt' | 'nextBillingDate'> & {
-  nextBillingDate: string;
+type EditSubscriptionFormData = Omit<Subscription, 'id' | 'createdAt' | 'startBillingDate'> & {
+  startBillingDate: string;
 };
 
 const getInitialFormState = (subscription: Subscription) => ({
@@ -45,7 +45,7 @@ const getInitialFormState = (subscription: Subscription) => ({
   amount: subscription.amount,
   currency: subscription.currency,
   billingCycle: subscription.billingCycle,
-  nextBillingDate: formatDateForInput(subscription.nextBillingDate),
+  startBillingDate: formatDateForInput(subscription.startBillingDate),
   categoryId: subscription.categoryId || '',
   notes: subscription.notes || '',
   wantToCancel: subscription.wantToCancel,
@@ -67,7 +67,7 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
     amount: 0,
     currency: getDefaultCurrency(),
     billingCycle: 'monthly',
-    nextBillingDate: '',
+    startBillingDate: '',
     categoryId: '',
     notes: '',
     wantToCancel: false,
@@ -83,10 +83,10 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
     e.preventDefault();
     if (subscription) {
       // Only create Date object when submitting and if we have a valid date
-      const nextBillingDate = formData.nextBillingDate ? new Date(formData.nextBillingDate) : new Date();
+      const startBillingDate = formData.startBillingDate ? new Date(formData.startBillingDate) : new Date();
       updateSubscription(subscription.id, {
         ...formData,
-        nextBillingDate,
+        startBillingDate,
       });
       updateLastUsedCurrency(formData.currency);
       onClose();
@@ -216,10 +216,10 @@ const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscriptionPro
               <AccordionDetails sx={{ px: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   <TextField
-                    label={t('subscription.add.nextBillingDate')}
-                    name="nextBillingDate"
+                    label={t('subscription.add.startBillingDate')}
+                    name="startBillingDate"
                     type="date"
-                    value={formData.nextBillingDate}
+                    value={formData.startBillingDate}
                     onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }}

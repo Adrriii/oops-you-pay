@@ -52,7 +52,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     amount: 0,
     currency: getDefaultCurrency(),
     billingCycle: 'monthly',
-    nextBillingDate: new Date(),
+    startBillingDate: new Date(),
     categoryId: '',
     notes: '',
     wantToCancel: false,
@@ -65,7 +65,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
         amount: subscription.amount,
         currency: subscription.currency,
         billingCycle: subscription.billingCycle,
-        nextBillingDate: subscription.nextBillingDate,
+        startBillingDate: subscription.startBillingDate,
         categoryId: subscription.categoryId || '',
         notes: subscription.notes || '',
         wantToCancel: subscription.wantToCancel,
@@ -78,7 +78,7 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
     if (subscription) {
       updateSubscription(subscription.id, {
         ...formData,
-        nextBillingDate: new Date(formData.nextBillingDate),
+        startBillingDate: new Date(formData.startBillingDate),
       });
       updateLastUsedCurrency(formData.currency);
       onClose();
@@ -206,10 +206,10 @@ export const EditSubscription = ({ open, onClose, subscriptionId }: EditSubscrip
                     label={t('subscription.wantToCancel')}
                   />
                   <TextField
-                    label={t('subscription.add.nextBillingDate')}
-                    name="nextBillingDate"
+                    label={t('subscription.add.startBillingDate')}
+                    name="startBillingDate"
                     type="date"
-                    value={format(new Date(formData.nextBillingDate), 'yyyy-MM-dd')}
+                    value={format(new Date(formData.startBillingDate), 'yyyy-MM-dd')}
                     onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }}

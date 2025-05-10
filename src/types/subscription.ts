@@ -6,11 +6,11 @@ export interface Subscription {
   amount: number;
   currency: Currency;
   billingCycle: 'monthly' | 'yearly' | 'weekly';
-  nextBillingDate: Date;
-  categoryId?: string;  // Changed from category to categoryId
+  startBillingDate: Date;
+  categoryId?: string;
   notes?: string;
   createdAt: Date;
-  wantToCancel: boolean;  // Track if user wants to cancel this subscription
+  wantToCancel: boolean;
 }
 
 export type BillingCycle = Subscription['billingCycle'];

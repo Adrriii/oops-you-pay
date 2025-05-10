@@ -21,7 +21,14 @@
     "activeSubscriptions": "Active Subscriptions",
     "totalSubscriptions": "Total number of subscriptions",
     "yearlyEstimate": "Yearly estimate",
-    "upcomingPayments": "Upcoming Payments"
+    "upcomingPayments": "Upcoming Payments",
+    "categoryDistribution": "Monthly Spending by Category",
+    "month": "month",
+    "views": {
+      "default": "Overview",
+      "categories": "Categories"
+    },
+    "clickLegend": "Click on legend items to include/exclude from total"
   },
   "subscription": {
     "add": {
@@ -37,7 +44,7 @@
         "weekly": "Weekly"
       },
       "advancedOptions": "Advanced Options",
-      "nextBillingDate": "Next Billing Date",
+      "startBillingDate": "Start Billing Date",
       "currency": "Currency",
       "category": "Category (Optional)",
       "uncategorized": "Uncategorized",
@@ -101,7 +108,9 @@
       "health": "Health",
       "services": "Services",
       "other": "Other"
-    }
+    },
+    "noCategory": "Uncategorized",
+    "deleted": "Deleted Category"
   },
   "brands": {
     "netflix": {

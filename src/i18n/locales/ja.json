@@ -37,7 +37,7 @@
         "weekly": "毎週"
       },
       "advancedOptions": "詳細設定",
-      "nextBillingDate": "次回請求日",
+      "startBillingDate": "請求開始日",
       "currency": "通貨",
       "category": "カテゴリー (任意)",
       "uncategorized": "未分類",

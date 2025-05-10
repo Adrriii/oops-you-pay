@@ -37,7 +37,7 @@
         "weekly": "每週"
       },
       "advancedOptions": "進階選項",
-      "nextBillingDate": "下次付款日期",
+      "startBillingDate": "開始計費日期",
       "currency": "貨幣",
       "category": "分類（選填）",
       "uncategorized": "未分類",

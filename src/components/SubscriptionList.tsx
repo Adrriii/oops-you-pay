@@ -9,6 +9,7 @@ import { Currency } from '../config/currencies';
 import getBillingCycleTranslation from '../types/getBillingCycleTranslation';
 import { formatLocalDate } from '../utils/formatLocalDate';
 import { getCurrentLocale } from '../utils/getCurrentLocale';
+import { getNextBillingDate } from '../utils/getNextBillingDate';
 
 const EditSubscriptionComponent = lazy(() => import('./dialogs').then(m => ({ default: m.EditSubscription })));
 const DeleteConfirmationComponent = lazy(() => import('./dialogs').then(m => ({ default: m.DeleteConfirmation })));
@@ -311,7 +312,7 @@ export const SubscriptionList = () => {
                     >
                       <span>{t('subscription.nextBilling')}</span>
                       <span style={{ fontWeight: 500 }}>
-                        {formatLocalDate(subscription.nextBillingDate)}
+                        {formatLocalDate(getNextBillingDate(subscription.startBillingDate, subscription.billingCycle))}
                       </span>
                     </Typography>
 

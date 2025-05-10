@@ -26,7 +26,7 @@ import { Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-mat
 import { useSubscriptionStore } from '../../store/subscriptionStore';
 import { useCategoryStore } from '../../store/categoryStore';
 import { useTranslation } from 'react-i18next';
-import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
+import getDefaultStartBillingDate from '../../utils/getDefaultStartBillingDate';
 import { BillingCycle } from '../../types/subscription';
 import { currencies, Currency, currencyByCode, CurrencyCode, getCurrencySymbol } from '../../config/currencies';
 import { formatDateForInput } from '../../utils/formatLocalDate';
@@ -41,7 +41,7 @@ const getInitialFormState = (currency: Currency) => ({
   amount: '',
   currency,
   billingCycle: 'monthly' as BillingCycle,
-  nextBillingDate: formatDateForInput(getDefaultNextBillingDate()),
+  startBillingDate: formatDateForInput(getDefaultStartBillingDate()),
   categoryId: '',
   notes: '',
   wantToCancel: false,
@@ -66,7 +66,7 @@ const AddSubscriptionDialog = ({ open, onClose }: AddSubscriptionDialogProps) =>
     addSubscription({
       ...formData,
       amount: Number(formData.amount),
-      nextBillingDate: new Date(formData.nextBillingDate),
+      startBillingDate: new Date(formData.startBillingDate),
     });
     updateLastUsedCurrency(formData.currency);
     handleClose();
@@ -199,10 +199,10 @@ const AddSubscriptionDialog = ({ open, onClose }: AddSubscriptionDialogProps) =>
               <AccordionDetails sx={{ px: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   <TextField
-                    label={t('subscription.add.nextBillingDate')}
-                    name="nextBillingDate"
+                    label={t('subscription.add.startBillingDate')}
+                    name="startBillingDate"
                     type="date"
-                    value={formData.nextBillingDate}
+                    value={formData.startBillingDate}
                     onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }}

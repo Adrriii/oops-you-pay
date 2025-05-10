@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useMemo } from 'react';
 import {
   Dialog,
@@ -19,7 +20,7 @@ import { useExchangeRatesStore } from '../../store/exchangeRatesStore';
 import { useCategoryStore } from '../../store/categoryStore';
 import { useTranslation } from 'react-i18next';
 import { subscriptionPresets, RegionalPrice } from '../../data/subscriptionPresets';
-import getDefaultNextBillingDate from '../../utils/getDefaultNextBillingDate';
+import getDefaultStartBillingDate from '../../utils/getDefaultStartBillingDate';
 import { getDefaultCurrency } from '../../config/currencies';
 import { getCurrentLocale } from '../../utils/getCurrentLocale';
 
@@ -77,7 +78,7 @@ const QuickAddSubscription = ({ open, onClose }: QuickAddSubscriptionProps) => {
       amount: amount,
       currency: preferredCurrency,
       billingCycle: plan.billingCycle,
-      nextBillingDate: new Date(getDefaultNextBillingDate()),
+      startBillingDate: new Date(getDefaultStartBillingDate()),
       categoryId,
       notes: '',
       wantToCancel: false,
